@@ -51,9 +51,9 @@ getdata();
             <h2 id="un">username loading...</h2>
             <h2 id="statust">status loading...</h2>
             <div class="sdiv">
-                <img class="sicon" src="https://raw.githubusercontent.com/hackernoon/pixel-icon-library/main/Icons/PNG/For%20Dark%20Mode/24px/Brand%20Logos/Github.png" alt="icon title" />
-                <img class="sicon" src="https://github.com/hackernoon/pixel-icon-library/blob/main/Icons/PNG/For%20Dark%20Mode/24px/Brand%20Logos/X.png?raw=true" alt="icon title" />
-                <img class="sicon" src="https://i.ibb.co/6XHBcjP/logo-social-media-old-instagram-21.png" alt="" width="24px">
+                <a href="https://github.com/simplystudios" target="_blank" rel="noopener noreferrer"><img class="sicon" src="https://raw.githubusercontent.com/hackernoon/pixel-icon-library/main/Icons/PNG/For%20Dark%20Mode/24px/Brand%20Logos/Github.png" alt="icon title" /></a>
+                <a href="https://twitter.com/anshwadhwa8" target="_blank" rel="noopener noreferrer"><img class="sicon" src="https://github.com/hackernoon/pixel-icon-library/blob/main/Icons/PNG/For%20Dark%20Mode/24px/Brand%20Logos/X.png?raw=true" alt="icon title" /></a>
+                <a href="https://instagram.com/anshwadhwa8" target="_blank" rel="noopener noreferrer"><img class="sicon" src="https://i.ibb.co/6XHBcjP/logo-social-media-old-instagram-21.png" alt="" width="24px"></a>
             </div>
             </div>
         </div>

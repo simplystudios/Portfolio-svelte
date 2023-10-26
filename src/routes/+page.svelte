@@ -1,5 +1,11 @@
 <script>
 import Title from '$lib/title.svelte'
+import Card from '$lib/Card.svelte'
+import CardTitle from '$lib/CardTitle.svelte'
+import CardImg from '$lib/CardImg.svelte'
+import CardDesc from '$lib/CardTitle.svelte'
+import CardButton from '$lib/CardButton.svelte'
+
     const intro = "Compiling dreams into reality with lines of code - 2023, Chatgpt"
     let title = "Ansh Wadhwa";
 async function getdata() {
@@ -15,13 +21,13 @@ async function getdata() {
         statust.innerText = d.discord_status;
 
         if(statusb == 'dnd'){
-            ball.style.background = 'red';
+            ball.style.background = '#f33f43';
         }
         else if (statusb == 'online'){
-            ball.style.background = 'green';
+            ball.style.background = '#22a558';
         }
         else if (statusb == 'idle'){
-            ball.style.background = 'yellow'
+            ball.style.background = '#f0b132'
         }
         else{
             ball.style.background = 'grey'
@@ -47,6 +53,7 @@ getdata();
                     </div>
                     <h1>{title}</h1>
                 </div>
+                <h2>Coding is fun™</h2>
             <div>
             <h2 id="un">username loading...</h2>
             <h2 id="statust">status loading...</h2>
@@ -59,17 +66,89 @@ getdata();
         </div>
     </div>
 </div>
-<footer>
+<br>
+
     <div class="center">
         <blockquote>{intro}</blockquote>    
     </div>
-    
-</footer>
 
 </div>
 
+<br>
+<br>
+<section class="about">
+    <h1>About Me</h1>
+    <h3>Hi there! I'm Ansh, a 15-year-old programmer and web developer from India. I started coding in 2020 after the lockdown hit. At that time, I was making websites with Weebly. In 2021, I started real coding by making apps in Sketchware, a Scratch-like IDE for Java Android apps. I made some real apps, which you can check out in my coding section. After that, I got into Python and made a lot of projects there too. In 2022, I started making proper websites. I am currently learning C++.</h3>
+</section>
+<br>
+<br>
+<section class="projects">
+    <h1>Projects</h1>
+    <div class="col">
+    <Card>
+        <CardImg>
+            
+        </CardImg>
+        <CardTitle>
+            HinduWiki
+        </CardTitle>
+        <br>
+        <CardDesc>
+            Exploring the Journey of a Multifaceted Creative
+        </CardDesc>
+        <br>
+        <CardButton>
+            View
+        </CardButton>
+    </Card>
+
+    <Card>
+        <CardImg imgurl="https://anshwadhwa.vercel.app/images/rhythmichead.png">
+
+        </CardImg>
+        <CardTitle>
+            Rhythmic
+        </CardTitle>
+        <br>
+        <CardDesc>
+            An Music Streaming Service made using open source tools, api made using react native
+        </CardDesc>
+        <br>
+        <CardButton>
+            View
+        </CardButton>
+    </Card>
+
+     <Card>
+        <CardImg imgurl="https://anshwadhwa.vercel.app/images/gistbanner.png">
+
+        </CardImg>
+        <CardTitle>
+            Gist - Know the gist of it
+        </CardTitle>
+        <br>
+        <CardDesc>
+            Gist is a project that i worked on in june of 2023 it is a news app which gives news in 64 words.
+        </CardDesc>
+        <br>
+        <CardButton>
+            View
+        </CardButton>
+    </Card>
+
+</div>
+</section>
+
 
 <style>
+    .col{
+        justify-content: center;
+        margin: auto;
+        display: inline-grid;
+        grid-template-columns: auto auto auto;
+        padding: 10px;
+        gap: 20px 50px;
+    }
      .sdiv{
         display: inline;
     }
@@ -120,7 +199,24 @@ getdata();
         margin-left: 10px;
         font-size: 50px;
     }
+     @media screen and (max-width: 700px) {
+         .col{
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: auto;
+            grid-template-columns: auto auto;
+        }
+     }
     @media screen and (max-width: 500px) {
+        .col{
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: auto;
+            grid-template-columns: 100%;
+        }
+
         .bd{
             display:block;
         }
@@ -130,7 +226,7 @@ getdata();
     }
     }
     .center{
-        width: 50%;
+        width: auto;
         margin: auto;
     }
     .img{

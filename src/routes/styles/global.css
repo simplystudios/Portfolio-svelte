@@ -4,8 +4,9 @@ body{
     background: #000000;
     margin: 0;
 }
-h1,h2,p,a,li,blockquote{
+h1,h2,h3,h4,h5,p,p1,p2,p3,a,li,blockquote,button{
     color: #cbc9cd;
     font-family: 'VT323',monospace;
     font-weight: normal;
+    text-align: center;
 }

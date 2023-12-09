@@ -46,7 +46,7 @@ getdata();
     <Title/>
 <div class="title">
     <div class="bd">
-        <img id="pic" class="img" src="https://anshwadhwa.vercel.app/images/mypfp.jpg" alt="" width="260px" height="260px">
+        <img id="pic" class="img" src="https://anshwadhwa.vercel.app/images/mypfp.png" alt="" width="260px" height="260px">
         <div class="details">
             <div class="statusdiv">
                 <div id="ball" class="ball">
@@ -60,7 +60,7 @@ getdata();
             <div class="sdiv">
                 <a href="https://github.com/simplystudios" target="_blank" rel="noopener noreferrer"><img class="sicon" src="https://raw.githubusercontent.com/hackernoon/pixel-icon-library/main/Icons/PNG/For%20Dark%20Mode/24px/Brand%20Logos/Github.png" alt="icon title" /></a>
                 <a href="https://twitter.com/anshwadhwa8" target="_blank" rel="noopener noreferrer"><img class="sicon" src="https://github.com/hackernoon/pixel-icon-library/blob/main/Icons/PNG/For%20Dark%20Mode/24px/Brand%20Logos/X.png?raw=true" alt="icon title" /></a>
-                <a href="https://instagram.com/anshwadhwa8" target="_blank" rel="noopener noreferrer"><img class="sicon" src="https://i.ibb.co/6XHBcjP/logo-social-media-old-instagram-21.png" alt="" width="24px"></a>
+                <a href="https://instagram.com/anshwadhwa8" target="_blank" rel="noopener noreferrer"><img class="sicon" src="/insta.png" alt="" width="24px"></a>
             </div>
             </div>
         </div>

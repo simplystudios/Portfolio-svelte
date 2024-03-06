@@ -47,7 +47,7 @@ onMount(async() =>{
             {d.description}
         </CardDesc>
         <br>
-        <CardButton link={window.open(d.html_url)}>
+        <CardButton>
             View on Github
         </CardButton>
     </Card>

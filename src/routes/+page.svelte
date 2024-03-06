@@ -141,7 +141,7 @@ getdata();
         </CardButton>
     </Card>
 
-    <button {disabled} class="but">
+    <button onclick="/projects" class="but">
             See All
     </button>
 
@@ -153,7 +153,7 @@ getdata();
     .but{
         width: 100%;
         align-items: center;
-        background-color: rgb(71, 67, 26);
+        background-color: rgb(224, 208, 35);
         padding: 12px;
         color: black;
         border-radius: 8px;

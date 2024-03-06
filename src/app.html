@@ -7,6 +7,12 @@
 		<link rel="stylesheet" href="../src/routes/styles/global.css">
 		%sveltekit.head%
 	</head>
+	<style>
+		body{
+			-ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+		}
+	</style>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>

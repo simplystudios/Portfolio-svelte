@@ -6,6 +6,8 @@ import CardImg from '$lib/CardImg.svelte'
 import CardDesc from '$lib/CardTitle.svelte'
 import CardButton from '$lib/CardButton.svelte'
 
+    export let disabled = 'false';
+
     const intro = "Compiling dreams into reality with lines of code - 2023, Chatgpt"
     let title = "Ansh Wadhwa";
 async function getdata() {
@@ -46,7 +48,7 @@ getdata();
     <Title/>
 <div class="title">
     <div class="bd">
-        <img id="pic" class="img" src="https://anshwadhwa.vercel.app/images/mypfp.png" alt="" width="260px" height="260px">
+        <img id="pic" class="img" src="https://anshwadhwa.vercel.app/images/mypfp.jpg" alt="" width="280px" height="280px">
         <div class="details">
             <div class="statusdiv">
                 <div id="ball" class="ball">
@@ -58,9 +60,9 @@ getdata();
             <h2 id="un">username loading...</h2>
             <h2 id="statust">status loading...</h2>
             <div class="sdiv">
-                <a href="https://github.com/simplystudios" target="_blank" rel="noopener noreferrer"><img class="sicon" src="https://raw.githubusercontent.com/hackernoon/pixel-icon-library/main/Icons/PNG/For%20Dark%20Mode/24px/Brand%20Logos/Github.png" alt="icon title" /></a>
-                <a href="https://twitter.com/anshwadhwa8" target="_blank" rel="noopener noreferrer"><img class="sicon" src="https://github.com/hackernoon/pixel-icon-library/blob/main/Icons/PNG/For%20Dark%20Mode/24px/Brand%20Logos/X.png?raw=true" alt="icon title" /></a>
-                <a href="https://instagram.com/anshwadhwa8" target="_blank" rel="noopener noreferrer"><img class="sicon" src="/insta.png" alt="" width="24px"></a>
+                <a href="https://github.com/simplystudios" target="_blank" rel="noopener noreferrer"><img class="sicon" src="/github.png" alt="github" /></a>
+                <a href="https://twitter.com/anshwadhwa8" target="_blank" rel="noopener noreferrer"><img class="sicon" src="/x.png" alt="twtter/X.com" /></a>
+                <a href="https://instagram.com/anshwadhwa8" target="_blank" rel="noopener noreferrer"><img class="sicon" src="/instagram.png" alt="instagram.com" width="24px"></a>
             </div>
             </div>
         </div>
@@ -75,6 +77,9 @@ getdata();
 </div>
 
 <br>
+<div id="container">
+      <a href="#"><span></span>Scroll</a>
+    </div>
 <br>
 <section class="about">
     <h1>About Me</h1>
@@ -136,11 +141,95 @@ getdata();
         </CardButton>
     </Card>
 
+    <button {disabled} class="but">
+            See All
+    </button>
+
 </div>
 </section>
 
 
 <style>
+    .but{
+        width: 100%;
+        align-items: center;
+        background-color: rgb(71, 67, 26);
+        padding: 12px;
+        color: black;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    #container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  padding: 1px;
+}
+a {
+  position: relative;
+  padding-top: 60px;
+  color: #fff;
+  font-size: 1.125rem;
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+a span {
+  position: absolute;
+  top: 0;
+  height: 40px;
+  right: calc(50% - 15px);
+  bottom: 25px;
+  left: calc(50% - 15px);
+  width: 15px;
+  border: 2px solid #fff;
+  border-radius: 16px;
+}
+a span::before {
+  opacity: 0;
+  position: absolute;
+  top: 8px;
+  right: calc(50% - 3px);
+  left: calc(50% - 3px);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #fff;
+  content: '';
+  animation: down 1.2s linear infinite;
+}
+h1 {
+  margin: 20px 0 0;
+  font-size: 3rem;
+  letter-spacing: 1px;
+  text-align: center;
+}
+@keyframes down {
+  0% {
+    opacity: 0;
+    top: 8px;
+  }
+  5% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    top: 38px;
+  }
+}
+@media screen and (max-width: 480px) {
+
+  h1 {
+    margin: 10px 0 0;
+    font-size: 2rem;
+  }
+}
+    .butcenter{
+        align-items: center;
+    }
     .col{
         justify-content: center;
         margin: auto;
@@ -226,8 +315,9 @@ getdata();
     }
     }
     .center{
-        width: auto;
-        margin: auto;
+        margin-left: auto;
+        margin-right: auto;
+        width: 400px;
     }
     .img{
         margin: 5px;

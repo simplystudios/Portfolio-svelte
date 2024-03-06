@@ -25,9 +25,9 @@
         <h1 class="heading">Ansh Wadhwa</h1>
     </div>
     <div id="linkbr" class="links">
-        <a href="#">Home</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/projects">Projects</a>
     </div>
 </div>
 <style>

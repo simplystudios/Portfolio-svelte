@@ -150,6 +150,7 @@ getdata();
 
 
 <style>
+    
     .but{
         width: 100%;
         align-items: center;

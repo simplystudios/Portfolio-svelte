@@ -385,6 +385,10 @@ h1 {
             width: auto;
             grid-template-columns: auto auto;
         }
+        .mainp{
+            margin-top: 5px;
+            padding: 5px;
+        }
      }
     @media screen and (max-width: 500px) {
         .col{
@@ -396,13 +400,18 @@ h1 {
         }
 
         .bd{
-            display:flex;
+            display:block;
         }
         .statusdiv{
             text-align: center;
     }
+    .bar1{
+        margin-top: 20px;
+        height: 100px;
+    }
     .main{
         justify-content: space-between;
+        display: block;
     }
     }
     .center{

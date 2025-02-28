@@ -25,7 +25,7 @@ function toggletheme() {
 function openmenu() {
     if(open == false){
         open = true;
-        linkbr.style.display = 'block';
+        linkbr.style.display = 'flex';
     }
     else if(open == true){
         open = false;
@@ -46,14 +46,18 @@ function openmenu() {
         document.documentElement.style.setProperty('--border-color', 'rgb(32, 31, 31)');
 
     }
-        linkbr = document.getElementById('linkbr');
+        linkbr = document.getElementById('lnm');
     });
 </script>
 
 <ModeWatcher />
 <slot/>
-
-<div class="main">
+    <div class="phonemenu">
+        <button on:click={openmenu}>
+            Menu
+        </button>
+     </div>
+<div class="main" id="lnm">
     <div class="menu">
        <button on:click={toggletheme}>
         Dark Mode
@@ -69,6 +73,7 @@ function openmenu() {
             Photography
        </button>
     </div>
+    <!-- ======================================= -->
 </div>
 <style>
 .heading{
@@ -90,6 +95,9 @@ function openmenu() {
     display: flex;
     justify-content: center;
     width: 100%;
+}
+.phonemenu{
+    display: none;
 }
 .imgp{   
     display: none;
@@ -121,6 +129,14 @@ button:hover{
  @media screen and (max-width: 500px) {
     .main{
         justify-content: space-between;
+        display:none;
+    }
+    .phonemenu{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        width: 100%;
     }
  }
 </style>

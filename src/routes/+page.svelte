@@ -2,98 +2,122 @@
 import Title from '$lib/title.svelte'
 import Card from '$lib/Card.svelte'
 import CardTitle from '$lib/CardTitle.svelte'
+import { ModeWatcher, setMode, mode } from "mode-watcher";
 import CardImg from '$lib/CardImg.svelte'
 import CardDesc from '$lib/CardTitle.svelte'
 import CardButton from '$lib/CardButton.svelte'
+  import { onMount } from 'svelte';
 
     export let disabled = 'false';
+    let isDarkMode;
 
-    const intro = "Compiling dreams into reality with lines of code - 2023, Chatgpt"
-    let title = "Ansh Wadhwa";
-async function getdata() {
-    const url = 'https://api.lanyard.rest/v1/users/600278222428438559';
+$: isDarkMode = $mode === 'dark';
 
-    try {
-        const resp = await fetch(url);
-        const res = await resp.json(); // Await the JSON parsing
-        
-        const d = res['data'];
-        const statusb = d.discord_status;
-        un.innerText = `@${d.discord_user.username}`;
-        statust.innerText = d.discord_status;
+    // onMount(async() =>{
+    //     if ($mode === "light") {
+    //      document.querySelector('body').style = "background-color:#fafafa;";
+    //     color = "gray";
+    //     document.documentElement.style.setProperty('--border-color', '#edeceb');
+    // } else {
+    //     color = "#cfd0d4";
+    //     document.querySelector('body').style = "background-color:#171717;";
+    //     document.documentElement.style.setProperty('--border-color', 'rgb(32, 31, 31)');
 
-        if(statusb == 'dnd'){
-            ball.style.background = '#f33f43';
-        }
-        else if (statusb == 'online'){
-            ball.style.background = '#22a558';
-        }
-        else if (statusb == 'idle'){
-            ball.style.background = '#f0b132'
-        }
-        else{
-            ball.style.background = 'grey'
-        }
-        // Update the DOM element with the value
+    // }
+    // })
 
-    } catch (error) {
-        console.error("An error occurred:", error);
+    function scrollIntoView(id) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
     }
-}
-getdata();
+
+    const intro = "'Compiling dreams into reality with lines of code' - 2023"
+    let title = "/imgs/awbb.png";
+// async function getdata() {
+//     const url = 'https://api.lanyard.rest/v1/users/600278222428438559';
+
+//     try {
+//         const resp = await fetch(url);
+//         const res = await resp.json(); // Await the JSON parsing
+        
+//         const d = res['data'];
+//         const statusb = d.discord_status;
+//         un.innerText = `@${d.discord_user.username}`;
+//         statust.innerText = d.discord_status;
+
+//         if(statusb == 'dnd'){
+//             ball.style.background = '#f33f43';
+//         }
+//         else if (statusb == 'online'){
+//             ball.style.background = '#22a558';
+//         }
+//         else if (statusb == 'idle'){
+//             ball.style.background = '#f0b132'
+//         }
+//         else{
+//             ball.style.background = 'grey'
+//         }
+//         // Update the DOM element with the value
+
+//     } catch (error) {
+//         console.error("An error occurred:", error);
+//     }
+// }
+// getdata();
 
 </script>
+<Title/>
 <div class="main">
-
-    <Title/>
+<div class="mainp">
 <div class="title">
+    <br>
+    <br>
     <div class="bd">
         <img id="pic" class="img" src="https://anshwadhwa.vercel.app/images/mypfp.jpg" alt="" width="280px" height="280px">
         <div class="details">
             <div class="statusdiv">
-                <div id="ball" class="ball">
-                    </div>
-                    <h1>{title}</h1>
+                <!-- <div id="ball" class="ball">
+                    </div> -->
+                     <h1 style="font-size: auto;">Ansh Wadhwa</h1>
                 </div>
-                <h2>Coding is fun™</h2>
             <div>
-            <h2 id="un">username loading...</h2>
-            <h2 id="statust">status loading...</h2>
-            <div class="sdiv">
+            <h2 id="un">Student, Developer in Delhi India</h2> 
+           <a href="https://wakatime.com/@f983c5d0-c6d8-471e-a499-43763ad1d6b4" target="_blank"><img src="https://wakatime.com/badge/user/f983c5d0-c6d8-471e-a499-43763ad1d6b4.svg?style=for-the-badge" alt="Total time coded since Sep 28 2021"></a>
+            <!-- <div class="sdiv">
                 <a href="https://github.com/simplystudios" target="_blank" rel="noopener noreferrer"><img class="sicon" src="/github.png" alt="github" /></a>
                 <a href="https://twitter.com/anshwadhwa8" target="_blank" rel="noopener noreferrer"><img class="sicon" src="/x.png" alt="twtter/X.com" /></a>
                 <a href="https://instagram.com/anshwadhwa8" target="_blank" rel="noopener noreferrer"><img class="sicon" src="/instagram.png" alt="instagram.com" width="24px"></a>
-            </div>
+            </div>  -->
             </div>
         </div>
     </div>
 </div>
-<br>
 
-    <div class="center">
+
+<!-- <section class="about">
+    <h3 style="font-size: auto;">Developer, Dreamer, Student and a Music and Photography Enjoyer</h3>
+</section> -->
+<br>
+<div class="ppm">
+        <div class="bar1"></div>
         <blockquote>{intro}</blockquote>    
     </div>
-
+<!-- <br>
+<div on:click={() =>scrollIntoView("pro")} class="sb">
+    <p>Scroll Down</p>
+<i style="font-size: 25px;" class='bx bx-down-arrow-alt' ></i>
+</div> -->
 </div>
-
-<br>
-<div id="container">
-      <a href="#"><span></span>Scroll</a>
-    </div>
-<br>
-<section class="about">
-    <h1>About Me</h1>
-    <h3>Hi there! I'm Ansh, a 15-year-old programmer and web developer from India. I started coding in 2020 after the lockdown hit. At that time, I was making websites with Weebly. In 2021, I started real coding by making apps in Sketchware, a Scratch-like IDE for Java Android apps. I made some real apps, which you can check out in my coding section. After that, I got into Python and made a lot of projects there too. In 2022, I started making proper websites. I am currently learning C++.</h3>
-</section>
-<br>
-<br>
-<section class="projects">
-    <h1>Projects</h1>
+</div>
+<section id="pro" class="projects">
+    <div>
+        <div style="">
+            <h1 class="le">Projects</h1>
+        </div>
     <div class="col">
     <Card>
-        <CardImg>
-            
-        </CardImg>
         <CardTitle>
             HinduWiki
         </CardTitle>
@@ -102,64 +126,125 @@ getdata();
             Exploring the Journey of a Multifaceted Creative
         </CardDesc>
         <br>
-        <CardButton>
+        <!-- <button class="but" on:click={() => window.open("https://hinduwiki.vercel.app")}>
             View
-        </CardButton>
+        </button> -->
+        <div class="hor">
+            <div class="horg">
+            <p>Html Css Js</p>
+            </div>
+        </div>
     </Card>
 
     <Card>
-        <CardImg imgurl="https://anshwadhwa.vercel.app/images/rhythmichead.png">
+        <!-- <CardImg imgurl="https://anshwadhwa.vercel.app/images/rhythmichead.png">
 
-        </CardImg>
+        </CardImg> -->
         <CardTitle>
-            Rhythmic
+            Gist - Know the Gist of it
         </CardTitle>
         <br>
         <CardDesc>
-            An Music Streaming Service made using open source tools, api made using react native
+            Gist is a news app which gives news in 64 words using inshorts.
         </CardDesc>
         <br>
-        <CardButton>
+        <!-- <button class="but" on:click={() => window.open("https://rythmicweb.netlify.app")}>
             View
-        </CardButton>
+        </button> -->
+        <div class="hor">
+            <div class="horg">
+            <p>React Native</p>
+            </div>
+        </div>
     </Card>
 
      <Card>
-        <CardImg imgurl="https://anshwadhwa.vercel.app/images/gistbanner.png">
+        <!-- <CardImg imgurl="https://anshwadhwa.vercel.app/images/gistbanner.png">
 
-        </CardImg>
+        </CardImg> -->
         <CardTitle>
-            Gist - Know the gist of it
+            Not Notion
         </CardTitle>
         <br>
         <CardDesc>
-            Gist is a project that i worked on in june of 2023 it is a news app which gives news in 64 words.
+            A Minimal Markdown editor inspired by Notion on the web
         </CardDesc>
         <br>
-        <CardButton>
+        <!-- <button class="but" on:click={"https://gistweb.vercel.app"}>
             View
-        </CardButton>
+        </button> -->
+        <div class="hor">
+            <div class="horg">
+            <p>Svelte</p>
+            </div>
+        </div>
     </Card>
-
-    <button onclick="/projects" class="but">
-            See All
-    </button>
+    <div class="">
+        
+    </div>
 
 </div>
+<button on:click={() =>window.open("/projects")} class="but" class:dark-mode={isDarkMode}>
+            See All
+        </button>
+    </div>
 </section>
+
+<footer>
+    <div class="center">
+        <p>Ansh Wadhwa @ 2025</p>
+    </div>
+</footer>
 
 
 <style>
-    
+    :root{
+        --border-color: #edeceb;
+    }
+    :global(html){
+        scroll-behavior: smooth;
+    }
+    .about{
+        font-style: normal;
+    }
+    .horg{
+        border: 1;
+        border-radius: 5px;
+        background-color: transparent;
+        padding: 2px;
+        height:25px;
+        margin-bottom: 15px;
+    }
+    .ppm{
+        display: flex;
+        justify-content: center;
+    }
+    .bar1{
+        width: 2px;
+        height: 30px;
+        background-color: rgb(82, 82, 82);
+        margin-right: 4px;
+        margin-top: 10px;
+    }
+    .hor{
+        display: flex;
+        font-size: 13px;
+    }
     .but{
         width: 100%;
         align-items: center;
-        background-color: rgb(224, 208, 35);
+        background-color: black;
         padding: 12px;
-        color: black;
+        color: white;
+        border: 1px solid #edeceb;
         border-radius: 8px;
         font-size: 16px;
         cursor: pointer;
+    }
+    .dark-mode {
+        background-color: #171717;
+        color: #edeceb;
+        border-color:#292929;
     }
     #container {
   display: flex;
@@ -170,38 +255,44 @@ getdata();
   height: 100px;
   padding: 1px;
 }
-a {
-  position: relative;
-  padding-top: 60px;
-  color: #fff;
-  font-size: 1.125rem;
-  letter-spacing: 2px;
-  text-decoration: none;
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
-a span {
-  position: absolute;
-  top: 0;
-  height: 40px;
-  right: calc(50% - 15px);
-  bottom: 25px;
-  left: calc(50% - 15px);
-  width: 15px;
-  border: 2px solid #fff;
-  border-radius: 16px;
+.le{
+    text-align: center;
+    margin-bottom: 40px;
 }
-a span::before {
-  opacity: 0;
-  position: absolute;
-  top: 8px;
-  right: calc(50% - 3px);
-  left: calc(50% - 3px);
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #fff;
-  content: '';
-  animation: down 1.2s linear infinite;
+.mainp{
+    padding: 50px;
+    margin-top: 20px;
+    margin-bottom: 50px;
 }
+.main{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.sb{
+    cursor: pointer;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 12px;
+    color: black;
+    text-decoration: none;
+}
+
+.projects{
+    padding: 40px;
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-between;
+}
+
 h1 {
   margin: 20px 0 0;
   font-size: 3rem;
@@ -258,7 +349,7 @@ h1 {
     }
     .details{
         display: inline;
-        margin: 10px;
+        margin: auto;
         border: 1;
     }
     .statusdiv{
@@ -273,10 +364,7 @@ h1 {
        display: flex; 
        text-align: center;
        justify-content: center;
-       border-color: white;
-       border-style: dashed;
        padding: 10px;
-       border-radius: 5px;
     }
     .img{
         margin: 10px;
@@ -308,17 +396,18 @@ h1 {
         }
 
         .bd{
-            display:block;
+            display:flex;
         }
         .statusdiv{
-            margin-left: 20px;
-            display: flex;
+            text-align: center;
+    }
+    .main{
+        justify-content: space-between;
     }
     }
     .center{
         margin-left: auto;
         margin-right: auto;
-        width: 400px;
     }
     .img{
         margin: 5px;
@@ -327,8 +416,8 @@ h1 {
     }
     blockquote{
         border: 1;
-        border-style: dashed;
-        padding: 10px;
+        border-style: none;
+        padding: 2px;
         text-align: center;
         border-radius: 5px;
     }

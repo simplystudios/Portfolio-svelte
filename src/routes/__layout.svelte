@@ -18,7 +18,7 @@
         justify-content: center;
     }
     main{
-        max-width: 960px;
+        
         margin: 20px,auto;
     }
     p{

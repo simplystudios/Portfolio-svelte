@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
-body{
-    background: #000000;
-    margin: 0;
-    
+body {
+    background-color: #ffffff;
+    color: black;
+    font-family: Recoleta;
+    font-weight: 1000;
 }
+
 /* width */
 ::-webkit-scrollbar {
     width: 5px;
@@ -24,9 +26,13 @@ body{
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
-h1,h2,h3,h4,h5,p,p1,p2,p3,a,li,blockquote,button{
-    color: #cbc9cd;
-    font-family: 'VT323',monospace;
-    font-weight: normal;
+/* h1,h2,h3,h4,h5,p,p1,p2,p3,a,li,blockquote,button{
     text-align: center;
+    font-family: Recoleta;
+    font-weight: 1000;
+} */
+@font-face {
+    font-family: 'Recoleta';
+    src: url('/fonts/Recoleta.otf');
+        /* IE9 Compat Modes */
 }

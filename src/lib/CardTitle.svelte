@@ -3,10 +3,10 @@
 </h1>
 
 <style>
+    
     .title{
-        text-align: center;
-        color: aliceblue;
-        font-size: 24px;
+        text-align: left;
+        font-size: 18px;
         margin: 0;
         }
 </style>

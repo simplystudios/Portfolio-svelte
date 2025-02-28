@@ -1,25 +1,34 @@
 <script>
+import { onMount } from 'svelte';
+import { ModeWatcher, mode } from "mode-watcher";
 
+let isDarkMode;
+
+$: isDarkMode = $mode === 'dark';
 </script>
 
-<div class="card">
+<ModeWatcher />
+<div class="card" class:dark-mode={isDarkMode}>
     <slot/>
 </div>
 
 <style>
-    .card{
+    .card {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        border-style: dashed;
-        border: 1;
+        border: 1px solid #d0d0cf;
         width: 90%;
-        background-color: rgb(120, 134, 161);
-        border-color: rgb(255, 255, 255);
-        box-shadow: 10px, black;
-        color: #ffffff;
+        background-color: #ffffff;
+        color: #171717;
         margin: 0px auto;
         border-radius: 8px;
         padding: 15px;
+    }
+
+    .dark-mode {
+        background-color: #171717;
+        color: #edeceb;
+        border-color: rgb(42, 42, 42);
     }
 </style>

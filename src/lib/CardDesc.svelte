@@ -5,7 +5,7 @@
 <style>
     .desc{
         text-align: center;
-        color: aliceblue;
-        font-size: 14px;
+        color: black;
+        font-size: 12px;
     }
 </style>

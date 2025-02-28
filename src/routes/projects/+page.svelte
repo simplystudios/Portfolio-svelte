@@ -6,7 +6,15 @@ import CardImg from '$lib/CardImg.svelte'
 import CardDesc from '$lib/CardTitle.svelte'
 import CardButton from '$lib/CardButton.svelte'
 import { onMount } from 'svelte';
-  import { each } from 'svelte/internal';
+import { Star, GitFork } from 'lucide-svelte';
+
+import { ModeWatcher, setMode, mode } from "mode-watcher";
+
+let color;
+let isDarkMode;
+
+
+$: isDarkMode = $mode === 'dark';
 
 
 let data = []
@@ -14,43 +22,44 @@ onMount(async() =>{
     const repos = await fetch('https://api.github.com/users/simplystudios/repos');
     data = await repos.json()
     console.log(data);
+    if ($isDarkMode === true) {
+    color = "#171717";
+    console.log("whaa")
+    }
+    else{
+        color = "#cfd0d4";
+        console.log("naahhhh")
+    }
 
 })
 </script>
  <Title/>
- <section class="projects">
-    <h1>Projects</h1>
+ <div class="projects">
+    <h1 style="font-size: 30px;">Projects</h1>
     <div class="col">
     {#if data.length>0}
     {#each data as d}
     {#if d.fork == true}
         
     {:else}
-    <Card>
-        <CardTitle>
+    <div class:dark-mode={isDarkMode} class="protemp">
+        <div style="font-size: 20px; font-weight: 600; padding-bottom: 5px;">
             {d.name}
-            {#if d.homepage == null}
+        </div>
             
-        {:else}
-            <img width="15px" height="15px" on:click={window.open(d.homepage)} src="https://static-00.iconduck.com/assets.00/external-link-icon-2048x2048-wo7lfgrz.png" alt="">
-        {/if}
-        </CardTitle>
+        <div style="margin: 2px; font-size: 15px;">
+            {d.description}
+        </div>
         <div class="hor">
-            <img style="padding: 5px;" width="15px" height="15px" src="https://t4.ftcdn.net/jpg/05/40/09/17/360_F_540091788_AvDyNUSbtnKQfNccukuFa3ZlsHFnMYrK.png" alt="">
+            <Star size="20" color={color} style="margin-top: 10px; margin-right: 5px;"/>
             <h3>{d.stargazers_count}</h3>
-            <div class="horg">
+            <GitFork size="20" color={color} style="margin-top: 10px; margin-left: 5px;"/>
+            <h3 style="margin-right: 5px;">{d.forks}</h3>
+            <div class:horg-black={isDarkMode} class="horg">
             <p>{d.language}</p>
             </div>
         </div>
-        <br>
-        <CardDesc>
-            {d.description}
-        </CardDesc>
-        <br>
-        <CardButton>
-            View on Github
-        </CardButton>
-    </Card>
+    </div>
     {/if}
     {/each}
     {/if}
@@ -58,13 +67,28 @@ onMount(async() =>{
     
 
 </div>
-</section>
+</div>
 <style>
+
+  .protemp{
+    background-color: whitesmoke;
+    color: black;
+    padding: 10px;
+    border: 1px solid #d0d0cf;
+    border-radius: 5px;
+    border-style: groove;
+    font-family: Recoleta;
+  }
+  .dark-mode {
+        background-color: #171717;
+        color: #edeceb;
+        border-color: rgb(42, 42, 42);
+    }
  .col{
         justify-content: center;
         margin: auto;
         display: inline-grid;
-        grid-template-columns: auto auto auto;
+        grid-template-columns: auto auto;
         padding: 10px;
         gap: 20px 50px;
     }
@@ -73,26 +97,48 @@ onMount(async() =>{
         justify-content: center;
     }
     .hor{
-        align-items: center;
-        justify-content: center;
         display: flex;
         margin-left: auto;
         margin-right: auto;
+        font-size: 10px;
     }
+    
     .horg{
         border: 1;
         border-radius: 5px;
-        background-color: rgb(134, 136, 137);
+        background-color: whitesmoke;
         width: min-content;
-        margin-left: 5px;
+        margin-left: 10px;
         padding: 5px;
         height: 15px;
+        margin-top: 5px;
         justify-content: center;
-
+    }
+    .horg-black{
+        border: 1;
+        font-family:monospace;
+        border-radius: 5px;
+        background-color: rgb(62, 62, 62);
+        width: min-content;
+        margin-left: 10px;
+        padding: 5px;
+        height: 15px;
+        margin-top: 5px;
+        justify-content: center;
     }
     p{
         margin: 0px;
         font-size: 15px;
     }
 
+    @media only screen and (max-device-width: 720px) { 
+        .col{
+        justify-content: center;
+        margin: auto;
+        display: inline-grid;
+        grid-template-columns: auto;
+        padding: 10px;
+        gap: 20px 50px;
+    }
+    }
 </style>

@@ -12,4 +12,7 @@
         display: block;
         margin: 20px,auto;
     }
+    p{
+        font-family: genalt,sans-serif;
+    }
 </style>

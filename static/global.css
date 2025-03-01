@@ -1,11 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
+@font-face {
+    font-family: 'genalt';
+    src: url('/fonts/primeform/PrimeformProDemo-Regular.otf') format('opentype');
+}
+@font-face {
+    font-family: 'reclet';
+    src: url('/fonts/Recoleta.otf') format('opentype');
+}
+
 body {
     background-color: #ffffff;
     color: black;
     font-family: Recoleta;
     font-weight: 1000;
 }
+
 
 /* width */
 ::-webkit-scrollbar {

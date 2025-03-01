@@ -407,7 +407,7 @@ h1 {
     }
     .bar1{
         margin-top: 20px;
-        height: 100px;
+        height: 55px;
     }
     .main{
         justify-content: space-between;

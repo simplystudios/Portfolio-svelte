@@ -69,6 +69,12 @@ function openmenu() {
         <a href="/projects">Projects</a> -->
     </div>
     <div class="right">
+        <button on:click={window.open(`/`, '_self')}>
+            Home
+       </button>
+       <button on:click={window.open(`/photography`, '_self')}>
+            Projects
+       </button>
          <button on:click={window.open(`/photography`, '_self')}>
             Photography
        </button>
@@ -137,6 +143,9 @@ button:hover{
         justify-content: center;
         padding: 10px;
         width: 100%;
+    }
+    .right{
+        display: block;
     }
  }
 </style>

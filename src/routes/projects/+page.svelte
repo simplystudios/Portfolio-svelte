@@ -40,9 +40,8 @@ onMount(async() =>{
     {#if data.length>0}
     {#each data as d}
     {#if d.fork == true}
-        
     {:else}
-    <div class:dark-mode={isDarkMode} class="protemp">
+          <div class:dark-mode={isDarkMode} class="protemp">
         <div style="font-size: 20px; font-weight: 600; padding-bottom: 5px;">
             {d.name}
         </div>
@@ -71,7 +70,7 @@ onMount(async() =>{
 <style>
 
   .protemp{
-    background-color: whitesmoke;
+    background-color: #ffffff;
     color: black;
     padding: 10px;
     border: 1px solid #d0d0cf;
@@ -106,7 +105,7 @@ onMount(async() =>{
     .horg{
         border: 1;
         border-radius: 5px;
-        background-color: whitesmoke;
+        background-color: transparent;
         width: min-content;
         margin-left: 10px;
         padding: 5px;
@@ -116,9 +115,8 @@ onMount(async() =>{
     }
     .horg-black{
         border: 1;
-        font-family:monospace;
         border-radius: 5px;
-        background-color: rgb(62, 62, 62);
+        background-color: transparent;
         width: min-content;
         margin-left: 10px;
         padding: 5px;

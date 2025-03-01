@@ -75,7 +75,7 @@ $: isDarkMode = $mode === 'dark';
     <br>
     <br>
     <div class="bd">
-        <img id="pic" class="img" src="https://anshwadhwa.vercel.app/images/mypfp.jpg" alt="" width="280px" height="280px">
+        <img id="pic" class="img" src="/mypfp.jpg" alt="" width="280px" height="280px">
         <div class="details">
             <div class="statusdiv">
                 <!-- <div id="ball" class="ball">

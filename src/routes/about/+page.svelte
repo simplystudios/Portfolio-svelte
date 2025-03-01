@@ -3,8 +3,10 @@
 </script>
 <Title/>
 <div class="about">
-    <h2>About Us</h2>
+    <h2>About Us - under construction</h2>
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo quos reiciendis hic cum, velit id pariatur qui voluptatibus numquam, aperiam consequuntur maxime, recusandae doloremque. Cupiditate et dolorum voluptas laboriosam fuga!</p>
+    <hr>
+    <p>I love playing hollow knight</p>
 </div>
 <style>
     .about{

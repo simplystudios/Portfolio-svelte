@@ -190,12 +190,13 @@ $: isDarkMode = $mode === 'dark';
     </div>
 </section>
 
+
 <footer>
     <div class="center">
         <p>Ansh Wadhwa @ 2025</p>
+        <p>Made With Svelte</p>
     </div>
 </footer>
-
 
 <style>
     :root{

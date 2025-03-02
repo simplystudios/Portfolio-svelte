@@ -69,11 +69,18 @@ const data = [
     </div>
     {/each}
 </div>
+
+<footer>
+    <div class="center">
+        <p>Ansh Wadhwa @ 2025</p>
+        <p>Made With Svelte</p>
+    </div>
+</footer>
 <style>
      
     :global(body){
-        background-color:whitesmoke;
-        color: #333;
+        background-color:#f2f0e3;
+        color: #2e2e2e;
     }
     .main{
         margin-top: 40px;
@@ -83,7 +90,7 @@ const data = [
     }
     .heading{
         text-align: center;
-        font-size: 80px;
+        font-size: 6vw;
         font-weight: bolder;
     }
     .head{

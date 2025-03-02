@@ -67,6 +67,12 @@ onMount(async() =>{
 
 </div>
 </div>
+<footer>
+    <div class="center">
+        <p>Ansh Wadhwa @ 2025</p>
+        <p>Made With Svelte</p>
+    </div>
+</footer>
 <style>
 
   .protemp{

@@ -68,6 +68,7 @@ $: isDarkMode = $mode === 'dark';
 // getdata();
 
 </script>
+<title>Ansh Wadhwa</title>
 <Title/>
 <div class="main">
 <div class="mainp">
@@ -194,7 +195,6 @@ $: isDarkMode = $mode === 'dark';
 <footer>
     <div class="center">
         <p>Ansh Wadhwa @ 2025</p>
-        <p>Made With Svelte</p>
     </div>
 </footer>
 

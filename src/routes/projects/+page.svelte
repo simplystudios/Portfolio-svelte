@@ -33,6 +33,7 @@ onMount(async() =>{
 
 })
 </script>
+<title>Ansh Wadhwa &bull; Projects</title>
  <Title/>
  <div class="projects">
     <h1 style="font-size: 30px;">Projects</h1>
@@ -70,7 +71,6 @@ onMount(async() =>{
 <footer>
     <div class="center">
         <p>Ansh Wadhwa @ 2025</p>
-        <p>Made With Svelte</p>
     </div>
 </footer>
 <style>

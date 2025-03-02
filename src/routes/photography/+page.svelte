@@ -42,6 +42,7 @@ const data = [
 <!-- <svelte:head>
     <script src="https://static.elfsight.com/platform/platform.js" async></script>
 </svelte:head> -->
+<title>Ansh Wadhwa &bull; Photography</title>
 <div>
     <button style="" on:click={() => window.history.back()}>
         Take Me Back
@@ -73,7 +74,6 @@ const data = [
 <footer>
     <div class="center">
         <p>Ansh Wadhwa @ 2025</p>
-        <p>Made With Svelte</p>
     </div>
 </footer>
 <style>

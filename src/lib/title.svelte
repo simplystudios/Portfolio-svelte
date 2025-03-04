@@ -73,7 +73,7 @@ function openmenu() {
         <button on:click={window.open(`/`, '_self')}>
             Home
        </button>
-       <button on:click={window.open(`/photography`, '_self')}>
+       <button on:click={window.open(`/projects`, '_self')}>
             Projects
        </button>
          <button on:click={window.open(`/photography`, '_self')}>

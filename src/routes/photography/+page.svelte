@@ -1,5 +1,8 @@
 <script>
 
+import { Modal, Content, Trigger } from "sv-popup"
+
+
 const data = [
     {
         name: "Streets of Jaisalmer - 2024",
@@ -54,18 +57,25 @@ const data = [
     <div class="head">
         <h1 class="heading">Photography</h1>
     <div class="center">
-        <p>Collection of all my adventures in one Place</p>
+        <p>Collection of all my adventures in One Place</p>
     </div>
     <br>
     </div>
     {#each data as d}
         <div style="margin-top: 20px; width:80% ;margin-left: auto; margin-right: auto;">
             <hr>
-         <div>
-            <p style="text-align: center;">
-                <img src={d.image} alt="" width="100%" height="40%">
-            </p>
-            <h3 style="padding:0px; margin:0px;">{d.name}</h3>
+         <div style="padding: 0px;">
+                <Modal big={true} button={false} basic={true}>
+                    <Content>
+                        <p style="text-align: center;">
+                            <img src={d.image} alt="" width="100%" height="40%">
+                        </p>
+                    </Content>
+                    <Trigger>
+                        <img src={d.image} alt="" width="100%" height="40%">
+                    </Trigger>
+                </Modal>
+            <h3 style="padding:0px; margin:0px; font-size: 12px;">{d.name}</h3>
          </div>
     </div>
     {/each}

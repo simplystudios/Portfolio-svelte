@@ -36,13 +36,14 @@ onMount(async() =>{
 <title>Ansh Wadhwa &bull; Projects</title>
  <Title/>
  <div class="projects">
-    <h1 style="font-size: 30px;">Projects</h1>
+    <h1 class="heading">Projects</h1>
+    
     <div class="col">
     {#if data.length>0}
     {#each data as d}
     {#if d.fork == true}
     {:else}
-          <div class:dark-mode={isDarkMode} class="protemp">
+          <div on:click={() => window.open(d.html_url,"_blank")} class:dark-mode={isDarkMode} class="protemp">
         <div style="font-size: 20px; font-weight: 600; padding-bottom: 5px;">
             {d.name}
         </div>
@@ -70,6 +71,7 @@ onMount(async() =>{
 </div>
 <footer>
     <div class="center">
+        <br>
         <p>Ansh Wadhwa @ 2025</p>
     </div>
 </footer>
@@ -83,6 +85,14 @@ onMount(async() =>{
     border-radius: 5px;
     border-style: groove;
     font-family: Recoleta;
+  }
+  .protemp:hover{
+    cursor: pointer;
+  }
+  .heading{
+        text-align: center;
+        font-size: 6vw;
+        font-weight: bolder;
   }
   .dark-mode {
         background-color: #171717;
@@ -100,6 +110,7 @@ onMount(async() =>{
     .center{
         align-items: center;
         justify-content: center;
+        text-align: center;
     }
     .hor{
         display: flex;

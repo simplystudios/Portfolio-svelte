@@ -76,7 +76,7 @@ $: isDarkMode = $mode === 'dark';
     <br>
     <br>
     <div class="bd">
-        <img id="pic" class="img" src="/imgs/mypfp.jpg" alt="" width="280px" height="280px">
+        <img style="" id="pic" class="img" src="/imgs/mypfp.jpg" alt="" width="280px" height="280px">
         <div class="details">
             <div class="statusdiv">
                 <!-- <div id="ball" class="ball">
@@ -124,7 +124,7 @@ $: isDarkMode = $mode === 'dark';
         </CardTitle>
         <br>
         <CardDesc>
-            Exploring the Journey of a Multifaceted Creative
+            Wikipedia Api Wrapper for Hinduism related articles
         </CardDesc>
         <br>
         <!-- <button class="but" on:click={() => window.open("https://hinduwiki.vercel.app")}>
@@ -146,7 +146,7 @@ $: isDarkMode = $mode === 'dark';
         </CardTitle>
         <br>
         <CardDesc>
-            Gist is a news app which gives news in 64 words using inshorts.
+            A News App which gives news in 64 words using inshorts.
         </CardDesc>
         <br>
         <!-- <button class="but" on:click={() => window.open("https://rythmicweb.netlify.app")}>

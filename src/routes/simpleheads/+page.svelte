@@ -5,16 +5,18 @@
 <Title />
 <div class="about">
     <img src="/imgs/simpleheadslogo.png" alt="Example Image" />
-    <h2>Simpleheads</h2>
-    <p>Simply Making Cool Stuff</p>
+</div>
+<div style="text-align: center;">
+    <p>Ansh Wadhwa @ 2025</p>
 </div>
 
 <style>
     .about {
+        height: 90vh;
         text-align: center;
-        display: block;
-        margin-top: 15%;
-        margin-bottom: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     /* h2,
     h3,

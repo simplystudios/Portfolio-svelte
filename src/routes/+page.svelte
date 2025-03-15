@@ -110,7 +110,8 @@
             <!-- <section class="about">
             <h3 style="font-size: auto;">Developer, Dreamer, Student and a Music and Photography Enjoyer</h3>
         </section> -->
-            <br />
+            <br class="bbr" />
+
             <!-- <div class="ppm">
                 <div class="bar1"></div>
                 <blockquote>{intro}</blockquote>
@@ -215,6 +216,9 @@
     .about {
         font-style: normal;
     }
+    .bbr {
+        margin-bottom: 40px;
+    }
     .horg {
         border: 1;
         border-radius: 5px;
@@ -241,8 +245,8 @@
     .but {
         width: 100%;
         align-items: center;
-        margin-left:auto;
-        margin-right:auto;
+        margin-left: auto;
+        margin-right: auto;
         background-color: black;
         padding: 12px;
         color: white;
@@ -250,7 +254,6 @@
         border-radius: 8px;
         font-size: 16px;
         cursor: pointer;
-
     }
     .dark-mode {
         background-color: #09090b;
@@ -283,9 +286,9 @@
     }
     .mainp {
         background-color: var(--mpcolor);
-        padding: 50px;
-        margin-bottom: 20px;
-        margin-top: 20px;
+        padding: 70px;
+        margin-bottom: 0px;
+        margin-top: 0px;
     }
     .main {
         display: flex;
@@ -442,23 +445,25 @@
             width: auto;
             grid-template-columns: auto auto;
         }
+
         .gridbd {
             display: flex;
             text-align: center;
             justify-content: center;
-            padding: 10px;
+            padding: 0;
+            width: 100%;
+            margin-top: 0;
             margin-left: auto;
             margin-right: auto;
-            linear-gradient(
-                to right,
-                black calc(0% - 120px),
-                transparent 100%
-            ),
-            linear-gradient(to left, black calc(0% - 120px), transparent 100%);
+            mask-image: none;
+            -webkit-mask-image: none;
         }
         .mainp {
-            margin-top: 5px;
-            padding: 5px;
+            margin-top: 0;
+            margin-bottom: 0;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
         }
     }
     @media screen and (max-width: 500px) {

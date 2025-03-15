@@ -351,7 +351,8 @@
         padding: 40px;
         display: flex;
         margin-top: 10px;
-        justify-content: space-between;
+        align-items: center;
+        justify-content: center;
     }
 
     h1 {

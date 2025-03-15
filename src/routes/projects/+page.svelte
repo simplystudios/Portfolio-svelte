@@ -103,7 +103,7 @@ onMount(async() =>{
         justify-content: center;
         margin: auto;
         display: inline-grid;
-        grid-template-columns: auto auto;
+        grid-template-columns: auto auto auto;
         padding: 10px;
         gap: 20px 50px;
     }

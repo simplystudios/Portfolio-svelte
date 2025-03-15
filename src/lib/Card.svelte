@@ -1,15 +1,15 @@
 <script>
-import { onMount } from 'svelte';
-import { ModeWatcher, mode } from "mode-watcher";
+    import { onMount } from "svelte";
+    import { ModeWatcher, mode } from "mode-watcher";
 
-let isDarkMode;
+    let isDarkMode;
 
-$: isDarkMode = $mode === 'dark';
+    $: isDarkMode = $mode === "dark";
 </script>
 
 <ModeWatcher />
 <div class="card" class:dark-mode={isDarkMode}>
-    <slot/>
+    <slot />
 </div>
 
 <style>
@@ -27,8 +27,8 @@ $: isDarkMode = $mode === 'dark';
     }
 
     .dark-mode {
-        background-color: #171717;
+        background-color: #08080b;
         color: #edeceb;
-        border-color: rgb(42, 42, 42);
+        border-color: #27262b;
     }
 </style>

@@ -1,13 +1,12 @@
 <h1 class="title">
-    <slot/>
+    <slot />
 </h1>
 
 <style>
-    
-    .title{
+    .title {
         text-align: left;
         font-size: 18px;
         margin: 0;
-        font-family: reclet,sans-serif ;
-        }
+        font-family: reclet, sans-serif;
+    }
 </style>

@@ -10,14 +10,19 @@
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^1.0.0-next.90",
 		"@sveltejs/kit": "^1.0.0-next.587",
+		"autoprefixer": "^10.4.21",
+		"postcss": "^8.5.3",
 		"sv-popup": "^0.5.3",
 		"svelte": "^5.16.1",
+		"tailwindcss": "^4.0.12",
 		"vite": "^4.0.0"
 	},
 	"type": "module",
 	"dependencies": {
+		"@fortawesome/free-brands-svg-icons": "^6.7.2",
 		"boxicons": "^2.1.4",
 		"lucide-svelte": "^0.476.0",
-		"mode-watcher": "^0.5.0"
+		"mode-watcher": "^0.5.0",
+		"svelte-fa": "^4.0.3"
 	}
 }

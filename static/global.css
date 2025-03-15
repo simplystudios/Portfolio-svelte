@@ -1,12 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 
 @font-face {
-    font-family: 'genalt';
-    src: url('/fonts/primeform/PrimeformProDemo-Regular.otf') format('opentype');
+    font-family: "genalt";
+    src: url("/fonts/primeform/PrimeformProDemo-Regular.otf") format("opentype");
 }
 @font-face {
-    font-family: 'reclet';
-    src: url('/fonts/Recoleta.otf') format('opentype');
+    font-family: "reclet";
+    src: url("/fonts/Recoleta.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "pplet";
+    src: url("/fonts/InstrumentSerif-Regular.ttf") format("truetype");
 }
 
 body {
@@ -15,7 +20,6 @@ body {
     font-family: Recoleta;
     font-weight: 1000;
 }
-
 
 /* width */
 ::-webkit-scrollbar {
@@ -42,7 +46,7 @@ body {
     font-weight: 1000;
 } */
 @font-face {
-    font-family: 'Recoleta';
-    src: url('/fonts/Recoleta.otf');
-        /* IE9 Compat Modes */
+    font-family: "Recoleta";
+    src: url("/fonts/Recoleta.otf");
+    /* IE9 Compat Modes */
 }

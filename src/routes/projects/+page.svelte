@@ -16,7 +16,6 @@
     import CardDesc from "$lib/CardTitle.svelte";
     import CardButton from "$lib/CardButton.svelte";
     import { onMount } from "svelte";
-    import { Star, GitFork } from "lucide-svelte";
 
     import { ModeWatcher, setMode, mode } from "mode-watcher";
 

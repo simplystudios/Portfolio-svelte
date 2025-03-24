@@ -7,9 +7,20 @@
     import CardDesc from "$lib/CardTitle.svelte";
     import CardButton from "$lib/CardButton.svelte";
     import { onMount } from "svelte";
+    import {
+        Star,
+        GitFork,
+        Facebook,
+        Instagram,
+        Twitter,
+        Linkedin,
+        Github,
+        Youtube,
+    } from "lucide-svelte";
     export let disabled = "false";
     import { browser } from "$app/environment"; // Import this for SSR checks
     let isDarkMode;
+    let color;
 
     $: isDarkMode = $mode === "dark";
 
@@ -21,6 +32,25 @@
         document.documentElement.style.setProperty("--mpcolor", mpColor);
         document.documentElement.style.setProperty("--grid-color", gridColor);
     }
+
+    let data = [];
+    onMount(async () => {
+        const repos = await fetch(
+            "https://api.github.com/users/simplystudios/repos",
+        );
+        data = await repos.json();
+        data = data
+            .sort((a, b) => b.stargazers_count - a.stargazers_count)
+            .slice(0, 10);
+        console.log(data);
+        if ($isDarkMode === true) {
+            color = "#191917";
+            console.log("whaa");
+        } else {
+            color = "#cfd1d6";
+            console.log("naahhhh");
+        }
+    });
 
     function scrollIntoView(id) {
         const element = document.getElementById(id);
@@ -127,79 +157,112 @@
 <section id="pro" class="projects">
     <div>
         <div style="">
-            <h1 class="le">Projects</h1>
+            <h1 class="le">Featured Projects</h1>
         </div>
         <div class="col">
-            <Card>
-                <CardTitle>HinduWiki</CardTitle>
-                <br />
-                <CardDesc>
-                    Wikipedia Api Wrapper for Hinduism related articles
-                </CardDesc>
-                <br />
-                <!-- <button class="but" on:click={() => window.open("https://hinduwiki.vercel.app")}>
-                View
-            </button> -->
-                <div class="hor">
-                    <div class="horg">
-                        <p>Html Css Js</p>
-                    </div>
-                </div>
-            </Card>
+            <!-- <div class="cardf">
+                <Card style="height: 100px;">
+                    <img
+                        class="card-img"
+                        src="/imgs/hinduwikitwitterimg.jpg"
+                        alt="HinduWiki Logo"
+                    />
+                </Card>
+                <h3>HinduWiki</h3>
+            </div> -->
 
-            <Card>
-                <!-- <CardImg imgurl="https://anshwadhwa.vercel.app/images/rhythmichead.png">
+            <Card img1="/imgs/gistpos.jpg" img2="/imgs/gistposterfr.jpg"></Card>
 
-            </CardImg> -->
-                <CardTitle>Gist - Know the Gist of it</CardTitle>
-                <br />
-                <CardDesc>
-                    A News App which gives news in 64 words using inshorts.
-                </CardDesc>
-                <br />
-                <!-- <button class="but" on:click={() => window.open("https://rythmicweb.netlify.app")}>
-                View
-            </button> -->
-                <div class="hor">
-                    <div class="horg">
-                        <p>React Native</p>
-                    </div>
-                </div>
-            </Card>
+            <Card img1="/imgs/logopost.jpg" img2="/imgs/notnotionbetter.jpg"
+            ></Card>
 
-            <Card>
-                <!-- <CardImg imgurl="https://anshwadhwa.vercel.app/images/gistbanner.png">
+            <Card
+                img1="/imgs/rhythmicposternoname.png"
+                img2="/imgs/rhythmic2poster.jpg"
+            ></Card>
 
-            </CardImg> -->
-                <CardTitle>Not Notion</CardTitle>
-                <br />
-                <CardDesc>
-                    A Minimal Markdown editor inspired by Notion on the web
-                </CardDesc>
-                <br />
-                <!-- <button class="but" on:click={"https://gistweb.vercel.app"}>
-                View
-            </button> -->
-                <div class="hor">
-                    <div class="horg">
-                        <p>Svelte</p>
-                    </div>
-                </div>
-            </Card>
-            <div class=""></div>
+            <Card img1="/imgs/Disredposter.jpg" img2="/imgs/disredgraph.jpg"
+            ></Card>
+
+            <Card img1="/imgs/covintracker.jpg" img2="/imgs/rhythmic2poster.jpg"
+            ></Card>
         </div>
-        <button
+        <!-- <button
             on:click={() => window.open("/projects")}
             class="but"
             class:dark-mode={isDarkMode}
         >
             See All
-        </button>
+        </button> -->
     </div>
 </section>
+
+<div class="gprojects">
+    <h1 class="heading">Github Projects</h1>
+    <br />
+
+    <div class="col">
+        {#if data.length > 0}
+            {#each data as d}
+                {#if d.fork == true}{:else}
+                    <div
+                        on:click={() => window.open(d.html_url, "_blank")}
+                        class:dark-mode={isDarkMode}
+                        class="protemp"
+                    >
+                        <div
+                            style="font-size: 20px; font-weight: 600; padding-bottom: 5px;"
+                        >
+                            {d.name}
+                        </div>
+
+                        <div style="margin: 2px; font-size: 15px;">
+                            {d.description}
+                        </div>
+                        <div class="hor">
+                            <Star
+                                size="20"
+                                {color}
+                                style="margin-top: 10px; margin-right: 5px;"
+                            />
+                            <h3>{d.stargazers_count}</h3>
+                            <GitFork
+                                size="20"
+                                {color}
+                                style="margin-top: 10px; margin-left: 5px;"
+                            />
+                            <h3 style="margin-right: 5px;">{d.forks}</h3>
+                            <div class:horg-black={isDarkMode} class="horg">
+                                <p>{d.language}</p>
+                            </div>
+                        </div>
+                    </div>
+                {/if}
+            {/each}
+        {/if}
+    </div>
+</div>
 <footer>
     <div class="center">
         <p>Ansh Wadhwa @ 2025</p>
+    </div>
+    <div class="centerp">
+        <div style="margin:10px">
+            <a href="https://github.com/simplystudios" target="_blank">
+                <Github size="24" {color} />
+            </a>
+        </div>
+
+        <div style="margin:10px">
+            <a href="https://twitter.com/anshwadhwa8" target="_blank">
+                <Twitter size="24" {color} />
+            </a>
+        </div>
+        <div style="margin:10px">
+            <a href="https://www.instagram.com/anshwadhwa8/" target="_blank">
+                <Instagram size="24" {color} />
+            </a>
+        </div>
     </div>
 </footer>
 
@@ -216,8 +279,41 @@
     .about {
         font-style: normal;
     }
+    .cardf {
+        position: relative;
+        width: 150px; /* Adjust based on your needs */
+        height: auto;
+    }
+
+    .card-img {
+        width: 100%;
+        height: auto;
+        transition: opacity 0.3s ease-in-out;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .card-img.second {
+        opacity: 0;
+    }
+
+    .cardf:hover .card-img.first {
+        opacity: 0;
+    }
+
+    .cardf:hover .card-img.second {
+        opacity: 1;
+    }
     .bbr {
         margin-bottom: 40px;
+    }
+    .card-img {
+        width: 100%;
+        display: block;
+        height: auto;
+        object-fit: cover;
+        border-radius: 5px;
     }
     .horg {
         border: 1;
@@ -226,6 +322,11 @@
         padding: 2px;
         height: 25px;
         margin-bottom: 15px;
+    }
+    .ctitle {
+        margin-left: 10px;
+        font-size: 20px;
+        font-weight: bold;
     }
     .ppm {
         display: flex;
@@ -242,6 +343,11 @@
         display: flex;
         font-size: 13px;
     }
+
+    .gprojects {
+        padding: 40px;
+    }
+
     .but {
         width: 100%;
         align-items: center;
@@ -280,6 +386,14 @@
         align-items: center;
         text-align: center;
     }
+    .centerp {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        text-align: center;
+    }
+
     .le {
         text-align: center;
         margin-bottom: 40px;
@@ -387,7 +501,7 @@
         justify-content: center;
         margin: auto;
         display: inline-grid;
-        grid-template-columns: auto auto auto;
+        grid-template-columns: auto auto;
         padding: 10px;
         gap: 20px 50px;
     }

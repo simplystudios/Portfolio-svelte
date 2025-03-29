@@ -1,17 +1,11 @@
 <script>
     import { onMount } from "svelte";
-    import { ModeWatcher, mode } from "mode-watcher";
 
     export let img1 = ""; // Default image
     export let img2 = ""; // Hover image
-
-    let isDarkMode;
-    $: isDarkMode = $mode === "dark";
 </script>
 
-<ModeWatcher />
-
-<div class="card" class:dark-mode={isDarkMode}>
+<div class="card dark-mode">
     {#if img1 && img2}
         <div class="image-container">
             <img class="card-img first" src={img1} alt="Project Image" />

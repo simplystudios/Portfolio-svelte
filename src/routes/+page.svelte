@@ -2,7 +2,6 @@
     import Title from "$lib/title.svelte";
     import Card from "$lib/Card.svelte";
     import CardTitle from "$lib/CardTitle.svelte";
-    import { ModeWatcher, setMode, mode } from "mode-watcher";
     import CardImg from "$lib/CardImg.svelte";
     import CardDesc from "$lib/CardTitle.svelte";
     import CardButton from "$lib/CardButton.svelte";
@@ -19,19 +18,7 @@
     } from "lucide-svelte";
     export let disabled = "false";
     import { browser } from "$app/environment"; // Import this for SSR checks
-    let isDarkMode;
     let color;
-
-    $: isDarkMode = $mode === "dark";
-
-    $: if (browser) {
-        const mpColor = isDarkMode
-            ? "rgba(0, 0, 0, 0.753)"
-            : "rgba(255, 255, 255, 0.753)";
-        const gridColor = isDarkMode ? "#cfcfcf" : "#414344";
-        document.documentElement.style.setProperty("--mpcolor", mpColor);
-        document.documentElement.style.setProperty("--grid-color", gridColor);
-    }
 
     let data = [];
     onMount(async () => {
@@ -43,13 +30,7 @@
             .sort((a, b) => b.stargazers_count - a.stargazers_count)
             .slice(0, 10);
         console.log(data);
-        if ($isDarkMode === true) {
-            color = "#191917";
-            console.log("whaa");
-        } else {
-            color = "#cfd1d6";
-            console.log("naahhhh");
-        }
+        color = "#cfd1d6";
     });
 
     function scrollIntoView(id) {
@@ -198,7 +179,7 @@
 </section>
 
 <div class="gprojects">
-    <h1 class="heading">Github Projects</h1>
+    <h1>Github Projects</h1>
     <br />
 
     <div class="col">
@@ -207,8 +188,7 @@
                 {#if d.fork == true}{:else}
                     <div
                         on:click={() => window.open(d.html_url, "_blank")}
-                        class:dark-mode={isDarkMode}
-                        class="protemp"
+                        class="protemp dark-mode"
                     >
                         <div
                             style="font-size: 20px; font-weight: 600; padding-bottom: 5px;"
@@ -223,16 +203,19 @@
                             <Star
                                 size="20"
                                 {color}
-                                style="margin-top: 10px; margin-right: 5px;"
+                                style="margin-top: 13px; margin-right: 5px;"
                             />
                             <h3>{d.stargazers_count}</h3>
                             <GitFork
                                 size="20"
                                 {color}
-                                style="margin-top: 10px; margin-left: 5px;"
+                                style="margin-top: 13px; margin-left: 5px; margin-right: 5px;"
                             />
-                            <h3 style="margin-right: 5px;">{d.forks}</h3>
-                            <div class:horg-black={isDarkMode} class="horg">
+                            <h3>{d.forks}</h3>
+                            <div
+                                style="margin-top: 13px;"
+                                class="horg horg-black"
+                            >
                                 <p>{d.language}</p>
                             </div>
                         </div>
@@ -248,20 +231,35 @@
     </div>
     <div class="centerp">
         <div style="margin:10px">
-            <a href="https://github.com/simplystudios" target="_blank">
+            <button
+                style="background-color: transparent; border: none; cursor:pointer;"
+                on:click={() =>
+                    window.open("https://github.com/simplystudios", "_blank")}
+            >
                 <Github size="24" {color} />
-            </a>
+            </button>
         </div>
 
         <div style="margin:10px">
-            <a href="https://twitter.com/anshwadhwa8" target="_blank">
+            <button
+                style="background-color: transparent; border: none; cursor:pointer;"
+                on:click={() =>
+                    window.open("https://twitter.com/anshwadhwa8", "_blank")}
+            >
                 <Twitter size="24" {color} />
-            </a>
+            </button>
         </div>
         <div style="margin:10px">
-            <a href="https://www.instagram.com/anshwadhwa8/" target="_blank">
+            <button
+                style="background-color: transparent; border: none; cursor:pointer;"
+                on:click={() =>
+                    window.open(
+                        "https://www.instagram.com/anshwadhwa8/",
+                        "_blank",
+                    )}
+            >
                 <Instagram size="24" {color} />
-            </a>
+            </button>
         </div>
     </div>
 </footer>
@@ -314,6 +312,79 @@
         height: auto;
         object-fit: cover;
         border-radius: 5px;
+    }
+    .protemp {
+        background-color: #ffffff;
+        color: black;
+        padding: 10px;
+        border: 1px solid #d0d0cf;
+        border-radius: 5px;
+        border-style: groove;
+        font-family: Recoleta;
+    }
+    .protemp:hover {
+        cursor: pointer;
+    }
+    .heading {
+        text-align: center;
+        font-size: 6vw;
+        font-weight: bolder;
+    }
+    .center {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .hor {
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 10px;
+    }
+
+    .horg {
+        border: 1;
+        border-radius: 5px;
+        background-color: transparent;
+        width: min-content;
+        margin-left: 10px;
+        padding: 5px;
+        height: 15px;
+        margin-top: 5px;
+        justify-content: center;
+    }
+    .centerp {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        text-align: center;
+    }
+    .horg-black {
+        border: 1;
+        border-radius: 5px;
+        background-color: transparent;
+        width: min-content;
+        margin-left: 10px;
+        padding: 5px;
+        height: 15px;
+        margin-top: 5px;
+        justify-content: center;
+    }
+    p {
+        margin: 0px;
+        font-size: 15px;
+    }
+
+    @media only screen and (max-device-width: 720px) {
+        .col {
+            justify-content: center;
+            margin: auto;
+            display: inline-grid;
+            grid-template-columns: auto;
+            padding: 10px;
+            gap: 20px 50px;
+        }
     }
     .horg {
         border: 1;
@@ -399,7 +470,7 @@
         margin-bottom: 40px;
     }
     .mainp {
-        background-color: var(--mpcolor);
+        background-color: rgba(0, 0, 0, 0.753);
         padding: 70px;
         margin-bottom: 0px;
         margin-top: 0px;
@@ -419,8 +490,8 @@
         width: 80%;
         animation: moveLoop 12s linear infinite; /* Slower and smoother animation */
         background-image:
-            linear-gradient(to right, var(--grid-color) 2px, transparent 1px),
-            linear-gradient(to bottom, var(--grid-color) 2px, transparent 1px);
+            linear-gradient(to right, #cfcfcf 2px, transparent 1px),
+            linear-gradient(to bottom, #cfcfcf 2px, transparent 1px);
         background-size: 40px 40px;
         background-position: 0 0;
 

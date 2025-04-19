@@ -1,0 +1,45 @@
+@client.tree.command(name="anime", description="Get info and streaming links for anime")
+async def anime(interaction: discord.Interaction, animename: str, episode: int):
+    query = animename
+    url = "https://api.amvstr.ml/api/v2/search/"
+    params = {
+        "q": query,
+        "page": 1,
+        "limit": 10
+    }
+    data = requests.get(url, params=params)
+    anime = data.json()
+    animed = anime['results']
+    animetitle = animed[0]['title']['userPreferred']
+    animetitlen = animed[0]['title']['english']
+    animetitlejp = animed[0]['title']['native']
+    animebanner = animed[0]['bannerImage']
+    animestatus = animed[0]['status']
+    totaleps = animed[0]['episodes']
+    animethumb = animed[0]['coverImage']['large']
+    animeid = animed[0]['id']
+
+    eps = f"https://api.amvstr.ml/api/v2/episode/{animeid}"
+    urlep = requests.get(eps)
+    epdata = urlep.json()
+    epnum = episode
+    eprl = episode
+    epnum = epnum - 1
+    epid = epdata[epnum]['id']
+    url3 = "https://api.amvstr.ml/api/v2/stream/" + epid
+    stream = requests.get(url3)
+    streamdata = stream.json()
+    streamlink = streamdata['data']
+    streamlinkm = streamlink['stream']
+    streamlinkmain = streamlinkm['multi']
+    streamlink4 = streamlinkmain['main']
+    streamfor = streamlink['iframe']
+    link = streamfor['default']
+    animeinfolink = discord.Embed(title=f"{animetitlen}/{animetitle}/{animetitlejp}")
+    animeinfolink.add_field(name="Link To Stream", value=link)
+    animeinfolink.add_field(name="Total Eps", value=totaleps)
+    animeinfolink.add_field(name="Link For Ep", value=eprl)
+    animeinfolink.add_field(name="Status", value=animestatus)
+    animeinfolink.set_thumbnail(url=animethumb)
+    animeinfolink.set_image(url=animebanner)
+    await interaction.response.send_message(embed=animeinfolink)

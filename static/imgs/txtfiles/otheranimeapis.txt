@@ -1,0 +1,6 @@
+other anime api's if consumet gets down
+
+https://api-amvstrm.nyt92.eu.org/api/v2
+/trending
+
+docs : https://docsapi-amvstrm.pages.dev/#/operations/get-anime-info

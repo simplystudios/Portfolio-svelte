@@ -1,0 +1,50 @@
+My Projects: 
+--------------------------------------
+Python:
+===>
+Web_Browser With Tor
+8ball game for esp8266 which uses api and inbuilt wifi of esp8266 microcontroller
+DMUT(Discord Message Using Token) : DMUT is a discord client like program with which it allows you to send a message using your user token and channel id and server id
+Wikipedia Client : A wikipedia surfing client using wikipedia api 
+Inshorts client : A inshort news app client which provides news in under 100 words
+anime-search : A program where you can enter anime name and episode and it will provide you with the links to watch that ep of the anime
+Text-to-Speech : A program which does text to speech and saves the file in a folder
+Voice-to-Text : A program that detects your voice and converts it to words and save it as a file.
+--------------------------------------
+Discord Bots-Python :
+===>
+Dc Reaper : A all purpose discord bot with fun games and mod tools.
+Chess Lookup : A bot which uses chess.com api to look up players stats and profile.
+Disred : A discord bot which could get you a list of online radio stations and links to listen to them.
+Smash Or Pass : A discord bot made upon the internet meme game smash or pass.
+Animesan : A discord bot which can do anime related stuff such as sending anime gifs and anime search and even give links to anime eps
+--------------------------------------
+Websites :
+===>
+Hinduwiki : A wikipedia for hinduism related query allows to tweet the the page of websites.
+Keepitshort : A Search Engine Made using multiple apis which can retrive results from google, duckduckgo, bing and more also includes image search which search for images from wikipedia
+DaviansForDavians : A website where students of dav could get their notes and socialize and get help.
+Discord-Status : A website where you can see a users discord status and song they are listening etc using landyard
+--------------------------------------
+C++
+===>
+Arthmetic Progression Calculator
+Tempreture Conversion
+--------------------------------------
+Web Extensions :
+===>
+Random Waifu : A extension where it will get a random anime waifu whenever Opened
+Chess Lookup
+--------------------------------------
+Sketchware :
+===>
+Socialy Meet : A Full Social Media app with posting and chatting status of users such as online offline typing etc user profiles and more User post commentng too likes shares etc.
+Covin : Covid 19 Tracker of world wide cases and Indian State Wise Cases A Vaccination Lookup too for district and time using governments api
+Dbz Fighters : A 2D RPG game where you fight as goku in different levels with different powers.
+Camera X Example : A app where i show how to implement Camera X library of google to access camera.
+LifeKoach : A app where users could add their sugar level and blood pressure data and displays your progress in a graph
+--------------------------------------
+Mit App Inventor:
+===>
+Enviorment App : app to make people aware about the different types of green fuels etc.
+

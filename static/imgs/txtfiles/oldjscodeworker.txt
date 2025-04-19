@@ -1,0 +1,34 @@
+const Container = document.getElementById("search-results");
+const Titlecontain = document.getElementById("title");
+const searchButton = document.getElementById("search-button");
+const searchInput = document.getElementById("search-input");
+const Pagetitle = document.getElementById("pgt");
+
+var search = window.location.search.substr(1);
+apiurl = `https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&prop=extracts|pageimages&exintro&explaintext&redirects=1&titles=${search}`;
+
+let performSearch = () => {
+    const url = apiurl;
+    Pagetitle.textContent = `Hinduwiki • ${search}`; // Set the page title
+
+    fetch(url)
+        .then(response => response.json())
+        .then(response => {
+            if (response.error) {
+                Container.textContent = data.error;
+            } else {
+                response = response.query.pages;
+                var pageid = Object.keys(response)[0];
+                var extract = response[pageid].extract;
+                var searchtitle = response[pageid].title
+                Container.textContent = extract;
+                Titlecontain.textContent = searchtitle;
+            }
+        })
+        .catch(error => {
+            Container.textContent = "An error occurred during the search.";
+            console.error(error);
+        });
+};
+
+performSearch();

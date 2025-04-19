@@ -1,0 +1,1 @@
+an metro app in which it asks you to enter your nearest station and save it in memory of device and when in emergency you click a button and it gets your station and route to your home safely and securely... --Detro Feature 2024

@@ -12,6 +12,7 @@
         Facebook,
         Instagram,
         Twitter,
+        MapPin,
         Linkedin,
         Github,
         Youtube,
@@ -75,16 +76,14 @@
     // getdata();
 </script>
 
-<title>Ansh Wadhwa</title>
-<Title />
-<div class="main">
-    <div class="gridbd">
-        <div class="mainp">
-            <div class="title">
-                <br />
-                <br />
-                <div class="bd">
-                    <img
+<div class="mp">
+    <div class="overlay">
+        <title>Ansh Wadhwa</title>
+        <Title />
+        <div class="main">
+            <div class="gridbd">
+                <div class="mainp">
+                    <!-- <img
                         style=""
                         id="pic"
                         class="img"
@@ -92,177 +91,212 @@
                         alt=""
                         width="280px"
                         height="280px"
-                    />
-                    <div class="details">
-                        <div class="statusdiv">
-                            <!-- <div id="ball" class="ball">
-                            </div> -->
-                            <h1 style="font-size: auto;">Ansh Wadhwa</h1>
-                        </div>
-                        <div>
-                            <h2 id="un">Student, Developer in Delhi India</h2>
-                            <a
-                                href="https://wakatime.com/@f983c5d0-c6d8-471e-a499-43763ad1d6b4"
-                                target="_blank"
-                                ><img
-                                    src="https://wakatime.com/badge/user/f983c5d0-c6d8-471e-a499-43763ad1d6b4.svg?style=for-the-badge"
-                                    alt="Total time coded since Sep 28 2021"
-                                /></a
-                            >
-                            <!-- <div class="sdiv">
-                        <a href="https://github.com/simplystudios" target="_blank" rel="noopener noreferrer"><img class="sicon" src="/github.png" alt="github" /></a>
-                        <a href="https://twitter.com/anshwadhwa8" target="_blank" rel="noopener noreferrer"><img class="sicon" src="/x.png" alt="twtter/X.com" /></a>
-                        <a href="https://instagram.com/anshwadhwa8" target="_blank" rel="noopener noreferrer"><img class="sicon" src="/instagram.png" alt="instagram.com" width="24px"></a>
-                    </div>  -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- <section class="about">
-            <h3 style="font-size: auto;">Developer, Dreamer, Student and a Music and Photography Enjoyer</h3>
-        </section> -->
-            <br class="bbr" />
+                    /> -->
+                    <div class="title">
+                        <br />
+                        <br />
+                        <div class="bd">
+                            <div class="details">
+                                <div class="statusdiv">
+                                    <!-- <div id="ball" class="ball">
+                                    </div> -->
+                                    <h1 class="pin">Ansh Wadhwa</h1>
+                                </div>
+                                <div>
+                                    <h2 class="un">
+                                        Student who happens to be a Developer
+                                    </h2>
 
-            <!-- <div class="ppm">
-                <div class="bar1"></div>
-                <blockquote>{intro}</blockquote>
-            </div> -->
-            <!-- <br>
-        <div on:click={() =>scrollIntoView("pro")} class="sb">
-            <p>Scroll Down</p>
-        <i style="font-size: 25px;" class='bx bx-down-arrow-alt' ></i>
-        </div> -->
-        </div>
-    </div>
-</div>
-<section id="pro" class="projects">
-    <div>
-        <div style="">
-            <h1 class="le">Featured Projects</h1>
-        </div>
-        <div class="col">
-            <!-- <div class="cardf">
-                <Card style="height: 100px;">
-                    <img
-                        class="card-img"
-                        src="/imgs/hinduwikitwitterimg.jpg"
-                        alt="HinduWiki Logo"
-                    />
-                </Card>
-                <h3>HinduWiki</h3>
-            </div> -->
-
-            <Card img1="/imgs/gistpos.jpg" img2="/imgs/gistposterfr.jpg"></Card>
-
-            <Card img1="/imgs/logopost.jpg" img2="/imgs/notnotionbetter.jpg"
-            ></Card>
-
-            <Card
-                img1="/imgs/rhythmicposternoname.png"
-                img2="/imgs/rhythmic2poster.jpg"
-            ></Card>
-
-            <Card img1="/imgs/Disredposter.jpg" img2="/imgs/disredgraph.jpg"
-            ></Card>
-
-            <Card img1="/imgs/covintracker.jpg" img2="/imgs/rhythmic2poster.jpg"
-            ></Card>
-        </div>
-        <!-- <button
-            on:click={() => window.open("/projects")}
-            class="but"
-            class:dark-mode={isDarkMode}
-        >
-            See All
-        </button> -->
-    </div>
-</section>
-
-<div class="gprojects">
-    <h1>Github Projects</h1>
-    <br />
-
-    <div class="col">
-        {#if data.length > 0}
-            {#each data as d}
-                {#if d.fork == true}{:else}
-                    <div
-                        on:click={() => window.open(d.html_url, "_blank")}
-                        class="protemp dark-mode"
-                    >
-                        <div
-                            style="font-size: 20px; font-weight: 600; padding-bottom: 5px;"
-                        >
-                            {d.name}
-                        </div>
-
-                        <div style="margin: 2px; font-size: 15px;">
-                            {d.description}
-                        </div>
-                        <div class="hor">
-                            <Star
-                                size="20"
-                                {color}
-                                style="margin-top: 13px; margin-right: 5px;"
-                            />
-                            <h3>{d.stargazers_count}</h3>
-                            <GitFork
-                                size="20"
-                                {color}
-                                style="margin-top: 13px; margin-left: 5px; margin-right: 5px;"
-                            />
-                            <h3>{d.forks}</h3>
-                            <div
-                                style="margin-top: 13px;"
-                                class="horg horg-black"
-                            >
-                                <p>{d.language}</p>
+                                    <div class="pin">
+                                        <MapPin
+                                            style="margin-right:5px"
+                                            size={20}
+                                            color="#bfbfbf"
+                                        />
+                                        Delhi, India
+                                    </div>
+                                    <br />
+                                    <div class="pin">
+                                        <a
+                                            href="https://wakatime.com/@f983c5d0-c6d8-471e-a499-43763ad1d6b4"
+                                            target="_blank"
+                                            ><img
+                                                src="https://wakatime.com/badge/user/f983c5d0-c6d8-471e-a499-43763ad1d6b4.svg?style=for-the-badge"
+                                                alt="Total time coded since Sep 28 2021"
+                                            /></a
+                                        >
+                                    </div>
+                                    <!-- <div class="sdiv">
+                                <a href="https://github.com/simplystudios" target="_blank" rel="noopener noreferrer"><img class="sicon" src="/github.png" alt="github" /></a>
+                                <a href="https://twitter.com/anshwadhwa8" target="_blank" rel="noopener noreferrer"><img class="sicon" src="/x.png" alt="twtter/X.com" /></a>
+                                <a href="https://instagram.com/anshwadhwa8" target="_blank" rel="noopener noreferrer"><img class="sicon" src="/instagram.png" alt="instagram.com" width="24px"></a>
+                            </div>  -->
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <!-- <section class="about">
+                    <h3 style="font-size: auto;">Developer, Dreamer, Student and a Music and Photography Enjoyer</h3>
+                </section> -->
+                    <br class="bbr" />
+
+                    <!-- <div class="ppm">
+                        <div class="bar1"></div>
+                        <blockquote>{intro}</blockquote>
+                    </div> -->
+
+                    <!-- <br>
+                <div on:click={() =>scrollIntoView("pro")} class="sb">
+                    <p>Scroll Down</p>
+                <i style="font-size: 25px;" class='bx bx-down-arrow-alt' ></i>
+                </div> -->
+                </div>
+            </div>
+        </div>
+        <section id="pro" class="projects">
+            <div>
+                <!-- <div style="">
+                    <h1 class="le">Featured Projects</h1>
+                </div> -->
+                <div class="col">
+                    <!-- <div class="cardf">
+                        <Card style="height: 100px;">
+                            <img
+                                class="card-img"
+                                src="/imgs/hinduwikitwitterimg.jpg"
+                                alt="HinduWiki Logo"
+                            />
+                        </Card>
+                        <h3>HinduWiki</h3>
+                    </div> -->
+
+                    <Card img1="/imgs/gistpos.jpg" img2="/imgs/gistposterfr.jpg"
+                    ></Card>
+
+                    <Card
+                        img1="/imgs/logopost.jpg"
+                        img2="/imgs/notnotionbetter.jpg"
+                    ></Card>
+
+                    <Card
+                        img1="/imgs/rhythmicposternoname.png"
+                        img2="/imgs/rhythmic2poster.jpg"
+                    ></Card>
+
+                    <Card
+                        img1="/imgs/Disredposter.jpg"
+                        img2="/imgs/disredgraph.jpg"
+                    ></Card>
+
+                    <Card
+                        img1="/imgs/covintracker.jpg"
+                        img2="/imgs/rhythmic2poster.jpg"
+                    ></Card>
+                </div>
+                <!-- <button
+                    on:click={() => window.open("/projects")}
+                    class="but"
+                    class:dark-mode={isDarkMode}
+                >
+                    See All
+                </button> -->
+            </div>
+        </section>
+
+        <div class="gprojects">
+            <h1>Github Projects</h1>
+            <br />
+
+            <div class="col">
+                {#if data.length > 0}
+                    {#each data as d}
+                        {#if d.fork == true}{:else}
+                            <div
+                                on:click={() =>
+                                    window.open(d.html_url, "_blank")}
+                                class="protemp dark-mode"
+                            >
+                                <div
+                                    style="font-size: 20px; font-weight: 600; padding-bottom: 5px;"
+                                >
+                                    {d.name}
+                                </div>
+
+                                <div style="margin: 2px; font-size: 15px;">
+                                    {d.description}
+                                </div>
+                                <div class="hor">
+                                    <Star
+                                        size="20"
+                                        {color}
+                                        style="margin-top: 13px; margin-right: 5px;"
+                                    />
+                                    <h3>{d.stargazers_count}</h3>
+                                    <GitFork
+                                        size="20"
+                                        {color}
+                                        style="margin-top: 13px; margin-left: 5px; margin-right: 5px;"
+                                    />
+                                    <h3>{d.forks}</h3>
+                                    <div
+                                        style="margin-top: 13px;"
+                                        class="horg horg-black"
+                                    >
+                                        <p>{d.language}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {/if}
+                    {/each}
                 {/if}
-            {/each}
-        {/if}
+            </div>
+        </div>
+        <footer>
+            <div class="center">
+                <p>Ansh Wadhwa @ 2025</p>
+            </div>
+            <div class="centerp">
+                <div style="margin:10px">
+                    <button
+                        style="background-color: transparent; border: none; cursor:pointer;"
+                        on:click={() =>
+                            window.open(
+                                "https://github.com/simplystudios",
+                                "_blank",
+                            )}
+                    >
+                        <Github size="24" {color} />
+                    </button>
+                </div>
+
+                <div style="margin:10px">
+                    <button
+                        style="background-color: transparent; border: none; cursor:pointer;"
+                        on:click={() =>
+                            window.open(
+                                "https://twitter.com/anshwadhwa8",
+                                "_blank",
+                            )}
+                    >
+                        <Twitter size="24" {color} />
+                    </button>
+                </div>
+                <div style="margin:10px">
+                    <button
+                        style="background-color: transparent; border: none; cursor:pointer;"
+                        on:click={() =>
+                            window.open(
+                                "https://www.instagram.com/anshwadhwa8/",
+                                "_blank",
+                            )}
+                    >
+                        <Instagram size="24" {color} />
+                    </button>
+                </div>
+            </div>
+        </footer>
     </div>
 </div>
-<footer>
-    <div class="center">
-        <p>Ansh Wadhwa @ 2025</p>
-    </div>
-    <div class="centerp">
-        <div style="margin:10px">
-            <button
-                style="background-color: transparent; border: none; cursor:pointer;"
-                on:click={() =>
-                    window.open("https://github.com/simplystudios", "_blank")}
-            >
-                <Github size="24" {color} />
-            </button>
-        </div>
-
-        <div style="margin:10px">
-            <button
-                style="background-color: transparent; border: none; cursor:pointer;"
-                on:click={() =>
-                    window.open("https://twitter.com/anshwadhwa8", "_blank")}
-            >
-                <Twitter size="24" {color} />
-            </button>
-        </div>
-        <div style="margin:10px">
-            <button
-                style="background-color: transparent; border: none; cursor:pointer;"
-                on:click={() =>
-                    window.open(
-                        "https://www.instagram.com/anshwadhwa8/",
-                        "_blank",
-                    )}
-            >
-                <Instagram size="24" {color} />
-            </button>
-        </div>
-    </div>
-</footer>
 
 <style>
     :root {
@@ -295,7 +329,13 @@
     .card-img.second {
         opacity: 0;
     }
-
+    .pin {
+        display: flex;
+        color: #bfbfbf;
+        width: 100%;
+        margin-left: 15px;
+        justify-content: left;
+    }
     .cardf:hover .card-img.first {
         opacity: 0;
     }
@@ -371,12 +411,36 @@
         margin-top: 5px;
         justify-content: center;
     }
+    .un {
+        font-size: 22px;
+        margin: 15px;
+        margin-top: 5px;
+        font-size: 30px;
+        color: #bfbfbf;
+    }
     p {
         margin: 0px;
         font-size: 15px;
     }
 
     @media only screen and (max-device-width: 720px) {
+        .title {
+            text-align: center;
+            justify-content: center;
+        }
+        .bd {
+            text-align: center;
+        }
+        .un {
+            justify-content: center;
+            font-size: 25px;
+            text-align: center;
+        }
+        .pin {
+            width: 100%;
+            margin-left: 0px;
+            justify-content: center;
+        }
         .col {
             justify-content: center;
             margin: auto;
@@ -412,6 +476,7 @@
     }
     .hor {
         display: flex;
+        justify-content: center;
         font-size: 13px;
     }
 
@@ -436,6 +501,16 @@
         background-color: #09090b;
         color: #fbfbfa;
         border-color: #27262b;
+    }
+    .mp {
+        background-image:
+            linear-gradient(to right, #3c3c3c 1.5px, transparent 1px),
+            linear-gradient(to bottom, #3c3c3c 1.5px, transparent 1px);
+        background-size: 27px 27px;
+        background-position: 0 0;
+
+        mask-composite: intersect;
+        -webkit-mask-composite: destination-in;
     }
     .dark-mode:hover {
         background-color: #18181b;
@@ -470,7 +545,6 @@
         margin-bottom: 40px;
     }
     .mainp {
-        background-color: rgba(0, 0, 0, 0.753);
         padding: 70px;
         margin-bottom: 0px;
         margin-top: 0px;
@@ -482,45 +556,17 @@
         margin-bottom: 30px;
         z-index: 100;
     }
+    .overlay {
+        background: rgba(0, 0, 0, 0.699);
+    }
     .gridbd {
         position: relative;
         inset: 0;
         margin-bottom: 0px;
         height: 100%;
         width: 80%;
-        animation: moveLoop 12s linear infinite; /* Slower and smoother animation */
-        background-image:
-            linear-gradient(to right, #cfcfcf 2px, transparent 1px),
-            linear-gradient(to bottom, #cfcfcf 2px, transparent 1px);
-        background-size: 40px 40px;
-        background-position: 0 0;
-
-        mask-image:
-            linear-gradient(
-                to bottom,
-                black calc(100% - 140px),
-                transparent 100%
-            ),
-            linear-gradient(to top, black calc(100% - 140px), transparent 100%),
-            linear-gradient(
-                to right,
-                black calc(100% - 120px),
-                transparent 100%
-            ),
-            linear-gradient(to left, black calc(100% - 120px), transparent 100%);
-
-        mask-composite: intersect;
-        -webkit-mask-composite: destination-in;
     }
 
-    @keyframes moveLoop {
-        0% {
-            background-position: 0 0;
-        }
-        100% {
-            background-position: 150px 0; /* Moves one grid size to the right */
-        }
-    }
     .sb {
         cursor: pointer;
         display: block;
@@ -594,22 +640,22 @@
         background: rgba(247, 2, 2, 0.733);
     }
     .details {
-        display: inline;
+        display: block;
         margin: auto;
         border: 1;
     }
     .statusdiv {
-        display: flex;
     }
     .title {
+        margin-top: 80px;
         display: flex;
-        text-align: center;
-        justify-content: center;
+        text-align: left;
+        justify-content: left;
     }
     .bd {
         display: flex;
-        text-align: center;
-        justify-content: center;
+        justify-content: left;
+        text-align: left;
         padding: 10px;
     }
     .img {
@@ -631,7 +677,10 @@
             width: auto;
             grid-template-columns: auto auto;
         }
-
+        .title {
+            text-align: center;
+            justify-content: center;
+        }
         .gridbd {
             display: flex;
             text-align: center;
@@ -660,12 +709,14 @@
             width: auto;
             grid-template-columns: 100%;
         }
-
+        .title {
+            text-align: center;
+            justify-content: center;
+        }
         .bd {
             display: block;
         }
         .statusdiv {
-            text-align: center;
         }
         .bar1 {
             margin-top: 20px;

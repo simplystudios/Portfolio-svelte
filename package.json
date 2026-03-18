@@ -23,6 +23,7 @@
 		"boxicons": "^2.1.4",
 		"lucide-svelte": "^0.476.0",
 		"mode-watcher": "^0.5.0",
+		"svelte-exmarkdown": "^5.0.2",
 		"svelte-fa": "^4.0.3"
 	}
 }

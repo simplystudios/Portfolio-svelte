@@ -1,0 +1,126 @@
+{
+  "vrindavan": [
+    {
+      "name": "Entrance of a Iskon Temple",
+      "image": "/photography/vrindhavan/IMG_20241115_183320252.jpg"
+    },
+    {
+      "name": "Entrance of a Iskon Temple",
+      "image": "/photography/vrindhavan/IMG_20241115_175736375.jpg"
+    },
+    {
+      "name": "Iskon Temple in vrindhavan",
+      "image": "/photography/vrindhavan/IMG_20241115_184144797.jpg"
+    }
+  ],
+  "mussoorie": [
+    {
+      "name": "Streets of Mussoorie - 2024",
+      "image": "/photography/mussorie/IMG_20240825_142903946.jpg"
+    },
+    {
+      "name": "Fog taking over the mountainous road – 2024.",
+      "image": "/photography/mussorie/IMG_20240825_121057225.jpg"
+    },
+    {
+      "name": "View from near Mall Road - 2024",
+      "image": "/photography/mussorie/IMG_20240825_141101887.jpg"
+    },
+    {
+      "name": "View from a bakery on top of mussorie  - 2024",
+      "image": "/photography/mussorie/IMG_20240825_144127827.jpg"
+    },
+    {
+      "name": "Road leading up to mussorie filled with fog  - 2024",
+      "image": "/photography/mussorie/IMG_20240825_121057225.jpg"
+    },
+    {
+      "name": "Beautiful empty street going uphill  - 2024",
+      "image": "/photography/mussorie/IMG_20240825_143035896.jpg"
+    }
+  ],
+  "rajasthan": [
+    {
+      "name": "Streets of Jaisalmer - 2024",
+      "image": "/photography/rajisthan/jaisalmer/IMG_20241218_163906219.jpg"
+    },
+    {
+      "name": "Thar Desert - 2024",
+      "image": "/photography/rajisthan/thardesert/IMG_20241217_160532759.jpg"
+    },
+    {
+      "name": "Sand Dunes - 2024",
+      "image": "/photography/rajisthan/thardesert/IMG_20241217_160722025.jpg"
+    },
+    {
+      "name": "Sand Dunes 2 - 2024",
+      "image": "/photography/rajisthan/thardesert/IMG_20241217_173404741.jpg"
+    },
+    {
+      "name": "Sand Dunes 3 - 2024",
+      "image": "/photography/rajisthan/thardesert/IMG_20241218_073142552.jpg"
+    },
+    {
+      "name": "Road in Dunes 4 - 2024",
+      "image": "/photography/rajisthan/thardesert/IMG_20241218_100208179.jpg"
+    },
+    {
+      "name": "Sand Dunes 5 - 2024",
+      "image": "/photography/rajisthan/thardesert/IMG_20241218_101302218.jpg"
+    },
+    {
+      "name": "Sand Dunes 6 - 2024",
+      "image": "/photography/rajisthan/thardesert/IMG_20241217_160532759.jpg"
+    },
+    {
+      "name": "Sand Dunes 6 - 2024",
+      "image": "/photography/rajisthan/thardesert/IMG_20241217_172045302.jpg"
+    }
+  ],
+  "Dausi": [
+    {
+      "name": "Entrance of a Iskon Temple",
+      "image": "/photography/vrindhavan/IMG_20241115_183320252.jpg"
+    },
+    {
+      "name": "Entrance of a Iskon Temple",
+      "image": "/photography/vrindhavan/IMG_20241115_175736375.jpg"
+    },
+    {
+      "name": "Iskon Temple in vrindhavan",
+      "image": "/photography/vrindhavan/IMG_20241115_184144797.jpg"
+    }
+  ],
+  "design": [
+    {
+      "name": "Detro App Icon",
+      "image": "/imgs/gistposterfr.jpg",
+      "type": "logo"
+    },
+    {
+      "name": "Home Screen",
+      "image": "/imgs/Disredposter.jpg",
+      "type": "ui"
+    },
+    {
+      "name": "Detro App Icon",
+      "image": "/imgs/gistposterfr.jpg",
+      "type": "logo"
+    },
+    {
+      "name": "Home Screen",
+      "image": "/imgs/Disredposter.jpg",
+      "type": "ui"
+    },
+    {
+      "name": "Detro App Icon",
+      "image": "/imgs/gistposterfr.jpg",
+      "type": "logo"
+    },
+    {
+      "name": "Home Screen",
+      "image": "/imgs/Disredposter.jpg",
+      "type": "ui"
+    }
+  ]
+}

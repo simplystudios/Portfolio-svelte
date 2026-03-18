@@ -1,0 +1,69 @@
+{
+  "projects": [
+    {
+      "id": "detro",
+      "name": "Detro (DetroGo)",
+      "link": "https://detroweb.vercel.app",
+      "timeline": "2023 — now",
+      "description": "Modern transit finder for the Delhi Metro featuring custom pathfinding (Dijkstra's Algorithm) and Material 3 UI.",
+      "mdLink": "/projects/detro.md",
+      "tags": ["Android Studio", "Pathfinding", "UI/UX"]
+    },
+    {
+      "id": "nutrifact",
+      "name": "Nutrifact",
+      "link": "https://github.com/simplystudios/nutrifact",
+      "timeline": "2023 — 2024",
+      "description": "App to get food nutrition info cleanly and quickly.",
+      "mdLink": "/projects/nutrifact.md",
+      "tags": ["React Native", "API Integration"]
+    },
+    {
+      "id": "tick",
+      "name": "Tick",
+      "link": "https://github.com/simplystudios/tick",
+      "timeline": "2024 — 2025",
+      "description": "App to cut back on distractions by setting different focused timers.",
+      "mdLink": "/projects/tick.md",
+      "tags": ["Productivity", "Mobile Dev"]
+    },
+    {
+      "id": "gist",
+      "name": "Gist",
+      "link": "https://github.com/simplystudios/gist",
+      "timeline": "2023 — now",
+      "description": "News in 60 words with an infinite scroll interface, styled like reels.",
+      "mdLink": "/projects/gist.md",
+      "tags": ["UI/UX", "Content App"]
+    },
+    {
+      "id": "sky",
+      "name": "Sky Browser",
+      "link": "https://github.com/simplystudios/sky",
+      "timeline": "Archived",
+      "description": "A custom Tor-based Chromium browser built in Python for enhanced privacy.",
+      "mdLink": "/projects/sky.md",
+      "tags": ["Python", "Chromium", "Privacy"]
+    },
+    {
+      "id": "disred",
+      "name": "Disred",
+      "link": "https://github.com/simplystudios/disred",
+      "timeline": "Archived",
+      "description": "Discord Bot to seamlessly listen to internet radios in voice chats.",
+      "mdLink": "/projects/disred.md",
+      "tags": ["Node.js", "Discord API"]
+    }
+  ],
+  "work": [
+    {
+      "id": "vardaan",
+      "name": "Vardaan Conclave",
+      "type": "Freelance",
+      "role": "Developer",
+      "link": "https://vaardan.vercel.app/",
+      "timeline": "2025 — 2026",
+      "description": "Designed the website for a new and upcoming Mun Conclave"
+    }
+  ]
+}

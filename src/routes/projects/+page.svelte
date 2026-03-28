@@ -1,199 +1,364 @@
 <script>
     import { onMount } from "svelte";
     import { fadeUp } from "$lib/actions/fadeUp.js";
+
     let dp = [];
     let dw = [];
-
     let loading = true;
+
     onMount(async () => {
         try {
-            // 2. IMPORTANT: Use absolute path "/projects.json" so it always looks in the static root
             let m = await fetch("/projects.json");
-
-            if (!m.ok) {
-                throw new Error("JSON fetch failed");
-            }
+            if (!m.ok) throw new Error("JSON fetch failed");
             let j = await m.json();
-            console.log(j);
             dp = j.projects;
             dw = j.work;
-        } catch {
+        } catch (error) {
             console.log(error);
         } finally {
             loading = false;
         }
     });
-    // import Navbar from "$lib/./Navbar.svelte";
-    // let currentTab = "Projects";
 </script>
+
+<svelte:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</svelte:head>
 
 <div class="main">
     <div class="profile">
         <h1 class="bodyhead">Projects</h1>
-        <hr style="color: rgba(255, 255, 255, 0.06);" />
-        {#each dp as t}
-            <div
-                use:fadeUp={{ delay: i * 60 }}
-                onclick={open(`/projects/view?id=${t.id}`)}
-                class="projectsec"
-            >
+        <hr />
+        {#each dp as t, i}
+            <div use:fadeUp={{ delay: i * 60 }} class="projectsec">
                 <div class="proitem">
-                    <a href={t.link}>{t.name} ↗</a>
-                    <p class="prosubhead">{t.timeline}</p>
-                    <p style="line-height: 25px;">{t.description}</p>
-                    <div style="display: flex;">
+                    <div class="pro-title-row">
+                        <span class="pro-name">{t.name}</span>
+                        <span class="prosubhead">{t.timeline}</span>
+                    </div>
+                    <p class="pro-desc">{t.description}</p>
+
+                    <div class="tags">
                         {#each t.tags as p}
-                            <p style="padding: 5px;">{p}</p>
+                            <span class="tag">{p}</span>
                         {/each}
+                    </div>
+
+                    <div class="links">
+                        {#if t.githubLink}
+                            <a
+                                href={t.githubLink}
+                                target="_blank"
+                                rel="noopener"
+                                class="linkpill"
+                            >
+                                <svg
+                                    width="13"
+                                    height="13"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    ><path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                                    /></svg
+                                >
+                                GitHub
+                            </a>
+                        {/if}
+                        {#if t.link && t.link !== t.githubLink}
+                            <a
+                                href={t.link}
+                                target="_blank"
+                                rel="noopener"
+                                class="linkpill"
+                            >
+                                <svg
+                                    width="13"
+                                    height="13"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    ><path
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                    /><polyline points="15 3 21 3 21 9" /><line
+                                        x1="10"
+                                        y1="14"
+                                        x2="21"
+                                        y2="3"
+                                    /></svg
+                                >
+                                Live site
+                            </a>
+                        {/if}
+                        {#if t.mdLink}
+                            <a href={t.mdLink} class="linkpill">
+                                <svg
+                                    width="13"
+                                    height="13"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    ><path
+                                        d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                                    /><polyline points="14 2 14 8 20 8" /><line
+                                        x1="16"
+                                        y1="13"
+                                        x2="8"
+                                        y2="13"
+                                    /><line
+                                        x1="16"
+                                        y1="17"
+                                        x2="8"
+                                        y2="17"
+                                    /><polyline points="10 9 9 9 8 9" /></svg
+                                >
+                                Blog
+                            </a>
+                        {/if}
                     </div>
                 </div>
             </div>
-            <hr style="color: rgba(255, 255, 255, 0.06);" />
+            <hr />
         {/each}
     </div>
-    <br />
+
     <div class="profilew">
         <h1 class="bodyhead">Work</h1>
-        <hr style="color: rgba(255, 255, 255, 0.06);" />
-        {#each dw as t}
-            <div
-                use:fadeUp={{ delay: i * 60 }}
-                onclick={open(`/view?id=${t.id}`)}
-                class="projectsec"
-            >
+        <hr />
+        {#each dw as t, i}
+            <div use:fadeUp={{ delay: i * 60 }} class="projectsec">
                 <div class="proitem">
-                    <a href={t.link}>{t.name} ↗</a>
-                    <p class="prosubhead">{t.timeline}</p>
-                    <p style="line-height: 25px;">{t.description}</p>
-                    <p style="line-height: 25px;">{t.type} | {t.role}</p>
+                    <div class="pro-title-row">
+                        <span class="pro-name">{t.name}</span>
+                        <span class="prosubhead">{t.timeline}</span>
+                    </div>
+                    <p class="pro-desc">{t.description}</p>
+                    <p class="prosubhead" style="margin-bottom: 10px;">
+                        {t.type} · {t.role}
+                    </p>
+                    <div class="links">
+                        {#if t.link}
+                            <a
+                                href={t.link}
+                                target="_blank"
+                                rel="noopener"
+                                class="linkpill"
+                            >
+                                <svg
+                                    width="13"
+                                    height="13"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    ><path
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                    /><polyline points="15 3 21 3 21 9" /><line
+                                        x1="10"
+                                        y1="14"
+                                        x2="21"
+                                        y2="3"
+                                    /></svg
+                                >
+                                Live site
+                            </a>
+                        {/if}
+                        {#if t.githubLink}
+                            <a
+                                href={t.githubLink}
+                                target="_blank"
+                                rel="noopener"
+                                class="linkpill"
+                            >
+                                <svg
+                                    width="13"
+                                    height="13"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    ><path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                                    /></svg
+                                >
+                                GitHub
+                            </a>
+                        {/if}
+                    </div>
                 </div>
             </div>
-            <hr style="color: rgba(255, 255, 255, 0.06);" />
+            <hr />
         {/each}
     </div>
 </div>
 
 <style>
-    :root {
-        --border-color: #edeceb;
-        --grid-color: #414344;
-        --mp-color: rgba(255, 255, 255, 0.533);
+    :global(html) {
+        scroll-behavior: smooth;
+    }
+    :global(body) {
+        background-color: #171717;
+        margin: 0;
+        padding: 0;
+        /* prevents horizontal scroll from overflow on mobile */
+        overflow-x: hidden;
     }
     *,
     *::before,
     *::after {
         box-sizing: border-box;
     }
-    :global(html) {
-        scroll-behavior: smooth;
+
+    hr {
+        border: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        margin: 0;
     }
-    :global(*) {
-        box-sizing: border-box;
+
+    .main {
+        display: block;
+        color: #dfdfdf;
+        /* responsive horizontal padding — tighter on small screens */
+        padding: 24px 16px;
     }
-    :global(body) {
-        background-color: #171717;
+
+    .profile,
+    .profilew {
+        margin: 0 auto;
+        max-width: 600px;
+        width: 100%;
+        color: #a1a1a1;
+        font-weight: 400;
+        /* use clamp so padding scales with screen */
+        padding: clamp(16px, 4vw, 30px);
     }
-    .proitem {
-        padding: 0px;
-        line-height: 12px;
+    .profilew {
+        padding-top: 0;
     }
+
+    .bodyhead {
+        /* scales between 28px on small phones and 40px on desktop */
+        font-size: clamp(28px, 6vw, 40px);
+        color: #dfdfdf;
+        margin-bottom: 24px;
+        line-height: 1.2;
+    }
+
     .projectsec {
         display: block;
         margin-top: 20px;
         padding-top: 15px;
+        padding-bottom: 18px;
     }
-    a {
+    .proitem {
+        padding: 0;
+    }
+
+    .pro-title-row {
+        display: flex;
+        align-items: baseline;
+        flex-wrap: wrap; /* wraps on very narrow screens */
+        gap: 8px;
+        margin-bottom: 6px;
+    }
+    .pro-name {
+        /* slightly smaller on mobile */
+        font-size: clamp(15px, 4vw, 18px);
         color: #dfdfdf;
-        font-size: 20px;
-        text-decoration: none;
-    }
-    .projectsec:hover {
-        cursor: pointer;
-    }
-    a:hover {
-        text-decoration: underline;
-        text-decoration-color: dimgray;
-        text-decoration-thickness: 3px;
+        font-weight: 500;
     }
     .prosubhead {
         color: dimgray;
+        font-size: 13px;
+        line-height: 1.4;
+        margin: 0 0 6px;
     }
-    .bodytxt {
-        font-size: 24px;
-        line-height: 1.6;
-        color: #888888;
-        margin-bottom: 16px;
-    }
-    strong {
-        color: #dfdfdf;
-        font-weight: 400;
-    }
-
-    .secondary {
-        color: #888888;
-        font-size: 16px;
+    .pro-desc {
+        font-size: 14px;
+        line-height: 1.7;
+        color: #a1a1a1;
+        margin: 0 0 10px;
+        /* prevents long words like URLs from breaking layout */
+        overflow-wrap: break-word;
+        word-break: break-word;
     }
 
-    .bodyhead {
-        font-size: 40px;
-        color: #dfdfdf;
-        margin-bottom: 30px;
-        line-height: 42px;
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 10px;
     }
-    .main {
-        display: block;
-        color: #dfdfdf;
-        margin: 30px;
+    .tag {
+        font-size: 12px;
+        padding: 3px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #888;
+        /* ensure tags never shrink below their content */
+        white-space: nowrap;
+    }
+
+    .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .linkpill {
+        display: inline-flex;
         align-items: center;
-        justify-content: center;
+        gap: 5px;
+        font-size: 12px;
+        /* taller tap target for touch — 36px min height */
+        padding: 6px 14px;
+        min-height: 36px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #888;
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.04);
+        transition:
+            border-color 0.15s,
+            color 0.15s;
+        /* prevent tap highlight flash on Android */
+        -webkit-tap-highlight-color: transparent;
+        white-space: nowrap;
     }
-    .pfp {
-        width: 40%;
-        min-width: 280px;
-        border-radius: 25px;
+    .linkpill:hover {
+        border-color: rgba(255, 255, 255, 0.25);
+        color: #dfdfdf;
     }
-    .pfpc {
-        margin-right: 0px;
-        flex: 0;
-        margin-left: 280px;
+    /* active state for touch feedback instead of hover */
+    .linkpill:active {
+        background: rgba(255, 255, 255, 0.08);
+        color: #dfdfdf;
     }
-    .profile {
-        /* MAIN CHANGES HERE: */
-        margin: 0 auto; /* Centers the div */
-        max-width: 600px; /* Restricts width so it forms a neat column */
-        width: 100%; /* Ensures it works on mobile */
 
-        color: #a1a1a1;
-        font-weight: 400;
-        padding: 30px;
-        padding-bottom: 0px;
-        /* Removed flex: 1; so it doesn't stretch across the whole screen */
-    }
-    .profilew {
-        /* MAIN CHANGES HERE: */
-        margin: 0 auto; /* Centers the div */
-        max-width: 600px; /* Restricts width so it forms a neat column */
-        width: 100%; /* Ensures it works on mobile */
-
-        color: #a1a1a1;
-        font-weight: 400;
-        padding: 30px;
-        padding-top: 0px;
-        /* Removed flex: 1; so it doesn't stretch across the whole screen */
-    }
-    @media only screen and (max-width: 1280px) {
+    @media (max-width: 480px) {
         .main {
-            display: block;
+            padding: 16px 12px;
         }
-        .pfp {
-            margin-left: 40px;
-            margin-right: 40px;
+        .profile,
+        .profilew {
+            padding: 16px 12px;
         }
-        .pfpc {
-            margin: 0;
-        }
-        .profile {
-            margin: 0 auto; /* Keeps it centered on mobile too */
+        /* on very small screens, stack title and timeline vertically */
+        .pro-title-row {
+            flex-direction: column;
+            gap: 2px;
         }
     }
 </style>

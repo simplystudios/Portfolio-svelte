@@ -9,12 +9,9 @@
     <div class="profile">
         <h1 class="bodyhead">Ansh Wadhwa</h1>
         <p class="bodytxt">
-            I build projects which focus on <strong>design</strong>,
-            <strong>functionality</strong>, and <strong>flow</strong>.
-        </p>
-        <p class="bodytxt">
-            Currently developing <strong>Detro</strong>, a modern transit finder
-            for the Delhi Metro.
+            Student, Developer, and a bit of UI/UX Designer Love Making New
+            Things. Currently developing <strong>Detro</strong>, A Material 3
+            transit app for the Delhi Metro.
         </p>
         <p class="bodytext"></p>
     </div>

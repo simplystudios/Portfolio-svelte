@@ -93,7 +93,7 @@
             /* 1. Linear gradient acts as the dark filter OVER the image */
             background-image:
                 linear-gradient(rgba(23, 23, 23, 0.87), rgba(23, 23, 23, 0.95)),
-                url("./imgs/npfpm.jpg");
+                url("/imgs/npfpm.jpg");
 
             /* 2. 'cover' scales the image to fill the entire container without stretching */
             background-size: cover;

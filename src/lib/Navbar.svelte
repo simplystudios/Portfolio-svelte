@@ -8,42 +8,60 @@
         { name: "Links", path: "/links" },
     ];
 
-    // Menu state track karne ke liye
     let isOpen = false;
 
-    // Mobile button par current page ka naam dikhane ke liye
     $: activeTabName =
         tabs.find((t) => t.path === $page.url.pathname)?.name || "Menu";
 </script>
 
 <div class="nav-wrapper">
-    <nav class="mainbar {isOpen ? 'expanded' : ''}">
-        <button class="mobile-toggle" on:click={() => (isOpen = !isOpen)}>
-            {activeTabName}
-            <span class="chevron">{isOpen ? "▲" : "▼"}</span>
+    <nav class="mainbar" class:expanded={isOpen}>
+        <button
+            class="mobile-toggle"
+            on:click={() => (isOpen = !isOpen)}
+            aria-expanded={isOpen}
+            aria-label="Toggle navigation menu"
+        >
+            <span class="active-name">{activeTabName}</span>
+            <svg
+                class="chevron"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="m6 9 6 6 6-6" />
+            </svg>
         </button>
 
-        <div class="nav-links">
-            {#each tabs as tab}
-                <a
-                    href={tab.path}
-                    class="nav-item {$page.url.pathname === tab.path
-                        ? 'active'
-                        : ''}"
-                    on:click={() => (isOpen = false)}
-                >
-                    {tab.name}
-                </a>
-            {/each}
+        <div class="nav-links-wrapper">
+            <div class="nav-links">
+                {#each tabs as tab}
+                    <a
+                        href={tab.path}
+                        class="nav-item"
+                        class:active={$page.url.pathname === tab.path}
+                        on:click={() => (isOpen = false)}
+                    >
+                        {tab.name}
+                    </a>
+                {/each}
+            </div>
         </div>
     </nav>
 </div>
 
 <style>
-    /* Wrapper remains the same */
+    /* ==========================================
+       POSITIONING & BASE
+       ========================================== */
     .nav-wrapper {
         position: fixed;
-        bottom: 40px;
+        bottom: 2.5rem;
         left: 50%;
         transform: translateX(-50%);
         z-index: 100;
@@ -51,49 +69,45 @@
 
     a {
         text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
     }
 
-    /* Outer Pill */
+    /* ==========================================
+       MAIN PILL (GLASSMORPHISM)
+       ========================================== */
     .mainbar {
         display: flex;
-        flex-direction: row; /* Default layout for desktop */
-        background: rgba(23, 23, 23, 0.7);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        border-radius: 32px; /* Slightly adjusted to accommodate vertical expansion nicely */
+        flex-direction: row;
+        background: rgba(15, 15, 15, 0.65);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        /* Subtle inner border for premium feel */
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 100px;
         padding: 6px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        overflow: hidden; /* Keeps the glass effect contained */
+        box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        transition:
+            border-radius 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+            background 0.4s ease;
     }
 
-    /* Container for the links */
+    /* ==========================================
+       DESKTOP LAYOUT (Default)
+       ========================================== */
+    .nav-links-wrapper {
+        display: block;
+    }
+
     .nav-links {
         display: flex;
         flex-direction: row;
         gap: 4px;
     }
 
-    /* Mobile trigger button - Hidden on desktop */
     .mobile-toggle {
         display: none;
-        background: transparent;
-        border: none;
-        color: #ffffff;
-        font-family: inherit;
-        font-size: 15px;
-        font-weight: 500;
-        padding: 10px 24px;
-        cursor: pointer;
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .chevron {
-        font-size: 10px;
-        margin-left: 8px;
-        color: #888;
     }
 
     .nav-item {
@@ -101,62 +115,106 @@
         border: none;
         color: #888888;
         font-family: inherit;
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 500;
         padding: 10px 24px;
-        border-radius: 999px;
+        border-radius: 100px;
         cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        text-align: center; /* Centers text if stacked */
+        transition:
+            color 0.3s ease,
+            background 0.3s ease;
+        text-align: center;
+        letter-spacing: 0.2px;
     }
 
     .nav-item:hover:not(.active) {
-        color: #cccccc;
+        color: #e0e0e0;
+        background: rgba(255, 255, 255, 0.03);
     }
 
+    /* Minimalist active state: sharp contrast instead of muddy grays */
     .nav-item.active {
-        background: #333333;
+        background: rgba(255, 255, 255, 0.1);
         color: #ffffff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
 
     /* ==========================================
-       MOBILE RESPONSIVENESS (The Magic Happens Here)
+       MOBILE RESPONSIVENESS
        ========================================== */
     @media only screen and (max-width: 768px) {
         .mainbar {
-            flex-direction: column; /* Stack items vertically */
-            min-width: 200px; /* Gives the expanded menu a nice width */
+            flex-direction: column;
+            min-width: 220px;
+            /* Less rounded corners when expanded to look like a menu panel */
+            border-radius: 28px;
         }
 
+        .mainbar.expanded {
+            background: rgba(20, 20, 20, 0.85);
+            border-radius: 24px;
+        }
+
+        /* --- The Mobile Toggle --- */
         .mobile-toggle {
-            display: flex; /* Show the trigger button */
-        }
-
-        .nav-links {
-            display: none; /* Hide links by default */
-            flex-direction: column; /* Stack them */
-            gap: 4px;
-            margin-top: 4px; /* Space between toggle and links */
-        }
-
-        /* When 'expanded' class is active (isOpen is true) */
-        .mainbar.expanded .nav-links {
-            display: flex; /* Reveal the links */
+            display: flex;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 12px 20px;
+            cursor: pointer;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 20px;
+            transition: background 0.3s ease;
         }
 
         .mainbar.expanded .mobile-toggle {
-            background: rgba(
-                255,
-                255,
-                255,
-                0.05
-            ); /* Slight highlight on the active toggle */
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 8px; /* Adds space before links appear */
+        }
+
+        .chevron {
+            color: #888;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mainbar.expanded .chevron {
+            transform: rotate(-180deg);
+        }
+
+        /* --- Smooth Height Animation via CSS Grid --- */
+        .nav-links-wrapper {
+            display: grid;
+            grid-template-rows: 0fr; /* Collapsed state */
+            transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mainbar.expanded .nav-links-wrapper {
+            grid-template-rows: 1fr; /* Expanded state */
+        }
+
+        .nav-links {
+            overflow: hidden; /* Crucial for the grid height trick */
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            opacity: 0; /* Fade out when closed */
+            transition: opacity 0.3s ease;
+        }
+
+        .mainbar.expanded .nav-links {
+            opacity: 1; /* Fade in when open */
         }
 
         .nav-item {
-            width: 100%; /* Make buttons stretch full width of the menu */
-            border-radius: 20px;
+            width: 100%;
+            border-radius: 16px; /* Slightly squarer inner buttons on mobile */
+            padding: 12px 24px;
         }
     }
 </style>

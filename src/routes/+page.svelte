@@ -1,19 +1,27 @@
 <script>
+    import { onMount } from "svelte";
     // import Navbar from "$lib/./Navbar.svelte";
 </script>
 
-<div class="main">
+<div id="mainb" class="main">
     <!-- <div class="pfpc">
         <img class="pfp" src="./imgs/pfpmainfs.jpeg" alt="Ansh Wadhwa" />
     </div> -->
     <div class="profile">
         <h1 class="bodyhead">Ansh Wadhwa</h1>
+
         <p class="bodytxt">
             Student, Developer, and a bit of UI/UX Designer Love Making New
             Things. Currently developing <strong>Detro</strong>, A Material 3
             transit app for the Delhi Metro.
         </p>
-        <p class="bodytext"></p>
+
+        <div class="tags">
+            <span class="tag">React Native</span>
+            <span class="tag">Svelte</span>
+
+            <span class="tag">Python</span>
+        </div>
     </div>
 </div>
 
@@ -35,13 +43,37 @@
             -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2px;
+        margin-bottom: 0px;
+    }
+    .tag {
+        font-size: 12px;
+        padding: 3px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #888;
+        /* ensure tags never shrink below their content */
+        white-space: nowrap;
+    }
+
     /* 2. The Main Wrapper */
     .main {
         display: flex;
         align-items: center;
+        background-image:
+            linear-gradient(rgba(23, 23, 23, 0.86), rgba(23, 23, 23, 0.85)),
+            url("/nightsky2.jpeg");
+
+        /* 2. 'cover' scales the image to fill the entire container without stretching */
+        background-size: cover;
+        background-position: center;
+        background-attachment: scroll; /* Ensures it stays pinned while scrolling */
         justify-content: center;
         gap: 60px; /* The perfect space between image and text */
-        max-width: 900px; /* Stops the layout from stretching too wide */
+        /* Stops the layout from stretching too wide */
         margin: 0 auto; /* Centers the whole block horizontally */
         min-height: 100vh; /* Centers the block vertically on the screen */
         padding: 40px 24px; /* Breathing room for smaller screens */

@@ -1,372 +1,411 @@
 <script>
     import { onMount } from "svelte";
-    let mounted = false;
+
+    const LASTFM_API_KEY = "3698b5021e209cb9eec8fdf8666eda66";
+
+    const LASTFM_USER = "punchoneman";
+
+    let articles = [];
+    let articlesLoading = true;
+    let recentTracks = [];
+    let userd = {};
+    let userimg;
+    let tracksLoading = true;
+
+    function extractThumbnail(content) {
+        const match = content.match(/<img[^>]+src="([^">]+)"/);
+        return match ? match[1] : null;
+    }
+
+    async function fetchMedium() {
+        try {
+            const res = await fetch(
+                "https://api.rss2json.com/v1/api.json?rss_url=https://anshwadhwa8.medium.com/feed",
+            );
+            const data = await res.json();
+            if (data.status === "ok") {
+                articles = data.items.slice(0, 6).map((item) => ({
+                    title: item.title,
+                    url: item.link,
+                    tag: item.categories?.[0] ?? "Article",
+                    thumbnail: item.thumbnail || extractThumbnail(item.content),
+                    read: `${Math.ceil(item.content.replace(/<[^>]+>/g, "").split(" ").length / 200)} min read`,
+                }));
+            }
+        } catch (e) {
+            console.error("Medium RSS fetch failed", e);
+        } finally {
+            articlesLoading = false;
+        }
+    }
+
+    onMount(async () => {
+        fetchMedium();
+        try {
+            const temp = await fetch(
+                `https://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=${LASTFM_USER}&api_key=${LASTFM_API_KEY}&format=json`,
+            );
+            const data = await temp.json();
+            userd = data.user;
+
+            console.log(userd);
+            userimg = data.user.image[2]["#text"];
+            console.log(userimg);
+        } catch (e) {
+            console.error("Last.fm fetch failed", e);
+        } finally {
+            tracksLoading = false;
+        }
+    });
 
     const socials = [
         {
             name: "GitHub",
             handle: "@simplystudios",
+            img: "/githubicon.png",
+            size: 20,
             url: "https://github.com/simplystudios",
         },
         {
-            name: "Twitter/X",
+            name: "Twitter / X",
             handle: "@anshwadhwa8",
+            img: "/tweetbird.png",
+            size: 15,
             url: "https://twitter.com/anshwadhwa8",
         },
         {
             name: "Peerlist",
             handle: "@anshwadhwa",
+            img: "/peerlisticon.png",
+            size: 24,
             url: "https://peerlist.io/anshwadhwa",
         },
     ];
 
     const interests = [
-        { label: "Photography", note: "Street & travel" },
-        { label: "Design", note: "UI, typography, systems" },
-        { label: "Music", note: "All genres, all moods" },
-        { label: "Movies", note: "Cinema nerd" },
+        { label: "Photography", note: "street & travel" },
+        { label: "Design", note: "UI, type, systems" },
+        { label: "Music", note: "all genres" },
+        { label: "Cinema", note: "film nerd" },
         { label: "Linux", note: "Hyprland, ricing" },
-        { label: "Building", note: "Apps, tools, whatever" },
+        { label: "Building", note: "apps & tools" },
     ];
-
-    // Shows — TMDB poster URLs hardcoded (they're permanent)
-    const shows = [
-        {
-            title: "Breaking Bad",
-            year: "2008",
-            poster: "https://image.tmdb.org/t/p/w300/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
-        },
-        {
-            title: "Better Call Saul",
-            year: "2015",
-            poster: "https://resizing.flixster.com/4kbpQ0rJSLQOVZc9jlVttSWYjBU=/fit-in/352x330/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p10492751_b_v13_al.jpg",
-        },
-        {
-            title: "The Boys",
-            year: "2019",
-            poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYxan0RVMaKr1JxY2uZlvhPqhqU-KIGXbYpU_LW1HG3-f9-RpYQlOPok90hExi-L3cvRuE&s=10",
-        },
-        {
-            title: "IT Welcome to Derry",
-            year: "1999",
-            poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD6yz3vSX7saZ4ChKjCrhXuYhCb4W9b-NMgLUV_ys5u8sE6d3Nz5py_ZhSwnBM_XYu5XAL&s=10",
-        },
-    ];
-
-    // movies
-    const movies = [
-        {
-            title: "500 Days of Summer",
-            year: "2008",
-            poster: "https://lumiere-a.akamaihd.net/v1/images/image_63f04f06.jpeg",
-        },
-        {
-            title: "Udaan",
-            year: "2015",
-            poster: "https://resizing.flixster.com/z7dGZIvVgR1DCYMBRWXV2BP2Hto=/fit-in/352x330/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p135331_p_v10_aa.jpg",
-        },
-        {
-            title: "The Social Network",
-            year: "2010",
-            poster: "https://m.media-amazon.com/images/M/MV5BMjlkNTE5ZTUtNGEwNy00MGVhLThmZjMtZjU1NDE5Zjk1NDZkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-        },
-        {
-            title: "Fight Club",
-            year: "1999",
-            poster: "https://m.media-amazon.com/images/M/MV5BOTgyOGQ1NDItNGU3Ny00MjU3LTg2YWEtNmEyYjBiMjI1Y2M5XkEyXkFqcGc@._V1_QL75_UX190_CR0,2,190,281_.jpg",
-        },
-        {
-            title: "Rockstar",
-            year: "2011",
-            poster: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQMJVG9VNiLA0_FkCRYLY-mNYV8-ISc-V8weY-Otj5fU3wu0dM1",
-        },
-        {
-            title: "Ted",
-            year: "2011",
-            poster: "https://m.media-amazon.com/images/M/MV5BMTQ1OTU0ODcxMV5BMl5BanBnXkFtZTcwOTMxNTUwOA@@._V1_QL75_UX190_CR0,10,190,281_.jpg",
-        },
-        {
-            title: "Dune",
-            year: "2011",
-            poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt7xlJEzb-xopDqcQ6iw9SbY8PAlJN8H7DYUzTqmZkwLT9o8JXv6YWvDMGRKwkyRnf6RHzGg&s=10",
-        },
-        {
-            title: "Yeh Jawani Hai Deewani",
-            year: "2011",
-            poster: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQhI92ZPIrEyAsuKs0MPVUnuhyH8boKCLcM1xtXKOP8gTNkEz5i",
-        },
-    ];
-
-    // Artists to fetch from iTunes
-    const artistNames = [
-        "Tame Impala Currents",
-        "Karan Aujila",
-        "Chaar Diwari",
-        "Anuv Jain",
-    ];
-
-    // albumArt[artistName] = { artworkUrl, albumName }
-    let albumArt = {};
-    let artLoading = true;
-
-    async function fetchAlbumArt(artist) {
-        try {
-            const q = encodeURIComponent(artist);
-            const res = await fetch(
-                `https://itunes.apple.com/search?term=${q}&media=music&entity=album&limit=1`,
-            );
-            const data = await res.json();
-            if (data.results?.length > 0) {
-                const r = data.results[0];
-                return {
-                    artworkUrl: r.artworkUrl100.replace("100x100", "300x300"),
-                    albumName: r.collectionName,
-                    artistNamel: r.artistName,
-                };
-            }
-        } catch (e) {
-            console.error("iTunes fetch failed for", artist, e);
-        }
-        return null;
-    }
-
-    onMount(async () => {
-        mounted = true;
-        const results = await Promise.all(
-            artistNames.map(async (name) => {
-                const art = await fetchAlbumArt(name);
-                return [name, art];
-            }),
-        );
-        albumArt = Object.fromEntries(results.filter(([, v]) => v !== null));
-        artLoading = false;
-    });
 </script>
 
 <svelte:head>
     <title>Ansh Wadhwa — Links</title>
 </svelte:head>
 
-<div class="shell">
-    <div class="content" class:visible={mounted}>
-        <header class="page-header">
-            <h1>Links</h1>
-            <p class="subtitle">Where to find me, what I'm into.</p>
-        </header>
+<div class="page">
+    <header class="page-header">
+        <h1>Links</h1>
+        <p>Where to find me, what I'm into.</p>
+    </header>
 
-        <!-- SOCIALS -->
-        <section class="section">
-            <p class="section-label">Socials</p>
-            <div class="list">
-                {#each socials as s, i}
+    <!-- SOCIALS -->
+    <section class="section">
+        <p class="section-label">Socials</p>
+        <div class="list">
+            {#each socials as s, i}
+                <a
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="row"
+                >
+                    <div class="row-left-img">
+                        {#if s.img}
+                            <img height={s.size} src={s.img} alt={s.name} />
+                        {:else}
+                            <span class="row-avatar">{s.name[0]}</span>
+                        {/if}
+                    </div>
+
+                    <div class="row-left">
+                        <span class="row-name">{s.name}</span>
+                        <span class="row-note">{s.handle}</span>
+                    </div>
+                    <span class="row-arrow">↗</span>
+                </a>
+                {#if i < socials.length - 1}<div class="divider"></div>{/if}
+            {/each}
+        </div>
+    </section>
+
+    <!-- WRITING -->
+    <section class="section">
+        <p class="section-label">Writing</p>
+        {#if articlesLoading}
+            <div class="h-scroll">
+                {#each Array(4) as _}
+                    <div class="article-card skeleton-card">
+                        <div class="article-card-thumb skeleton"></div>
+                        <div class="article-card-body">
+                            <div
+                                class="skeleton-line"
+                                style="width:80%; height:13px; margin-bottom:6px;"
+                            ></div>
+                            <div
+                                class="skeleton-line"
+                                style="width:50%; height:11px;"
+                            ></div>
+                        </div>
+                    </div>
+                {/each}
+            </div>
+        {:else if articles.length === 0}
+            <p class="empty-note">No articles found.</p>
+        {:else}
+            <div class="h-scroll">
+                {#each articles as a}
                     <a
-                        href={s.url}
+                        href={a.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="row link-row"
-                        style="animation-delay: {i * 50}ms"
+                        class="article-card"
                     >
-                        <div class="row-left">
-                            <span class="row-name">{s.name}</span>
-                            <span class="row-note">{s.handle}</span>
-                        </div>
-                        <span class="ext-arrow">↗</span>
-                    </a>
-                    {#if i < socials.length - 1}<div class="divider"></div>{/if}
-                {/each}
-            </div>
-        </section>
-
-        <section class="section">
-            <p class="section-label">Movies I Like</p>
-            <div class="cover-grid">
-                {#each movies as show, i}
-                    <div class="cover-card" style="animation-delay: {i * 60}ms">
-                        <div class="cover-img-wrap">
-                            <img
-                                src={show.poster}
-                                alt={show.title}
-                                class="cover-img"
-                                loading="lazy"
-                            />
-                        </div>
-                        <p class="cover-title">{show.title}</p>
-                        <p class="cover-sub">{show.year}</p>
-                    </div>
-                {/each}
-            </div>
-        </section>
-
-        <hr style="color: rgba(255, 255, 255, 0.06);" />
-        <br />
-        <!-- NOW — WATCHING -->
-        <section class="section">
-            <p class="section-label">Tv Shows I Like</p>
-            <div class="cover-grid">
-                {#each shows as show, i}
-                    <div class="cover-card" style="animation-delay: {i * 60}ms">
-                        <div class="cover-img-wrap">
-                            <img
-                                src={show.poster}
-                                alt={show.title}
-                                class="cover-img"
-                                loading="lazy"
-                            />
-                        </div>
-                        <p class="cover-title">{show.title}</p>
-                        <p class="cover-sub">{show.year}</p>
-                    </div>
-                {/each}
-            </div>
-        </section>
-
-        <hr style="color: rgba(255, 255, 255, 0.06);" />
-        <br />
-
-        <!-- NOW — LISTENING -->
-        <section class="section">
-            <p class="section-label">Now listening</p>
-            {#if artLoading}
-                <div class="cover-grid">
-                    {#each artistNames as _, i}
-                        <div
-                            class="cover-card skeleton-card"
-                            style="animation-delay: {i * 60}ms"
-                        >
-                            <div class="cover-img-wrap skeleton"></div>
-                            <div class="skeleton-line short"></div>
-                            <div class="skeleton-line shorter"></div>
-                        </div>
-                    {/each}
-                </div>
-            {:else}
-                <div class="cover-grid">
-                    {#each artistNames as artist, i}
-                        <div
-                            class="cover-card"
-                            style="animation-delay: {i * 60}ms"
-                        >
-                            {#if albumArt[artist]}
-                                <div class="cover-img-wrap album">
-                                    <img
-                                        src={albumArt[artist].artworkUrl}
-                                        alt={artist}
-                                        class="cover-img"
-                                        loading="lazy"
-                                    />
-                                </div>
-                                <p class="cover-title">{artist}</p>
-                                <p class="cover-sub">
-                                    {albumArt[artist].albumName}
-                                </p>
+                        <div class="article-card-thumb">
+                            {#if a.thumbnail}
+                                <img
+                                    src={a.thumbnail}
+                                    alt={a.title}
+                                    class="thumb-img"
+                                />
                             {:else}
-                                <div class="cover-img-wrap no-art">
-                                    <span class="no-art-emoji">🎵</span>
-                                </div>
-                                <p class="cover-title">
-                                    {albumArt[artist].artistNamel}
-                                </p>
+                                <div class="thumb-placeholder"></div>
                             {/if}
                         </div>
-                    {/each}
+                        <div class="article-card-body">
+                            <p class="article-card-title">{a.title}</p>
+                            <div class="article-meta">
+                                <span>{a.read}</span>
+                                <span class="article-dot"></span>
+                                <span class="article-tag">{a.tag}</span>
+                            </div>
+                        </div>
+                    </a>
+                {/each}
+            </div>
+        {/if}
+    </section>
+
+    <!-- FILM & TV -->
+    <section class="section">
+        <p class="section-label">Film & TV</p>
+        <div class="service-grid">
+            <a
+                href="https://letterboxd.com/anshwadhwa"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="service-card"
+            >
+                <div class="service-info">
+                    <div class="service-icon" style="background:#14181c;">
+                        <!-- Letterboxd wordmark-style icon -->
+                        <img
+                            src="https://a.ltrbxd.com/logos/letterboxd-mac-icon.png"
+                            alt=""
+                            width="30"
+                        />
+                    </div>
+                    <div class="service-text">
+                        <p class="name">Letterboxd</p>
+                        <p class="sub">Movies I've watched</p>
+                    </div>
                 </div>
-            {/if}
+                <span class="row-arrow">↗</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- MUSIC -->
+    <section class="section">
+        <p class="section-label">Music</p>
+        <div class="service-grid" style="margin-bottom:10px;">
+            <a
+                href="https://www.last.fm/user/{LASTFM_USER}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="service-card"
+            >
+                <div class="service-info">
+                    <div class="service-icon" style="background:#1a0000;">
+                        <!-- Last.fm logo -->
+                        <img
+                            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fuxwing.com%2Fwp-content%2Fthemes%2Fuxwing%2Fdownload%2Fbrands-and-social-media%2Flast-fm-logo-icon.png&f=1&nofb=1&ipt=196aee540c7864e101b49a122f45c26ec2fa42392835eab4c5f543123b410ccb"
+                            alt=""
+                            width="22"
+                        />
+                    </div>
+                    <div class="service-text">
+                        <p class="name">Last.fm</p>
+                        <p class="sub">@{LASTFM_USER}</p>
+                    </div>
+                </div>
+                <span class="row-arrow">↗</span>
+            </a>
+        </div>
+
+        <section class="section">
+            <div class="service-grid" style="margin-bottom:10px;">
+                <div class="service-card">
+                    <div class="service-info">
+                        <div style="">
+                            <!-- Last.fm logo -->
+                            <img
+                                class="card-icon"
+                                src={userimg}
+                                alt=""
+                                width="100"
+                            />
+                        </div>
+                        <div class="service-text">
+                            <p class="name">{userd.realname}</p>
+
+                            <p style="margin-top: 5px;" class="sub">
+                                {userd.playcount} scrobbles
+                            </p>
+                            <p class="sub">
+                                {userd.track_count} tracks
+                            </p>
+
+                            <p class="sub">{userd.artist_count} artists</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- INTERESTS -->
-        <section class="section">
-            <p class="section-label">Interests</p>
+        <!-- Top artists -->
+        {#if tracksLoading}
             <div class="list">
-                {#each interests as item, i}
-                    <div class="row" style="animation-delay: {i * 50}ms">
-                        <span class="row-name">{item.label}</span>
-                        <span class="row-note">{item.note}</span>
+                {#each Array(5) as _, i}
+                    <div class="track-row">
+                        <div class="track-thumb skeleton"></div>
+                        <div class="track-body">
+                            <div
+                                class="skeleton-line"
+                                style="width:55%; height:13px; margin-bottom:6px;"
+                            ></div>
+                            <div
+                                class="skeleton-line"
+                                style="width:35%; height:11px;"
+                            ></div>
+                        </div>
                     </div>
-                    {#if i < interests.length - 1}<div
+                    {#if i < 4}<div class="divider"></div>{/if}
+                {/each}
+            </div>
+        {:else if recentTracks.length === 0}
+            <p class="empty-note">No data found.</p>
+        {:else}
+            <div class="list">
+                {#each recentTracks as artist, i}
+                    <a
+                        href={artist.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="track-row"
+                    >
+                        <div class="track-thumb">
+                            {#if artist.image}
+                                <img
+                                    src={artist.image}
+                                    alt={artist.name}
+                                    class="thumb-img"
+                                    width="20"
+                                />
+                            {:else}
+                                <div class="thumb-placeholder"></div>
+                            {/if}
+                        </div>
+                        <div class="track-body">
+                            <p class="track-name">{artist.name}</p>
+                            <p class="track-sub">
+                                {Number(artist.playcount).toLocaleString()} scrobbles
+                            </p>
+                        </div>
+                        <span class="row-arrow">↗</span>
+                    </a>
+                    {#if i < recentTracks.length - 1}<div
                             class="divider"
                         ></div>{/if}
                 {/each}
             </div>
-        </section>
-    </div>
+        {/if}
+    </section>
 
-    <footer class="footer">
-        <p>Ansh Wadhwa © 2026</p>
-    </footer>
+    <!-- INTERESTS -->
+    <section class="section">
+        <p class="section-label">Interests</p>
+        <div class="interests-wrap">
+            {#each interests as item}
+                <span class="interest-pill">
+                    {item.label}
+                    <span class="interest-note">· {item.note}</span>
+                </span>
+            {/each}
+        </div>
+    </section>
+
+    <hr class="footer-line" />
+    <p class="footer-text">Ansh Wadhwa © 2026</p>
 </div>
 
 <style>
-    *,
-    *::before,
-    *::after {
-        box-sizing: border-box;
+    :global(body) {
+        background-color: #171717;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
     }
 
-    :global(body) {
-        background: #171717;
-        margin: 0;
+    .page {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 56px 20px 80px;
         font-family:
             -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         -webkit-font-smoothing: antialiased;
     }
 
-    .shell {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        padding: 80px 20px 160px;
-    }
-
-    .content {
-        max-width: 600px;
-        width: 100%;
-        margin: 0 auto;
-        flex: 1;
-        opacity: 0;
-        transform: translateY(8px);
-        transition:
-            opacity 0.35s ease,
-            transform 0.35s ease;
-    }
-    .content.visible {
-        opacity: 1;
-        transform: none;
-    }
-
     .page-header {
-        margin-bottom: 56px;
+        margin-bottom: 52px;
     }
-
-    h1 {
-        font-size: 32px;
-        font-weight: 600;
+    .page-header h1 {
+        font-size: 26px;
+        font-weight: 500;
         color: #fff;
         margin: 0 0 6px;
-        letter-spacing: -0.5px;
+        letter-spacing: -0.3px;
     }
-
-    .subtitle {
-        font-size: 15px;
-        color: #666;
+    .page-header p {
+        font-size: 14px;
+        color: #555;
         margin: 0;
     }
 
     .section {
-        margin-bottom: 48px;
+        margin-bottom: 44px;
     }
-
     .section-label {
         font-size: 11px;
         font-weight: 500;
         color: #444;
         text-transform: uppercase;
         letter-spacing: 0.08em;
-        margin: 0 0 14px;
+        margin: 0 0 12px;
     }
 
-    /* list rows */
+    .empty-note {
+        font-size: 13px;
+        color: #555;
+        margin: 0;
+    }
+
+    /* Shared list */
     .list {
-        border: 1px solid rgba(255, 255, 255, 0.06);
+        border: 0.5px solid rgba(255, 255, 255, 0.08);
         border-radius: 12px;
         overflow: hidden;
     }
@@ -374,30 +413,34 @@
     .row {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 14px 16px;
-        animation: fadeUp 0.3s ease both;
+        padding: 13px 16px;
+        text-decoration: none;
+        transition: background 0.12s ease;
     }
-
-    @keyframes fadeUp {
-        from {
-            opacity: 0;
-            transform: translateY(5px);
-        }
-        to {
-            opacity: 1;
-            transform: none;
-        }
+    .row:hover {
+        background: rgba(255, 255, 255, 0.03);
     }
-
     .row-left {
         display: flex;
         flex-direction: column;
         gap: 2px;
+        flex: 1; /* ADD THIS */
+    }
+    .row-left-img {
+        display: flex;
+        color: lightgray;
+        width: 24px; /* fixed width so icons don't shift layout */
+        margin-right: 12px;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0; /* prevent it from squishing */
+    }
+    .row-left-img img {
+        opacity: 0.85;
+        filter: grayscale(20%);
     }
     .row-name {
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 500;
         color: #e0e0e0;
     }
@@ -405,119 +448,232 @@
         font-size: 13px;
         color: #555;
     }
-
-    a.link-row {
-        text-decoration: none;
-        transition: background 0.15s ease;
-    }
-    a.link-row:hover {
-        background: rgba(255, 255, 255, 0.03);
-    }
-    a.link-row:hover .ext-arrow {
-        color: #aaa;
-        transform: translate(1px, -1px);
-    }
-
-    .ext-arrow {
-        font-size: 14px;
-        color: #3a3a3a;
+    .row-arrow {
+        font-size: 13px;
+        color: #444;
         flex-shrink: 0;
-        transition:
-            color 0.15s,
-            transform 0.15s;
     }
 
     .divider {
-        height: 1px;
+        height: 0.5px;
         background: rgba(255, 255, 255, 0.05);
         margin: 0 16px;
     }
 
-    /* cover grid */
-    .cover-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-        gap: 16px;
+    /* Horizontal scroll strip for articles */
+    .h-scroll {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+    .h-scroll::-webkit-scrollbar {
+        height: 3px;
+    }
+    .h-scroll::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .h-scroll::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 999px;
     }
 
-    .cover-card {
+    .article-card {
+        flex-shrink: 0;
+        width: 240px;
+        scroll-snap-align: start;
+        border: 0.5px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        overflow: hidden;
+        text-decoration: none;
+        background: #1a1a1a;
+        transition: background 0.12s ease;
         display: flex;
         flex-direction: column;
-        gap: 7px;
-        animation: fadeUp 0.3s ease both;
+    }
+    .article-card:hover {
+        background: #202020;
     }
 
-    .cover-img-wrap {
+    .article-card-thumb {
         width: 100%;
-        aspect-ratio: 2/3; /* poster ratio for shows */
-        border-radius: 10px;
+        height: 120px;
         overflow: hidden;
         background: #222;
-        border: 1px solid rgba(255, 255, 255, 0.06);
+        flex-shrink: 0;
     }
-
-    /* album art is square */
-    .cover-img-wrap.album {
-        aspect-ratio: 1;
-        border-radius: 8px;
+    .article-card-body {
+        padding: 10px 12px 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        flex: 1;
     }
-
-    .cover-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        transition:
-            opacity 0.2s ease,
-            transform 0.3s ease;
-        transform: scale(1.001);
-    }
-    .cover-card:hover .cover-img {
-        opacity: 0.8;
-        transform: scale(1.03);
-    }
-
-    .cover-title {
+    .article-card-title {
         font-size: 13px;
         font-weight: 500;
-        color: #ccc;
+        color: #e0e0e0;
         margin: 0;
-        white-space: nowrap;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
         overflow: hidden;
-        text-overflow: ellipsis;
     }
 
-    .cover-sub {
-        font-size: 12px;
-        color: #555;
-        margin: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    /* no art fallback */
-    .no-art {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        aspect-ratio: 1 !important;
-    }
-    .no-art-emoji {
-        font-size: 28px;
-    }
-
-    /* skeleton loading */
     .skeleton-card {
         pointer-events: none;
     }
 
-    .skeleton {
+    /* Track rows */
+    .track-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        text-decoration: none;
+        transition: background 0.12s ease;
+    }
+    .track-row:hover {
+        background: rgba(255, 255, 255, 0.03);
+    }
+    .track-thumb {
+        width: 40px;
+        height: 40px;
+        border-radius: 6px;
+        overflow: hidden;
+        flex-shrink: 0;
+        background: #222;
+        border: 0.5px solid rgba(255, 255, 255, 0.06);
+    }
+    .track-body {
+        flex: 1;
+        min-width: 0;
+    }
+    .track-name {
+        font-size: 14px;
+        font-weight: 500;
+        color: #e0e0e0;
+        margin: 0 0 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .track-sub {
+        font-size: 12px;
+        color: #555;
+        margin: 0;
+    }
+
+    /* Shared thumb */
+    .thumb-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: opacity 0.2s ease;
+    }
+    .article-card:hover .thumb-img,
+    .track-row:hover .thumb-img {
+        opacity: 0.8;
+    }
+    .thumb-placeholder {
+        width: 100%;
+        height: 100%;
+        background: #222;
+    }
+
+    /* Article meta */
+    .article-meta {
+        font-size: 11px;
+        color: #555;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+    .article-dot {
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: #444;
+        flex-shrink: 0;
+    }
+    .article-tag {
+        font-size: 11px;
+        font-weight: 500;
+        padding: 2px 7px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.05);
+        color: #888;
+        border: 0.5px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Service cards */
+    .service-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 10px;
+    }
+    .service-card {
+        background: #1a1a1a;
+        border: 0.5px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-decoration: none;
+        transition: background 0.12s ease;
+    }
+    .service-card:hover {
+        background: #202020;
+    }
+    .service-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .service-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        border: 0.5px solid rgba(255, 255, 255, 0.06);
+    }
+    .card-icon {
+        padding: 8px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .service-text .name {
+        font-size: 14px;
+        font-weight: 500;
+        color: #e0e0e0;
+        margin: 0 0 2px;
+    }
+    .service-text .sub {
+        font-size: 13px;
+        color: #555;
+        margin: 0;
+    }
+
+    /* Skeleton */
+    .skeleton,
+    .skeleton-line {
+        border-radius: 4px;
         background: linear-gradient(90deg, #222 25%, #2a2a2a 50%, #222 75%);
         background-size: 200% 100%;
         animation: shimmer 1.4s infinite;
     }
-
     @keyframes shimmer {
         0% {
             background-position: 200% 0;
@@ -527,37 +683,42 @@
         }
     }
 
-    .skeleton-line {
-        height: 10px;
-        border-radius: 4px;
-        background: linear-gradient(90deg, #222 25%, #2a2a2a 50%, #222 75%);
-        background-size: 200% 100%;
-        animation: shimmer 1.4s infinite;
+    /* Interests */
+    .interests-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
     }
-    .skeleton-line.short {
-        width: 80%;
+    .interest-pill {
+        font-size: 13px;
+        color: #aaa;
+        padding: 6px 14px;
+        border-radius: 999px;
+        border: 0.5px solid rgba(255, 255, 255, 0.08);
+        background: #1a1a1a;
+        display: flex;
+        align-items: center;
+        gap: 4px;
     }
-    .skeleton-line.shorter {
-        width: 55%;
+    .interest-note {
+        font-size: 12px;
+        color: #555;
     }
 
-    /* footer */
-    .footer {
-        max-width: 600px;
-        width: 100%;
-        margin: 80px auto 0;
-        padding-top: 20px;
-        border-top: 1px solid rgba(255, 255, 255, 0.04);
+    .footer-line {
+        border: none;
+        border-top: 0.5px solid rgba(255, 255, 255, 0.05);
+        margin: 56px 0 24px;
     }
-    .footer p {
+    .footer-text {
         font-size: 13px;
         color: #444;
         margin: 0;
     }
 
-    @media (max-width: 400px) {
-        .cover-grid {
-            grid-template-columns: repeat(2, 1fr);
+    @media (max-width: 480px) {
+        .service-grid {
+            grid-template-columns: 1fr;
         }
     }
 </style>

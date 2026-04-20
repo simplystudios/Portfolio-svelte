@@ -28,6 +28,8 @@
 <div class="main">
     <div class="profile">
         <h1 class="bodyhead">Projects</h1>
+      
+
         <hr />
         {#each dp as t, i}
             <div use:fadeUp={{ delay: i * 60 }} class="projectsec">
@@ -96,8 +98,11 @@
                                 Live site
                             </a>
                         {/if}
-                        {#if t.mdLink}
-                            <a href={t.mdLink} class="linkpill">
+                        {#if t.id}
+                            <a
+                                href={`/projects/view?id=${t.id}`}
+                                class="linkpill"
+                            >
                                 <svg
                                     width="13"
                                     height="13"

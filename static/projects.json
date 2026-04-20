@@ -1,7 +1,7 @@
 {
   "projects": [
     {
-      "id": "detrogo",
+      "id": "detro",
       "name": "DetroGo",
       "link": "https://detroweb.vercel.app",
       "githubLink": "https://github.com/simplystudios/Detro",
@@ -9,6 +9,67 @@
       "description": "All-in-one Delhi Metro guiding web app with custom pathfinding and Material UI.",
       "mdLink": "/projects/detro.md",
       "tags": ["Java", "Pathfinding", "Android", "Material 3"]
+    },
+    {
+      "id": "nutrifact",
+      "name": "Nutrifact",
+      "link": "https://github.com/simplystudios/nutrifact",
+      "githubLink": "https://github.com/simplystudios/nutrifact",
+      "timeline": "Dec 2024 — now",
+      "description": "App to get nutritional info on food products by scanning barcodes or searching",
+      "mdLink": "/projects/nutrifact.md",
+      "tags": ["React Native", "API Integration"]
+    },
+    {
+      "id": "gist",
+      "name": "Gist",
+      "link": "https://gistweb.vercel.app",
+      "githubLink": "https://github.com/simplystudios/Gist",
+      "timeline": "Aug 2023 — Dec 2024",
+      "description": "News in 60 words in a scrollable feed using the unoffical inshorts api.",
+      "mdLink": "/projects/gist.md",
+      "tags": ["React Native", "API Integration", "Content App"]
+    },
+    {
+      "id": "tick",
+      "name": "Tick",
+      "link": "https://github.com/simplystudios/lockmyphone",
+      "githubLink": "https://github.com/simplystudios/tick",
+      "timeline": "Jun 2025",
+      "description": "App to cut back on distractions by setting different focused pomodoro timers.",
+      "mdLink": "/projects/tick.md",
+      "tags": ["React Native", "Productivity", "Mobile Dev"]
+    },
+
+    {
+      "id": "sky",
+      "name": "Sky Browser",
+      "link": "https://github.com/simplystudios/sky",
+      "githubLink": "https://github.com/simplystudios/sky",
+      "timeline": "Apr 2023 - Nov 2024",
+      "description": "An chromium browser with tor network using the pyqt6 framework in python",
+      "mdLink": "/projects/sky.md",
+      "tags": ["Python", "Chromium", "Privacy"]
+    },
+    {
+      "id": "disred",
+      "name": "Disred",
+      "link": "https://github.com/simplystudios/disred",
+      "githubLink": "https://github.com/simplystudios/disred",
+      "timeline": "Archived",
+      "description": "Discord bot to stream live interent radio stations in voice chats.",
+      "mdLink": "/projects/disred.md",
+      "tags": ["Node.js", "Discord API"]
+    },
+    {
+      "id": "hinduwiki",
+      "name": "HinduWiki",
+      "link": "https://hinduwiki.vercel.app/",
+      "githubLink": "https://github.com/simplystudios/HinduWiki",
+      "timeline": "Apr 2022 — Oct 2023",
+      "description": "A wiki for Hindu temples, surnames and traditions with elegant UI using the Wikipedia API.",
+      "mdLink": "/projects/hinduwiki.md",
+      "tags": ["HTML", "Wikipedia API", "UI/UX"]
     },
     {
       "id": "detro",
@@ -20,6 +81,27 @@
       "mdLink": "/projects/detro.md",
       "tags": ["SvelteKit", "Pathfinding", "UI/UX"]
     },
+    {
+      "id": "discordmessagesender",
+      "name": "Discord Message Sender",
+      "link": "https://github.com/simplystudios/DiscordMessageSender",
+      "githubLink": "https://github.com/simplystudios/DiscordMessageSender",
+      "timeline": "2023",
+      "description": "Send messages to a Discord server channel without opening Discord, using the Discord API. Interface made using tkinter with custom libs",
+      "mdLink": "/projects/discordmessagesender.md",
+      "tags": ["Python", "Discord API"]
+    },
+    {
+      "id": "emojilang",
+      "name": "EmojiLang",
+      "link": "https://mojilang.netlify.app/",
+      "githubLink": "https://github.com/simplystudios/EmojiLang",
+      "timeline": "2024 — 2025",
+      "description": "A fun emoji translator made with svelte.",
+      "mdLink": "/projects/emojilang.md",
+      "tags": ["SvelteKit", "Programming Language"]
+    },
+
     {
       "id": "animuyi",
       "name": "AniMuyi",
@@ -41,104 +123,14 @@
       "tags": ["SvelteKit", "API Integration", "UI/UX"]
     },
     {
-      "id": "gist",
-      "name": "Gist",
-      "link": "https://gistweb.vercel.app",
-      "githubLink": "https://github.com/simplystudios/Gist",
-      "timeline": "2024 — now",
-      "description": "News in 60 words with an infinite scroll interface, styled like reels.",
-      "mdLink": "/projects/gist.md",
-      "tags": ["UI/UX", "Content App"]
-    },
-    {
-      "id": "nutrifact",
-      "name": "Nutrifact",
-      "link": "https://github.com/simplystudios/nutrifact",
-      "githubLink": "https://github.com/simplystudios/nutrifact",
-      "timeline": "2023 — 2024",
-      "description": "App to get food nutrition info cleanly and quickly.",
-      "mdLink": "/projects/nutrifact.md",
-      "tags": ["React Native", "API Integration"]
-    },
-    {
-      "id": "tick",
-      "name": "Tick",
-      "link": "https://github.com/simplystudios/tick",
-      "githubLink": "https://github.com/simplystudios/tick",
-      "timeline": "2024 — 2025",
-      "description": "App to cut back on distractions by setting different focused timers.",
-      "mdLink": "/projects/tick.md",
-      "tags": ["Productivity", "Mobile Dev"]
-    },
-    {
-      "id": "lockmyphone",
-      "name": "LockMyPhone",
-      "link": "https://github.com/simplystudios/lockmyphone",
-      "githubLink": "https://github.com/simplystudios/lockmyphone",
-      "timeline": "2025",
-      "description": "A React Native tool to set daily goals with timers and stay motivated with streaks.",
-      "mdLink": "/projects/lockmyphone.md",
-      "tags": ["React Native", "Productivity", "TypeScript"]
-    },
-    {
-      "id": "sky",
-      "name": "Sky Browser",
-      "link": "https://github.com/simplystudios/sky",
-      "githubLink": "https://github.com/simplystudios/sky",
-      "timeline": "Archived",
-      "description": "A custom Tor-based Chromium browser built in Python for enhanced privacy.",
-      "mdLink": "/projects/sky.md",
-      "tags": ["Python", "Chromium", "Privacy"]
-    },
-    {
-      "id": "disred",
-      "name": "Disred",
-      "link": "https://github.com/simplystudios/disred",
-      "githubLink": "https://github.com/simplystudios/disred",
-      "timeline": "Archived",
-      "description": "Discord bot to seamlessly listen to internet radios in voice chats.",
-      "mdLink": "/projects/disred.md",
-      "tags": ["Node.js", "Discord API"]
-    },
-    {
-      "id": "hinduwiki",
-      "name": "HinduWiki",
-      "link": "https://hinduwiki.vercel.app/",
-      "githubLink": "https://github.com/simplystudios/HinduWiki",
-      "timeline": "2022 — 2023",
-      "description": "A wiki for Hindu temples, surnames and traditions with elegant UI using the Wikipedia API.",
-      "mdLink": "/projects/hinduwiki.md",
-      "tags": ["HTML", "Wikipedia API", "UI/UX"]
-    },
-    {
-      "id": "emojilang",
-      "name": "EmojiLang",
-      "link": "https://mojilang.netlify.app/",
-      "githubLink": "https://github.com/simplystudios/EmojiLang",
-      "timeline": "2024 — 2025",
-      "description": "An emoji-based programming language with a web playground.",
-      "mdLink": "/projects/emojilang.md",
-      "tags": ["SvelteKit", "Programming Language"]
-    },
-    {
-      "id": "dotshyprland",
-      "name": "DotsHyprland",
-      "link": "https://github.com/simplystudios/DotsHyprland",
-      "githubLink": "https://github.com/simplystudios/DotsHyprland",
-      "timeline": "2025",
-      "description": "My daily Hyprland config with pywal theming and a custom Waybar setup.",
-      "mdLink": "/projects/dotshyprland.md",
-      "tags": ["Linux", "Hyprland", "CSS"]
-    },
-    {
       "id": "daviansfordavians",
       "name": "Davians for Davians",
       "link": "https://simplystudios.github.io/davians/",
       "githubLink": "https://github.com/simplystudios/Daviansfordavians",
       "timeline": "2022 — 2025",
-      "description": "An unofficial social network and resource hub built for my school's students.",
+      "description": "An unofficial social network concept and resource hub built for my school's students.",
       "mdLink": "/projects/daviansfordavians.md",
-      "tags": ["HTML", "Community", "Web"]
+      "tags": ["CONCEPT", "HTML", "Community", "Web"]
     },
     {
       "id": "hackernewstts",
@@ -146,7 +138,7 @@
       "link": "https://github.com/simplystudios/HackerNewsTTS",
       "githubLink": "https://github.com/simplystudios/HackerNewsTTS",
       "timeline": "2024",
-      "description": "Hacker News headlines read aloud via text-to-speech in the terminal.",
+      "description": "Hacker News headlines read aloud via text-to-speech in the terminal configered to custom keymaps.",
       "mdLink": "/projects/hackernewstts.md",
       "tags": ["Python", "TTS", "CLI"]
     },
@@ -166,20 +158,11 @@
       "link": "http://keepitshort.rf.gd/",
       "githubLink": "https://github.com/simplystudios/keepitshort",
       "timeline": "2023",
-      "description": "A search engine aggregating DuckDuckGo and Bing results with Wikipedia snippets and image search.",
+      "description": "A search engine scraping results from Google with Wikipedia snippets and image search.",
       "mdLink": "/projects/keepitshort.md",
       "tags": ["JavaScript", "Search", "Wikipedia API"]
     },
-    {
-      "id": "discordmessagesender",
-      "name": "Discord Message Sender",
-      "link": "https://github.com/simplystudios/DiscordMessageSender",
-      "githubLink": "https://github.com/simplystudios/DiscordMessageSender",
-      "timeline": "2023",
-      "description": "Send messages to a Discord server channel without opening Discord, using the Discord API.",
-      "mdLink": "/projects/discordmessagesender.md",
-      "tags": ["Python", "Discord API"]
-    },
+
     {
       "id": "githubstatviewer",
       "name": "GitHub Stats Viewer",
@@ -196,24 +179,24 @@
       "link": "https://github.com/simplystudios/CameraX",
       "githubLink": "https://github.com/simplystudios/CameraX",
       "timeline": "2020 — 2021",
-      "description": "An Android CameraX implementation example, free to use in personal and commercial projects.",
+      "description": "An Android CameraX implementation example",
       "mdLink": "/projects/camerax.md",
       "tags": ["Android", "Java", "CameraX"]
     },
     {
       "id": "covinres",
       "name": "Covinres",
-      "link": "https://github.com/simplystudios/Covinres",
+      "link": null,
       "githubLink": "https://github.com/simplystudios/Covinres",
       "timeline": "2021",
-      "description": "A COVID-19 resource and tracker website built with SCSS.",
+      "description": "A COVID-19 resource and tracker app built with java.",
       "mdLink": "/projects/covinres.md",
-      "tags": ["HTML", "SCSS", "COVID-19"]
+      "tags": ["Java", "COVID-19"]
     },
     {
       "id": "2dglobeearth",
       "name": "2D Globe Earth in CSS",
-      "link": "https://github.com/simplystudios/2d-Globe-earth-in-css",
+      "link": null,
       "githubLink": "https://github.com/simplystudios/2d-Globe-earth-in-css",
       "timeline": "2021",
       "description": "A pure CSS experiment that takes an image, makes it round, and animates it rotating like a globe.",

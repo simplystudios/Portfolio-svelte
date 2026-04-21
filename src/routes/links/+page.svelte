@@ -1,62 +1,17 @@
 <script>
-    import { onMount } from "svelte";
-
-    const LASTFM_API_KEY = "3698b5021e209cb9eec8fdf8666eda66";
-
-    const LASTFM_USER = "punchoneman";
+    let LASTFM_USER = "punchoneman";
+    export let data;
 
     let articles = [];
     let articlesLoading = true;
     let recentTracks = [];
-    let userd = {};
+    let userd;
+    let lastFM = {};
+    let artists = [];
+    let tracks = [];
     let userimg;
     let tracksLoading = true;
-
-    function extractThumbnail(content) {
-        const match = content.match(/<img[^>]+src="([^">]+)"/);
-        return match ? match[1] : null;
-    }
-
-    async function fetchMedium() {
-        try {
-            const res = await fetch(
-                "https://api.rss2json.com/v1/api.json?rss_url=https://anshwadhwa8.medium.com/feed",
-            );
-            const data = await res.json();
-            if (data.status === "ok") {
-                articles = data.items.slice(0, 6).map((item) => ({
-                    title: item.title,
-                    url: item.link,
-                    tag: item.categories?.[0] ?? "Article",
-                    thumbnail: item.thumbnail || extractThumbnail(item.content),
-                    read: `${Math.ceil(item.content.replace(/<[^>]+>/g, "").split(" ").length / 200)} min read`,
-                }));
-            }
-        } catch (e) {
-            console.error("Medium RSS fetch failed", e);
-        } finally {
-            articlesLoading = false;
-        }
-    }
-
-    onMount(async () => {
-        fetchMedium();
-        try {
-            const temp = await fetch(
-                `https://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=${LASTFM_USER}&api_key=${LASTFM_API_KEY}&format=json`,
-            );
-            const data = await temp.json();
-            userd = data.user;
-
-            console.log(userd);
-            userimg = data.user.image[2]["#text"];
-            console.log(userimg);
-        } catch (e) {
-            console.error("Last.fm fetch failed", e);
-        } finally {
-            tracksLoading = false;
-        }
-    });
+    $: ({ articles, lastFM, artists, tracks } = data);
 
     const socials = [
         {
@@ -69,7 +24,7 @@
         {
             name: "Twitter / X",
             handle: "@anshwadhwa8",
-            img: "/tweetbird.png",
+            img: "/xicon.png",
             size: 15,
             url: "https://twitter.com/anshwadhwa8",
         },
@@ -132,92 +87,6 @@
         </div>
     </section>
 
-    <!-- WRITING -->
-    <section class="section">
-        <p class="section-label">Writing</p>
-        {#if articlesLoading}
-            <div class="h-scroll">
-                {#each Array(4) as _}
-                    <div class="article-card skeleton-card">
-                        <div class="article-card-thumb skeleton"></div>
-                        <div class="article-card-body">
-                            <div
-                                class="skeleton-line"
-                                style="width:80%; height:13px; margin-bottom:6px;"
-                            ></div>
-                            <div
-                                class="skeleton-line"
-                                style="width:50%; height:11px;"
-                            ></div>
-                        </div>
-                    </div>
-                {/each}
-            </div>
-        {:else if articles.length === 0}
-            <p class="empty-note">No articles found.</p>
-        {:else}
-            <div class="h-scroll">
-                {#each articles as a}
-                    <a
-                        href={a.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="article-card"
-                    >
-                        <div class="article-card-thumb">
-                            {#if a.thumbnail}
-                                <img
-                                    src={a.thumbnail}
-                                    alt={a.title}
-                                    class="thumb-img"
-                                />
-                            {:else}
-                                <div class="thumb-placeholder"></div>
-                            {/if}
-                        </div>
-                        <div class="article-card-body">
-                            <p class="article-card-title">{a.title}</p>
-                            <div class="article-meta">
-                                <span>{a.read}</span>
-                                <span class="article-dot"></span>
-                                <span class="article-tag">{a.tag}</span>
-                            </div>
-                        </div>
-                    </a>
-                {/each}
-            </div>
-        {/if}
-    </section>
-
-    <!-- FILM & TV -->
-    <section class="section">
-        <p class="section-label">Film & TV</p>
-        <div class="service-grid">
-            <a
-                href="https://letterboxd.com/anshwadhwa"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="service-card"
-            >
-                <div class="service-info">
-                    <div class="service-icon" style="background:#14181c;">
-                        <!-- Letterboxd wordmark-style icon -->
-                        <img
-                            src="https://a.ltrbxd.com/logos/letterboxd-mac-icon.png"
-                            alt=""
-                            width="30"
-                        />
-                    </div>
-                    <div class="service-text">
-                        <p class="name">Letterboxd</p>
-                        <p class="sub">Movies I've watched</p>
-                    </div>
-                </div>
-                <span class="row-arrow">↗</span>
-            </a>
-        </div>
-    </section>
-
     <!-- MUSIC -->
     <section class="section">
         <p class="section-label">Music</p>
@@ -248,108 +117,137 @@
 
         <section class="section">
             <div class="service-grid" style="margin-bottom:10px;">
-                <div class="service-card">
-                    <div class="service-info">
-                        <div style="">
+                <div class="service-card-music">
+                    <div class="service-info-music">
+                        <div style="display: flex;">
                             <!-- Last.fm logo -->
                             <img
-                                class="card-icon"
-                                src={userimg}
+                                class="thumb-img-track"
+                                src={lastFM.image}
                                 alt=""
                                 width="100"
                             />
+
+                            <div class="userinfo">
+                                <div class="service-text">
+                                    <p class="name">{lastFM.info.realname}</p>
+
+                                    <p style="margin-top: 5px;" class="sub">
+                                        {lastFM.info.playcount} scrobbles
+                                    </p>
+                                    <p class="sub">
+                                        {lastFM.info.track_count} tracks
+                                    </p>
+
+                                    <p class="sub">
+                                        {lastFM.info.artist_count} artists
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="service-text">
-                            <p class="name">{userd.realname}</p>
+                        <div class="divmusic"></div>
 
-                            <p style="margin-top: 5px;" class="sub">
-                                {userd.playcount} scrobbles
-                            </p>
-                            <p class="sub">
-                                {userd.track_count} tracks
-                            </p>
+                        <div style="display: flex;">
+                            <div class="service-text" style="padding:0px">
+                                <p class="name-tracks">Top Artists</p>
+                                {#each artists as artist}
+                                    <p class="sub-tracks">{artist.name}</p>
+                                {/each}
+                            </div>
 
-                            <p class="sub">{userd.artist_count} artists</p>
+                            <div class="service-text" style="margin-left:10px">
+                                <p class="name-tracks">Top Tracks</p>
+                                {#each tracks as track}
+                                    <p class="sub-tracks">{track.name}</p>
+                                {/each}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Top artists -->
-        {#if tracksLoading}
-            <div class="list">
-                {#each Array(5) as _, i}
-                    <div class="track-row">
-                        <div class="track-thumb skeleton"></div>
-                        <div class="track-body">
-                            <div
-                                class="skeleton-line"
-                                style="width:55%; height:13px; margin-bottom:6px;"
-                            ></div>
-                            <div
-                                class="skeleton-line"
-                                style="width:35%; height:11px;"
-                            ></div>
-                        </div>
-                    </div>
-                    {#if i < 4}<div class="divider"></div>{/if}
-                {/each}
-            </div>
-        {:else if recentTracks.length === 0}
-            <p class="empty-note">No data found.</p>
-        {:else}
-            <div class="list">
-                {#each recentTracks as artist, i}
+        <!-- WRITING -->
+        <section class="section">
+            <p class="section-label">Writing</p>
+
+            <div class="h-scroll">
+                {#each articles as a}
                     <a
-                        href={artist.url}
+                        href={a.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="track-row"
+                        class="article-card"
                     >
-                        <div class="track-thumb">
-                            {#if artist.image}
+                        <div class="article-card-thumb">
+                            {#if a.thumbnail}
                                 <img
-                                    src={artist.image}
-                                    alt={artist.name}
+                                    src={a.thumbnail}
+                                    alt={a.title}
                                     class="thumb-img"
-                                    width="20"
                                 />
                             {:else}
                                 <div class="thumb-placeholder"></div>
                             {/if}
                         </div>
-                        <div class="track-body">
-                            <p class="track-name">{artist.name}</p>
-                            <p class="track-sub">
-                                {Number(artist.playcount).toLocaleString()} scrobbles
-                            </p>
+                        <div class="article-card-body">
+                            <p class="article-card-title">{a.title}</p>
+                            <div class="article-meta">
+                                <span>{a.read}</span>
+                                <span class="article-dot"></span>
+                                <span class="article-tag">{a.tag}</span>
+                            </div>
                         </div>
-                        <span class="row-arrow">↗</span>
                     </a>
-                    {#if i < recentTracks.length - 1}<div
-                            class="divider"
-                        ></div>{/if}
                 {/each}
             </div>
-        {/if}
-    </section>
+        </section>
 
-    <!-- INTERESTS -->
-    <section class="section">
-        <p class="section-label">Interests</p>
-        <div class="interests-wrap">
-            {#each interests as item}
-                <span class="interest-pill">
-                    {item.label}
-                    <span class="interest-note">· {item.note}</span>
-                </span>
-            {/each}
-        </div>
-    </section>
+        <!-- FILM & TV -->
+        <section class="section">
+            <p class="section-label">Film & TV</p>
+            <div class="service-grid">
+                <a
+                    href="https://letterboxd.com/anshwadhwa"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="service-card"
+                >
+                    <div class="service-info">
+                        <div class="service-icon" style="background:#14181c;">
+                            <!-- Letterboxd wordmark-style icon -->
+                            <img
+                                src="https://a.ltrbxd.com/logos/letterboxd-mac-icon.png"
+                                alt=""
+                                width="30"
+                            />
+                        </div>
+                        <div class="service-text">
+                            <p class="name">Letterboxd</p>
+                            <p class="sub">Movies I've watched</p>
+                        </div>
+                    </div>
+                    <span class="row-arrow">↗</span>
+                </a>
+            </div>
+        </section>
 
-    <hr class="footer-line" />
-    <p class="footer-text">Ansh Wadhwa © 2026</p>
+        <!-- INTERESTS -->
+        <section class="section">
+            <p class="section-label">Interests</p>
+            <div class="interests-wrap">
+                {#each interests as item}
+                    <span class="interest-pill">
+                        {item.label}
+                        <span class="interest-note">· {item.note}</span>
+                    </span>
+                {/each}
+            </div>
+        </section>
+
+        <hr class="footer-line" />
+        <p class="footer-text">Ansh Wadhwa © 2026</p>
+    </section>
 </div>
 
 <style>
@@ -401,6 +299,19 @@
         font-size: 13px;
         color: #555;
         margin: 0;
+    }
+
+    .divmusic {
+        height: 60px;
+        background-color: gray;
+        width: 1px;
+        margin-left: 0px;
+    }
+
+    .userinfo {
+        display: flex;
+        align-items: center;
+        gap: 16px;
     }
 
     /* Shared list */
@@ -584,6 +495,19 @@
         height: 100%;
         background: #222;
     }
+    .thumb-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .thumb-img-track {
+        width: 100px;
+        height: 100px;
+        object-fit: fill;
+        margin-right: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+    }
 
     /* Article meta */
     .article-meta {
@@ -615,6 +539,7 @@
     .service-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
         gap: 10px;
     }
     .service-card {
@@ -622,9 +547,21 @@
         border: 0.5px solid rgba(255, 255, 255, 0.08);
         border-radius: 12px;
         padding: 16px;
+
         display: flex;
+
+        text-decoration: none;
+        transition: background 0.12s ease;
+    }
+    .service-card-music {
+        background: #1a1a1a;
+        border: 0.5px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 16px;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
+        display: flex;
+
         text-decoration: none;
         transition: background 0.12s ease;
     }
@@ -635,6 +572,12 @@
         display: flex;
         align-items: center;
         gap: 12px;
+    }
+    .service-info-music {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        gap: 50px;
     }
     .service-icon {
         width: 36px;
@@ -662,8 +605,21 @@
     }
     .service-text .sub {
         font-size: 13px;
-        color: #555;
+        color: #a0a0a0;
         margin: 0;
+    }
+    .sub-tracks {
+        font-size: 15px;
+        color: #dcdcdc;
+        font-weight: 400;
+        margin: 0;
+    }
+
+    .name-tracks {
+        font-size: 14px;
+        font-weight: 600;
+        color: #ff746c;
+        margin: 0 0 2px;
     }
 
     /* Skeleton */
@@ -714,6 +670,19 @@
         font-size: 13px;
         color: #444;
         margin: 0;
+    }
+
+    @media (max-width: 606px) {
+        .divmusic {
+            height: 1px;
+            width: 200px;
+            margin-top: 20px;
+            background-color: #696969;
+            margin-bottom: 20px;
+        }
+        .service-info-music {
+            display: block;
+        }
     }
 
     @media (max-width: 480px) {

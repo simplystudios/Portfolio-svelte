@@ -21,7 +21,7 @@
 
         try {
             // 1. Apni JSON file fetch kar
-            const res = await fetch("/projects.json");
+            const res = await fetch("../../lib/data/projects.json");
             if (!res.ok) throw new Error("JSON load nahi hua");
 
             const data = await res.json();

@@ -1,24 +1,11 @@
 <script>
-    import { onMount } from "svelte";
     import { fadeUp } from "$lib/actions/fadeUp.js";
-
+    export let data;
     let dp = [];
     let dw = [];
+    dp = data.projects;
+    dw = data.work;
     let loading = true;
-
-    onMount(async () => {
-        try {
-            let m = await fetch("/projects.json");
-            if (!m.ok) throw new Error("JSON fetch failed");
-            let j = await m.json();
-            dp = j.projects;
-            dw = j.work;
-        } catch (error) {
-            console.log(error);
-        } finally {
-            loading = false;
-        }
-    });
 </script>
 
 <svelte:head>
@@ -28,7 +15,6 @@
 <div class="main">
     <div class="profile">
         <h1 class="bodyhead">Projects</h1>
-      
 
         <hr />
         {#each dp as t, i}

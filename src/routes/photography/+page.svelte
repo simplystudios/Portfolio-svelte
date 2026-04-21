@@ -1,25 +1,11 @@
 <script>
     import { Modal, Content, Trigger } from "sv-popup";
-    import { onMount } from "svelte";
 
+    export let data;
     let designs = [];
-    let loading = true;
-    let mounted = false;
+    let mounted = true;
 
-    onMount(async () => {
-        mounted = true;
-        try {
-            const res = await fetch("/photos.json");
-            if (!res.ok) throw new Error("Failed to load photos");
-            const data = await res.json();
-            // Only fetching the design data now
-            designs = data.design || [];
-        } catch (e) {
-            console.error(e);
-        } finally {
-            loading = false;
-        }
-    });
+    designs = data.design;
 
     // Group design items by type directly from the designs array
     $: designGroups = (() => {
@@ -60,63 +46,59 @@
                 </p>
             </header>
 
-            {#if loading}
-                <p class="dim" style="margin-top: 40px;">Loading...</p>
-            {:else}
-                <div class="gallery-container">
-                    {#each designGroups as group, gi}
-                        <div
-                            class="design-section"
-                            style="animation-delay: {gi * 80}ms"
-                        >
-                            <p class="design-group-label">{group.label}</p>
-                            <div class="design-grid">
-                                {#each group.items as d, i}
-                                    <div
-                                        class="design-item"
-                                        style="animation-delay: {gi * 80 +
-                                            i * 30}ms"
+            <div class="gallery-container">
+                {#each designGroups as group, gi}
+                    <div
+                        class="design-section"
+                        style="animation-delay: {gi * 80}ms"
+                    >
+                        <p class="design-group-label">{group.label}</p>
+                        <div class="design-grid">
+                            {#each group.items as d, i}
+                                <div
+                                    class="design-item"
+                                    style="animation-delay: {gi * 80 +
+                                        i * 30}ms"
+                                >
+                                    <Modal
+                                        big={false}
+                                        button={false}
+                                        basic={false}
                                     >
-                                        <Modal
-                                            big={false}
-                                            button={false}
-                                            basic={false}
-                                        >
-                                            <Content>
-                                                <div class="lightbox">
-                                                    <img
-                                                        src={d.image}
-                                                        alt={d.name}
-                                                        class="lightbox-img"
-                                                    />
+                                        <Content>
+                                            <div class="lightbox">
+                                                <img
+                                                    src={d.image}
+                                                    alt={d.name}
+                                                    class="lightbox-img"
+                                                />
+                                            </div>
+                                        </Content>
+                                        <Trigger>
+                                            <div class="design-wrap">
+                                                <img
+                                                    src={d.image}
+                                                    alt={d.name}
+                                                    class="design-img"
+                                                    loading="lazy"
+                                                />
+                                                <div class="design-hover">
+                                                    <span
+                                                        class="design-hover-label"
+                                                    >
+                                                        {d.name}
+                                                    </span>
                                                 </div>
-                                            </Content>
-                                            <Trigger>
-                                                <div class="design-wrap">
-                                                    <img
-                                                        src={d.image}
-                                                        alt={d.name}
-                                                        class="design-img"
-                                                        loading="lazy"
-                                                    />
-                                                    <div class="design-hover">
-                                                        <span
-                                                            class="design-hover-label"
-                                                        >
-                                                            {d.name}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </Trigger>
-                                        </Modal>
-                                        <p class="design-label">{d.name}</p>
-                                    </div>
-                                {/each}
-                            </div>
+                                            </div>
+                                        </Trigger>
+                                    </Modal>
+                                    <p class="design-label">{d.name}</p>
+                                </div>
+                            {/each}
                         </div>
-                    {/each}
-                </div>
-            {/if}
+                    </div>
+                {/each}
+            </div>
         </div>
     </div>
 </div>

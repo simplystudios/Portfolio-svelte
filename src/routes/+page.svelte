@@ -36,7 +36,7 @@
     }
 
     :global(body) {
-        background-color: #171717;
+        background-color: #0a0a0a;
         margin: 0;
         padding: 0;
         font-family:

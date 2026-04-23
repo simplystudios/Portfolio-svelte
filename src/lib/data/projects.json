@@ -3,93 +3,101 @@
     {
       "id": "detro",
       "name": "DetroGo",
-      "link": "https://detroweb.vercel.app",
+      "link": "https://detrogo.vercel.app",
       "githubLink": "https://github.com/simplystudios/Detro",
+      "image": [
+        { "url": "/detrogocoverdark.jpeg", "type": "square" },
+        { "url": "/detrocover.jpeg", "type": "square" }
+      ],
       "timeline": "2025 — now",
-      "description": "All-in-one Delhi Metro guiding web app with custom pathfinding and Material UI.",
+      "description": "DetroGo is a transit utility app for the Delhi-NCR metro network, Made in Java. By implementing BFS pathfinding, it provides shortest routes across all active lines. Designed strictly under Material 3 guidelines, the app features an interactive vector map, dynamic theming, and local persistence for route history via Shared Preferences.",
+      "logo": "/detrogogreen.jpeg",
       "mdLink": "/projects/detro.md",
       "tags": ["Java", "Pathfinding", "Android", "Material 3"]
     },
+
     {
       "id": "nutrifact",
       "name": "Nutrifact",
       "link": "https://github.com/simplystudios/nutrifact",
       "githubLink": "https://github.com/simplystudios/nutrifact",
-      "timeline": "Dec 2024 — now",
-      "description": "App to get nutritional info on food products by scanning barcodes or searching",
+      "timeline": "2024 — now",
+      "image": [
+        { "url": "/nutrifactcover.jpeg", "type": "square" },
+        { "url": "/nutrifactframe.jpeg", "type": "square" }
+      ],
+      "logo": "/imgs/nutrifactlogo.jpeg",
+      "description": "Mobile app to get nutritional info on food products by scanning barcodes or searching.",
       "mdLink": "/projects/nutrifact.md",
       "tags": ["React Native", "API Integration"]
-    },
-    {
-      "id": "gist",
-      "name": "Gist",
-      "link": "https://gistweb.vercel.app",
-      "githubLink": "https://github.com/simplystudios/Gist",
-      "timeline": "Aug 2023 — Dec 2024",
-      "description": "News in 60 words in a scrollable feed using the unoffical inshorts api.",
-      "mdLink": "/projects/gist.md",
-      "tags": ["React Native", "API Integration", "Content App"]
     },
     {
       "id": "tick",
       "name": "Tick",
       "link": "https://github.com/simplystudios/lockmyphone",
       "githubLink": "https://github.com/simplystudios/tick",
-      "timeline": "Jun 2025",
-      "description": "App to cut back on distractions by setting different focused pomodoro timers.",
+      "timeline": "2025",
+      "image": [
+        { "url": "/tickcover.jpeg", "type": "square" },
+        { "url": "/ticklogobg.png", "type": "square" }
+      ],
+      "logo": "/ticklogobg.png",
+      "description": "Productivity app to reduce distractions using focused Pomodoro timers.",
       "mdLink": "/projects/tick.md",
       "tags": ["React Native", "Productivity", "Mobile Dev"]
     },
-
+    {
+      "id": "cinewatch",
+      "name": "Cinewatch",
+      "link": "https://cinewatch.vercel.app",
+      "logo": "/cinewatchlow.png",
+      "image": [{ "url": "/cinewatchlogo.png", "type": "square" }],
+      "githubLink": "https://github.com/simplystudios/Cinewatch",
+      "timeline": "2024 — now",
+      "description": "Clean movie discovery website powered by the TMDB API.",
+      "mdLink": "/projects/cinewatch.md",
+      "tags": ["SvelteKit", "API Integration", "UI/UX"]
+    },
+    {
+      "id": "gist",
+      "name": "Gist",
+      "link": "https://gistweb.vercel.app",
+      "githubLink": "https://github.com/simplystudios/Gist",
+      "timeline": "2023 — 2024",
+      "image": [{ "url": "/imgs/gistposterfr.jpg", "type": "wide" }],
+      "logo": "/imgs/gistlogo.jpg",
+      "description": "News in 60 words — a scrollable feed app using the unofficial Inshorts API.",
+      "tags": ["React Native", "API Integration", "Content App"]
+    },
+    {
+      "id": "animuyi",
+      "name": "AniMuyi",
+      "link": "https://animuyi.vercel.app/",
+      "githubLink": "https://github.com/simplystudios/AniMuyi",
+      "timeline": "2023 — now",
+      "description": "Anime and manga streaming interface built in SvelteKit.",
+      "mdLink": "/projects/animuyi.md",
+      "tags": ["SvelteKit", "Scraping", "Anime"]
+    },
     {
       "id": "sky",
       "name": "Sky Browser",
       "link": "https://github.com/simplystudios/sky",
       "githubLink": "https://github.com/simplystudios/sky",
-      "timeline": "Apr 2023 - Nov 2024",
-      "description": "An chromium browser with tor network using the pyqt6 framework in python",
+      "timeline": "2023 — 2024",
+      "description": "Chromium browser with Tor network support built with the PyQt6 framework.",
       "mdLink": "/projects/sky.md",
       "tags": ["Python", "Chromium", "Privacy"]
-    },
-    {
-      "id": "disred",
-      "name": "Disred",
-      "link": "https://github.com/simplystudios/disred",
-      "githubLink": "https://github.com/simplystudios/disred",
-      "timeline": "Archived",
-      "description": "Discord bot to stream live interent radio stations in voice chats.",
-      "mdLink": "/projects/disred.md",
-      "tags": ["Node.js", "Discord API"]
     },
     {
       "id": "hinduwiki",
       "name": "HinduWiki",
       "link": "https://hinduwiki.vercel.app/",
       "githubLink": "https://github.com/simplystudios/HinduWiki",
-      "timeline": "Apr 2022 — Oct 2023",
-      "description": "A wiki for Hindu temples, surnames and traditions with elegant UI using the Wikipedia API.",
+      "timeline": "2022 — 2023",
+      "description": "A wiki for Hindu temples, surnames and traditions with an elegant UI powered by the Wikipedia API.",
       "mdLink": "/projects/hinduwiki.md",
       "tags": ["HTML", "Wikipedia API", "UI/UX"]
-    },
-    {
-      "id": "detro",
-      "name": "Detro Web",
-      "link": "https://detroweb.vercel.app",
-      "githubLink": "https://github.com/simplystudios/Detro",
-      "timeline": "2023 — now",
-      "description": "All-in-one Delhi Metro guiding web app with custom pathfinding and Material UI.",
-      "mdLink": "/projects/detro.md",
-      "tags": ["SvelteKit", "Pathfinding", "UI/UX"]
-    },
-    {
-      "id": "discordmessagesender",
-      "name": "Discord Message Sender",
-      "link": "https://github.com/simplystudios/DiscordMessageSender",
-      "githubLink": "https://github.com/simplystudios/DiscordMessageSender",
-      "timeline": "2023",
-      "description": "Send messages to a Discord server channel without opening Discord, using the Discord API. Interface made using tkinter with custom libs",
-      "mdLink": "/projects/discordmessagesender.md",
-      "tags": ["Python", "Discord API"]
     },
     {
       "id": "emojilang",
@@ -97,30 +105,9 @@
       "link": "https://mojilang.netlify.app/",
       "githubLink": "https://github.com/simplystudios/EmojiLang",
       "timeline": "2024 — 2025",
-      "description": "A fun emoji translator made with svelte.",
+      "description": "A fun emoji translator and programming language experiment built with Svelte.",
       "mdLink": "/projects/emojilang.md",
       "tags": ["SvelteKit", "Programming Language"]
-    },
-
-    {
-      "id": "animuyi",
-      "name": "AniMuyi",
-      "link": "https://animuyi.vercel.app/",
-      "githubLink": "https://github.com/simplystudios/AniMuyi",
-      "timeline": "2023 — now",
-      "description": "Anime and manga streaming interface built in SvelteKit, recreating piratetokei.",
-      "mdLink": "/projects/animuyi.md",
-      "tags": ["SvelteKit", "Scraping", "Anime"]
-    },
-    {
-      "id": "cinewatch",
-      "name": "Cinewatch",
-      "link": "https://cinewatch.vercel.app",
-      "githubLink": "https://github.com/simplystudios/Cinewatch",
-      "timeline": "2024 — now",
-      "description": "A clean movie discovery website powered by the TMDB API.",
-      "mdLink": "/projects/cinewatch.md",
-      "tags": ["SvelteKit", "API Integration", "UI/UX"]
     },
     {
       "id": "daviansfordavians",
@@ -128,9 +115,29 @@
       "link": "https://simplystudios.github.io/davians/",
       "githubLink": "https://github.com/simplystudios/Daviansfordavians",
       "timeline": "2022 — 2025",
-      "description": "An unofficial social network concept and resource hub built for my school's students.",
+      "description": "Unofficial social network concept and resource hub built for my school's students.",
       "mdLink": "/projects/daviansfordavians.md",
       "tags": ["CONCEPT", "HTML", "Community", "Web"]
+    },
+    {
+      "id": "keepitshort",
+      "name": "KeepItShort",
+      "link": "http://keepitshort.rf.gd/",
+      "githubLink": "https://github.com/simplystudios/keepitshort",
+      "timeline": "2023",
+      "description": "A search engine scraping results from Google with Wikipedia snippets and image search.",
+      "mdLink": "/projects/keepitshort.md",
+      "tags": ["JavaScript", "Search", "Wikipedia API"]
+    },
+    {
+      "id": "githubstatviewer",
+      "name": "GitHub Stats Viewer",
+      "link": "https://gh-stats-viewer.vercel.app/",
+      "githubLink": "https://github.com/simplystudios/github-stats-viewer",
+      "timeline": "2023",
+      "description": "Clean web app to view GitHub profile stats and repository activity.",
+      "mdLink": "/projects/githubstatviewer.md",
+      "tags": ["HTML", "GitHub API"]
     },
     {
       "id": "hackernewstts",
@@ -138,7 +145,7 @@
       "link": "https://github.com/simplystudios/HackerNewsTTS",
       "githubLink": "https://github.com/simplystudios/HackerNewsTTS",
       "timeline": "2024",
-      "description": "Hacker News headlines read aloud via text-to-speech in the terminal configered to custom keymaps.",
+      "description": "Hacker News headlines read aloud via text-to-speech in the terminal with custom keymaps.",
       "mdLink": "/projects/hackernewstts.md",
       "tags": ["Python", "TTS", "CLI"]
     },
@@ -153,25 +160,24 @@
       "tags": ["Python", "TTS", "CLI"]
     },
     {
-      "id": "keepitshort",
-      "name": "KeepItShort",
-      "link": "http://keepitshort.rf.gd/",
-      "githubLink": "https://github.com/simplystudios/keepitshort",
-      "timeline": "2023",
-      "description": "A search engine scraping results from Google with Wikipedia snippets and image search.",
-      "mdLink": "/projects/keepitshort.md",
-      "tags": ["JavaScript", "Search", "Wikipedia API"]
+      "id": "disred",
+      "name": "Disred",
+      "link": "https://github.com/simplystudios/disred",
+      "githubLink": "https://github.com/simplystudios/disred",
+      "timeline": "Archived",
+      "description": "Discord bot to stream live internet radio stations in voice chats.",
+      "mdLink": "/projects/disred.md",
+      "tags": ["Node.js", "Discord API"]
     },
-
     {
-      "id": "githubstatviewer",
-      "name": "GitHub Stats Viewer",
-      "link": "https://gh-stats-viewer.vercel.app/",
-      "githubLink": "https://github.com/simplystudios/github-stats-viewer",
+      "id": "discordmessagesender",
+      "name": "Discord Message Sender",
+      "link": "https://github.com/simplystudios/DiscordMessageSender",
+      "githubLink": "https://github.com/simplystudios/DiscordMessageSender",
       "timeline": "2023",
-      "description": "A clean web app to view your GitHub profile stats and repository activity.",
-      "mdLink": "/projects/githubstatviewer.md",
-      "tags": ["HTML", "GitHub API"]
+      "description": "Send messages to a Discord server channel without opening Discord, using the Discord API. Built with tkinter.",
+      "mdLink": "/projects/discordmessagesender.md",
+      "tags": ["Python", "Discord API"]
     },
     {
       "id": "camerax",
@@ -179,7 +185,7 @@
       "link": "https://github.com/simplystudios/CameraX",
       "githubLink": "https://github.com/simplystudios/CameraX",
       "timeline": "2020 — 2021",
-      "description": "An Android CameraX implementation example",
+      "description": "Android CameraX implementation example.",
       "mdLink": "/projects/camerax.md",
       "tags": ["Android", "Java", "CameraX"]
     },
@@ -189,7 +195,7 @@
       "link": null,
       "githubLink": "https://github.com/simplystudios/Covinres",
       "timeline": "2021",
-      "description": "A COVID-19 resource and tracker app built with java.",
+      "description": "COVID-19 resource and tracker app built in Java.",
       "mdLink": "/projects/covinres.md",
       "tags": ["Java", "COVID-19"]
     },
@@ -199,9 +205,19 @@
       "link": null,
       "githubLink": "https://github.com/simplystudios/2d-Globe-earth-in-css",
       "timeline": "2021",
-      "description": "A pure CSS experiment that takes an image, makes it round, and animates it rotating like a globe.",
+      "description": "Pure CSS experiment that takes an image, makes it round, and animates it rotating like a globe.",
       "mdLink": "/projects/2dglobeearth.md",
       "tags": ["CSS", "Animation", "Experiment"]
+    },
+    {
+      "id": "detroweb",
+      "name": "Detro Web",
+      "link": "https://detroweb.vercel.app",
+      "githubLink": "https://github.com/simplystudios/Detro",
+      "timeline": "2023 — Paused",
+      "description": "All-in-one Delhi Metro web app with custom pathfinding algorithm and Material-inspired UI.",
+      "mdLink": "/projects/detro.md",
+      "tags": ["SvelteKit", "Pathfinding", "UI/UX"]
     }
   ],
   "work": [
@@ -210,10 +226,12 @@
       "name": "Vardaan Conclave",
       "type": "Freelance",
       "role": "Developer",
+      "logo": "/vardaanlogofr.png",
+
       "link": "https://vaardan.vercel.app/",
       "githubLink": null,
       "timeline": "2025 — 2026",
-      "description": "Designed the website for a new and upcoming MUN Conclave."
+      "description": "Designed and built the website for an upcoming MUN Conclave."
     }
   ]
 }

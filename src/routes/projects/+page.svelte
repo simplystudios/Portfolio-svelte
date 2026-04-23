@@ -1,355 +1,364 @@
 <script>
     import { fadeUp } from "$lib/actions/fadeUp.js";
+
     export let data;
-    let dp = [];
-    let dw = [];
-    dp = data.projects;
-    dw = data.work;
-    let loading = true;
+    // Fallbacks
+    let dw = data.work || [];
+    let dp = data.projects || [];
 </script>
 
 <svelte:head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    />
 </svelte:head>
 
-<div class="main">
-    <div class="profile">
-        <h1 class="bodyhead">Projects</h1>
+<main class="resume-container">
+    <h1>Work</h1>
+    <br />
+    <br />
+    <div class="timeline">
+        {#each dw as job, i}
+            <div use:fadeUp={{ delay: i * 50 }} class="timeline-item">
+                <div class="timeline-year">
+                    {job.timeline ? job.timeline.split(" ")[0] : "2026"}
+                </div>
 
-        <hr />
-        {#each dp as t, i}
-            <div use:fadeUp={{ delay: i * 60 }} class="projectsec">
-                <div class="proitem">
-                    <div class="pro-title-row">
-                        <span class="pro-name">{t.name}</span>
-                        <span class="prosubhead">{t.timeline}</span>
+                <div class="timeline-content">
+                    <div class="meta-header">
+                        {#if job.logo}
+                            <img
+                                src={job.logo}
+                                alt={job.name}
+                                class="company-logo"
+                            />
+                        {:else}
+                            <img
+                                src="/imgs/gistlogo.jpg"
+                                alt="Company"
+                                class="company-logo fallback"
+                            />
+                        {/if}
+
+                        <span class="company-name">
+                            {job.name}
+                        </span>
+
+                        <span class="dot">•</span>
+
+                        <span
+                            class="status {job.isCurrent ? 'current' : 'past'}"
+                        >
+                            {job.isCurrent
+                                ? "Now"
+                                : `with ${job.partner || "Team"}`}
+                        </span>
                     </div>
-                    <p class="pro-desc">{t.description}</p>
 
-                    <div class="tags">
-                        {#each t.tags as p}
-                            <span class="tag">{p}</span>
+                    <h3 class="role-title">{job.role}</h3>
+                    <p class="description">{job.description}</p>
+
+                    {#if job.images && job.images.length > 0}
+                        <div class="media-grid">
+                            {#each job.images as img}
+                                <div class="media-card {img.aspect || 'wide'}">
+                                    <img
+                                        on:click={() => open(job.url)}
+                                        src={img.url}
+                                        alt="Work preview"
+                                    />
+                                </div>
+                            {/each}
+                        </div>
+                    {/if}
+                </div>
+            </div>
+        {/each}
+    </div>
+
+    <div class="section-divider">
+        <h1 style="">Projects</h1>
+    </div>
+
+    <div class="timeline" style="margin-top: 70px;">
+        {#each dp as project, i}
+            <div use:fadeUp={{ delay: i * 50 }} class="timeline-item">
+                <div class="timeline-year">
+                    {project.timeline ? project.timeline.split(" ")[0] : "2026"}
+                </div>
+
+                <div class="timeline-content">
+                    <div class="meta-header">
+                        {#if project.logo}
+                            <img
+                                src={project.logo}
+                                alt={project.name}
+                                class="company-logo"
+                            />
+                        {:else}
+                            <img
+                                src="/imgs/disredlogo.png"
+                                alt="Company"
+                                class="company-logo fallback"
+                            />
+                        {/if}
+
+                        <span class="company-name">
+                            {project.name}
+                        </span>
+                    </div>
+
+                    <p class="description">{project.description}</p>
+
+                    {#if project.tags}
+                        {#each project.tags as tag}
+                            <span class="tag">{tag}</span>
                         {/each}
-                    </div>
+                    {/if}
 
-                    <div class="links">
-                        {#if t.githubLink}
-                            <a
-                                href={t.githubLink}
-                                target="_blank"
-                                rel="noopener"
-                                class="linkpill"
+                    {#if project.image}
+                        <div class="media-grid">
+                            {#if project.image && project.image.length > 1}
+                                {#each project.image as image}
+                                    <div class="media-card {image.type}">
+                                        <img
+                                            src={image.url}
+                                            alt={project.name}
+                                        />
+                                    </div>
+                                {/each}
+                            {:else}
+                                <div class="media-card {project.image[0].type}">
+                                    <img
+                                        src={project.image[0].url}
+                                        alt={project.name}
+                                    />
+                                </div>
+                            {/if}
+                        </div>
+                    {/if}
+                    <div class="text-links">
+                        {#if project.githubLink}
+                            <a href={project.githubLink} target="_blank"
+                                >GitHub</a
                             >
-                                <svg
-                                    width="13"
-                                    height="13"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    ><path
-                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-                                    /></svg
-                                >
-                                GitHub
-                            </a>
                         {/if}
-                        {#if t.link && t.link !== t.githubLink}
-                            <a
-                                href={t.link}
-                                target="_blank"
-                                rel="noopener"
-                                class="linkpill"
-                            >
-                                <svg
-                                    width="13"
-                                    height="13"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    ><path
-                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                                    /><polyline points="15 3 21 3 21 9" /><line
-                                        x1="10"
-                                        y1="14"
-                                        x2="21"
-                                        y2="3"
-                                    /></svg
-                                >
-                                Live site
-                            </a>
+                        {#if project.link && project.link !== project.githubLink}
+                            <a href={project.link} target="_blank">Live Site</a>
                         {/if}
-                        {#if t.id}
-                            <a
-                                href={`/projects/view?id=${t.id}`}
-                                class="linkpill"
+                        {#if project.mdLink}
+                            <a href={`/projects/view?id=${project.id}`}
+                                >Read Case Study</a
                             >
-                                <svg
-                                    width="13"
-                                    height="13"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    ><path
-                                        d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-                                    /><polyline points="14 2 14 8 20 8" /><line
-                                        x1="16"
-                                        y1="13"
-                                        x2="8"
-                                        y2="13"
-                                    /><line
-                                        x1="16"
-                                        y1="17"
-                                        x2="8"
-                                        y2="17"
-                                    /><polyline points="10 9 9 9 8 9" /></svg
-                                >
-                                Blog
-                            </a>
                         {/if}
                     </div>
                 </div>
             </div>
-            <hr />
         {/each}
     </div>
-
-    <div class="profilew">
-        <h1 class="bodyhead">Work</h1>
-        <hr />
-        {#each dw as t, i}
-            <div use:fadeUp={{ delay: i * 60 }} class="projectsec">
-                <div class="proitem">
-                    <div class="pro-title-row">
-                        <span class="pro-name">{t.name}</span>
-                        <span class="prosubhead">{t.timeline}</span>
-                    </div>
-                    <p class="pro-desc">{t.description}</p>
-                    <p class="prosubhead" style="margin-bottom: 10px;">
-                        {t.type} · {t.role}
-                    </p>
-                    <div class="links">
-                        {#if t.link}
-                            <a
-                                href={t.link}
-                                target="_blank"
-                                rel="noopener"
-                                class="linkpill"
-                            >
-                                <svg
-                                    width="13"
-                                    height="13"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    ><path
-                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                                    /><polyline points="15 3 21 3 21 9" /><line
-                                        x1="10"
-                                        y1="14"
-                                        x2="21"
-                                        y2="3"
-                                    /></svg
-                                >
-                                Live site
-                            </a>
-                        {/if}
-                        {#if t.githubLink}
-                            <a
-                                href={t.githubLink}
-                                target="_blank"
-                                rel="noopener"
-                                class="linkpill"
-                            >
-                                <svg
-                                    width="13"
-                                    height="13"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    ><path
-                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-                                    /></svg
-                                >
-                                GitHub
-                            </a>
-                        {/if}
-                    </div>
-                </div>
-            </div>
-            <hr />
-        {/each}
-    </div>
-</div>
+</main>
 
 <style>
-    :global(html) {
-        scroll-behavior: smooth;
-    }
     :global(body) {
-        background-color: #171717;
+        background-color: #0a0a0a;
         margin: 0;
         padding: 0;
-        /* prevents horizontal scroll from overflow on mobile */
-        overflow-x: hidden;
-    }
-    *,
-    *::before,
-    *::after {
-        box-sizing: border-box;
-    }
-
-    hr {
-        border: none;
-        border-top: 1px solid rgba(255, 255, 255, 0.06);
-        margin: 0;
-    }
-
-    .main {
-        display: block;
+        font-family:
+            "Inter",
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Roboto,
+            sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
         color: #dfdfdf;
-        /* responsive horizontal padding — tighter on small screens */
-        padding: 24px 16px;
     }
 
-    .profile,
-    .profilew {
-        margin: 0 auto;
-        max-width: 600px;
-        width: 100%;
-        color: #a1a1a1;
-        font-weight: 400;
-        /* use clamp so padding scales with screen */
-        padding: clamp(16px, 4vw, 30px);
-    }
-    .profilew {
-        padding-top: 0;
-    }
-
-    .bodyhead {
-        /* scales between 28px on small phones and 40px on desktop */
-        font-size: clamp(28px, 6vw, 40px);
+    .tag {
+        display: inline-block;
+        background-color: #1a1a1a;
         color: #dfdfdf;
-        margin-bottom: 24px;
-        line-height: 1.2;
+
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        margin-right: 4px;
+        margin-bottom: 16px;
     }
 
-    .projectsec {
-        display: block;
-        margin-top: 20px;
-        padding-top: 15px;
-        padding-bottom: 18px;
-    }
-    .proitem {
-        padding: 0;
+    .resume-container {
+        max-width: 720px;
+        margin: 100px auto;
+        padding: 0 24px;
     }
 
-    .pro-title-row {
+    .timeline-item {
         display: flex;
-        align-items: baseline;
-        flex-wrap: wrap; /* wraps on very narrow screens */
+        gap: 32px;
+        margin-bottom: 30px;
+    }
+
+    .timeline-year {
+        width: auto;
+        flex-shrink: 0;
+        font-size: 13px;
+        font-weight: 500;
+        color: #888;
+        padding-top: 6px;
+    }
+
+    .timeline-content {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .meta-header {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
         gap: 8px;
         margin-bottom: 6px;
+        font-size: 15px;
     }
-    .pro-name {
-        /* slightly smaller on mobile */
-        font-size: clamp(15px, 4vw, 18px);
+
+    .company-logo {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background-color: #1f1f1f; /* Gives a nice dark bg while images load */
+    }
+
+    /* Optional: slightly dim the fallback image if you want it to look less prominent */
+    .company-logo.fallback {
+        opacity: 0.8;
+    }
+
+    .company-name {
+        font-weight: 600;
+        letter-spacing: -0.01em;
         color: #dfdfdf;
+    }
+
+    .dot {
+        color: #444;
+        font-size: 12px;
+    }
+
+    .status {
         font-weight: 500;
     }
-    .prosubhead {
-        color: dimgray;
-        font-size: 13px;
-        line-height: 1.4;
-        margin: 0 0 6px;
-    }
-    .pro-desc {
-        font-size: 14px;
-        line-height: 1.7;
-        color: #a1a1a1;
-        margin: 0 0 10px;
-        /* prevents long words like URLs from breaking layout */
-        overflow-wrap: break-word;
-        word-break: break-word;
+
+    .status.current {
+        color: #10b981;
     }
 
-    .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        margin-bottom: 10px;
-    }
-    .tag {
-        font-size: 12px;
-        padding: 3px 10px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+    .status.past {
         color: #888;
-        /* ensure tags never shrink below their content */
-        white-space: nowrap;
+        font-weight: 400;
     }
 
-    .links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
+    .role-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #ffffff;
+        margin: 0 0 6px 0;
+        letter-spacing: -0.01em;
     }
-    .linkpill {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        font-size: 12px;
-        /* taller tap target for touch — 36px min height */
-        padding: 6px 14px;
-        min-height: 36px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+
+    .description {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #a1a1a1;
+        margin: 0 0 10px 0;
+    }
+
+    .media-grid {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        flex-column: 2;
+    }
+
+    .media-card {
+        background-color: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 24px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .media-card img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .media-card.square {
+        width: 200px;
+        height: 200px;
+    }
+
+    .media-card.wide {
+        width: 400px;
+        max-width: 400px;
+        object-fit: contain;
+        height: 220px;
+    }
+
+    .text-links {
+        display: flex;
+        gap: 16px;
+        margin-top: 20px;
+    }
+    .section-divider {
+        border-top: 1px solid #1e1e1e;
+        margin: 34px 0 22px;
+        padding-top: 30px;
+    }
+
+    .text-links a {
+        font-size: 14px;
+        font-weight: 500;
         color: #888;
         text-decoration: none;
-        background: rgba(255, 255, 255, 0.04);
-        transition:
-            border-color 0.15s,
-            color 0.15s;
-        /* prevent tap highlight flash on Android */
-        -webkit-tap-highlight-color: transparent;
-        white-space: nowrap;
-    }
-    .linkpill:hover {
-        border-color: rgba(255, 255, 255, 0.25);
-        color: #dfdfdf;
-    }
-    /* active state for touch feedback instead of hover */
-    .linkpill:active {
-        background: rgba(255, 255, 255, 0.08);
-        color: #dfdfdf;
+        transition: color 0.15s ease;
     }
 
-    @media (max-width: 480px) {
-        .main {
-            padding: 16px 12px;
+    .text-links a:hover {
+        color: #ffffff;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+    }
+
+    @media (max-width: 600px) {
+        .resume-container {
+            padding: 0 16px;
+            margin: 60px auto;
         }
-        .profile,
-        .profilew {
-            padding: 16px 12px;
+
+        .timeline-item {
+            gap: 16px;
+            margin-bottom: 56px;
         }
-        /* on very small screens, stack title and timeline vertically */
-        .pro-title-row {
-            flex-direction: column;
-            gap: 2px;
+
+        .timeline-year {
+            width: 36px;
+        }
+
+        .media-card.square {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+        }
+
+        .media-card.wide {
+            aspect-ratio: 16 / 10;
         }
     }
 </style>

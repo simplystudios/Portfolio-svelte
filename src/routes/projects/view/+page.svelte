@@ -1,6 +1,7 @@
 <script>
     import Markdown from "svelte-exmarkdown";
     import { page } from "$app/stores";
+    import projectsData from "$lib/data/projects.json";
 
     // URL parameter
     $: id = $page.url.searchParams.get("id");
@@ -21,10 +22,8 @@
 
         try {
             // 1. Apni JSON file fetch kar
-            const res = await fetch("../../lib/data/projects.json");
-            if (!res.ok) throw new Error("JSON load nahi hua");
 
-            const data = await res.json();
+            const data = projectsData;
 
             // 2. 'projects' aur 'work' dono arrays mein se project dhoondh
             const allProjects = [
@@ -80,7 +79,7 @@
         box-sizing: border-box;
     }
     :global(body) {
-        background-color: #171717;
+        background-color: #0a0a0a;
         color: #a1a1a1;
         margin: 0;
         font-family:

@@ -48,7 +48,7 @@
 </script>
 
 <svelte:head>
-    <title>Ansh Wadhwa — Links</title>
+    <title>Ansh Wadhwa &middot; Links</title>
 </svelte:head>
 
 <div class="page">
@@ -119,7 +119,7 @@
             <div class="service-grid" style="margin-bottom:10px;">
                 <div class="service-card-music">
                     <div class="service-info-music">
-                        <div style="display: flex;">
+                        <div style="display: flex; gap: 12px">
                             <!-- Last.fm logo -->
                             <img
                                 class="thumb-img-track"
@@ -147,7 +147,7 @@
                         </div>
                         <div class="divmusic"></div>
 
-                        <div style="display: flex;">
+                        <div style="display: flex; gap:10px">
                             <div class="service-text" style="padding:0px">
                                 <p class="name-tracks">Top Artists</p>
                                 {#each artists as artist}
@@ -252,7 +252,7 @@
 
 <style>
     :global(body) {
-        background-color: #171717;
+        background-color: #0a0a0a;
         margin: 0;
         padding: 0;
         overflow-x: hidden;
@@ -399,7 +399,7 @@
         border-radius: 12px;
         overflow: hidden;
         text-decoration: none;
-        background: #1a1a1a;
+        background: #1a1919;
         transition: background 0.12s ease;
         display: flex;
         flex-direction: column;
@@ -543,7 +543,7 @@
         gap: 10px;
     }
     .service-card {
-        background: #1a1a1a;
+        background: #1a1919;
         border: 0.5px solid rgba(255, 255, 255, 0.08);
         border-radius: 12px;
         padding: 16px;
@@ -554,7 +554,7 @@
         transition: background 0.12s ease;
     }
     .service-card-music {
-        background: #1a1a1a;
+        background: #1a1919;
         border: 0.5px solid rgba(255, 255, 255, 0.08);
         border-radius: 12px;
         padding: 16px;
@@ -572,6 +572,7 @@
         display: flex;
         align-items: center;
         gap: 12px;
+        flex: 1;
     }
     .service-info-music {
         display: flex;
@@ -674,7 +675,7 @@
 
     @media (max-width: 606px) {
         .divmusic {
-            height: 1px;
+            height: 0px;
             width: 200px;
             margin-top: 20px;
             background-color: #696969;

@@ -3,6 +3,11 @@ import { PRIVATE_LASTFM } from "$env/static/private";
 const LASTFM_API_KEY = PRIVATE_LASTFM;
 const LASTFM_USER = "punchoneman";
 
+// --- Cache Variables ---
+let cachedData = null;
+let lastFetchTime = 0;
+const CACHE_DURATION = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
+
 // Helper to extract thumbnail from Medium content
 function extractThumbnail(content) {
   const match = content.match(/<img[^>]+src="([^">]+)"/);
@@ -16,7 +21,6 @@ async function getMediumArticles() {
     );
     const data = await res.json();
     if (data.status !== "ok") return [];
-
     return data.items.slice(0, 6).map((item) => ({
       title: item.title,
       url: item.link,
@@ -72,8 +76,20 @@ async function getTopTracks() {
   }
 }
 
-export async function load() {
-  // This runs all fetches at the same time (faster!)
+export async function load({ setHeaders }) {
+  // Tell the browser and CDN to cache this page's data for 12 hours (43200 seconds)
+  setHeaders({
+    "Cache-Control": "public, max-age=43200",
+  });
+
+  const now = Date.now();
+
+  // If we have cached data and it's less than 12 hours old, return it immediately
+  if (cachedData && now - lastFetchTime < CACHE_DURATION) {
+    return cachedData;
+  }
+
+  // Otherwise, run all fetches at the same time
   const [articles, lastFM, artists, tracks] = await Promise.all([
     getMediumArticles(),
     getLastFMUser(),
@@ -81,10 +97,14 @@ export async function load() {
     getTopTracks(),
   ]);
 
-  return {
+  // Update our server cache with the fresh data
+  cachedData = {
     articles,
     lastFM,
     artists,
     tracks,
   };
+  lastFetchTime = now;
+
+  return cachedData;
 }

@@ -93,34 +93,113 @@
   ],
   "design": [
     {
-      "name": "Detro App Icon",
-      "image": "/imgs/gistposterfr.jpg",
+      "name": "Detro",
+      "image": "/detrogogreen.jpeg",
       "type": "logo"
     },
+
     {
-      "name": "Home Screen",
-      "image": "/imgs/Disredposter.jpg",
+      "name": "Detro",
+      "image": "/detroframe1.png",
       "type": "ui"
     },
     {
-      "name": "Detro App Icon",
-      "image": "/imgs/gistposterfr.jpg",
-      "type": "logo"
-    },
-    {
-      "name": "Home Screen",
-      "image": "/imgs/Disredposter.jpg",
+      "name": "Detro",
+      "image": "/detroframe7.jpeg",
       "type": "ui"
     },
     {
-      "name": "Detro App Icon",
-      "image": "/imgs/gistposterfr.jpg",
+      "name": "Detro",
+      "image": "/detroframe12.jpeg",
+      "type": "ui"
+    },
+    {
+      "name": "Detro",
+      "image": "/detroframe10.jpeg",
+      "type": "ui"
+    },
+    {
+      "name": "Vardaan",
+      "image": "/vardaanlogofr.png",
       "type": "logo"
     },
     {
-      "name": "Home Screen",
-      "image": "/imgs/Disredposter.jpg",
+      "name": "Detro",
+      "image": "/detrosingleframe2.jpeg",
       "type": "ui"
+    },
+
+    {
+      "name": "Detro",
+      "image": "/detrosingleframe1.jpeg",
+      "type": "ui"
+    },
+    {
+      "name": "Detro",
+      "image": "/detrosingleframe3.jpeg",
+      "type": "ui"
+    },
+    {
+      "name": "Detro",
+      "image": "/detrosingleframe4.jpeg",
+      "type": "ui"
+    },
+    {
+      "name": "Nutrifact",
+      "image": "/detroframe8.jpeg",
+      "type": "ui"
+    },
+    {
+      "name": "Nutrifact",
+      "image": "/detroframe9.jpeg",
+      "type": "ui"
+    },
+    {
+      "name": "Nutrifact",
+      "image": "/detrosingleframe7.jpeg",
+      "type": "ui"
+    },
+    {
+      "name": "Nutrifact",
+      "image": "/detrosingleframe8.jpeg",
+      "type": "ui"
+    },
+    {
+      "name": "Nutrifact",
+      "image": "/detrosingleframe5.jpeg",
+      "type": "ui"
+    },
+    {
+      "name": "Nutrifact",
+      "image": "/detrosingleframe6.jpeg",
+      "type": "ui"
+    },
+    {
+      "name": "Tick",
+      "image": "/tickcover.jpeg",
+      "type": "ui"
+    },
+    {
+      "name": "Tick",
+      "image": "/ticklogobg.png",
+      "type": "logo"
+    },
+
+    {
+      "name": "Cinewatch",
+      "image": "/cinewatchlogo.png",
+      "type": "logo"
+    },
+
+    {
+      "name": "Detro",
+      "image": "/detroframe4.jpeg",
+      "type": "logo"
+    },
+    {
+      "name": "Detro",
+      "image": "/detroframe2.jpeg",
+      "type": "logo"
     }
   ]
 }

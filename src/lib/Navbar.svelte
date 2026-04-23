@@ -4,7 +4,7 @@
     const tabs = [
         { name: "Home", path: "/" },
         { name: "Projects", path: "/projects" },
-        { name: "Photography", path: "/photography" },
+        { name: "Design", path: "/design" },
         { name: "Links", path: "/links" },
     ];
 

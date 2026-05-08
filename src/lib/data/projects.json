@@ -98,7 +98,7 @@
       "timeline": "2022 — 2023",
       "description": "A wiki for Hindu temples, surnames and traditions with an elegant UI powered by the Wikipedia API.",
       "mdLink": "/projects/hinduwiki.md",
-      "tags": ["HTML", "Wikipedia API", "UI/UX"]
+      "tags": ["HTML", "Wikipedia API"]
     },
     {
       "id": "emojilang",

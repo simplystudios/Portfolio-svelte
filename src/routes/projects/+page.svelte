@@ -5,6 +5,28 @@
     // Fallbacks
     let dw = data.work || [];
     let dp = data.projects || [];
+
+    // Helper to generate GitHub OpenGraph image URLs from a repo link
+    function getGithubOgImage(link) {
+        if (!link) return null;
+        try {
+            const url = new URL(link);
+            if (url.hostname === "github.com") {
+                // Split the path and remove empty strings
+                const parts = url.pathname.split("/").filter(Boolean);
+                // Ensure we have at least owner and repo name
+                if (parts.length >= 2) {
+                    const owner = parts[0];
+                    const repo = parts[1];
+                    // '1' acts as a placeholder for the hash to fetch the latest OG image
+                    return `https://socialify.git.ci/${owner}/${repo}/image?font=Raleway&language=1&name=1&owner=1&pattern=Plus&theme=DarkewsReader?font=Raleway&language=1&name=1&owner=1&pattern=Solid&theme=Dark`;
+                }
+            }
+        } catch (e) {
+            // Fails silently if the URL is invalid
+        }
+        return null;
+    }
 </script>
 
 <svelte:head>
@@ -94,11 +116,9 @@
                                 class="company-logo"
                             />
                         {:else}
-                            <img
-                                src="/imgs/disredlogo.png"
-                                alt="Company"
-                                class="company-logo fallback"
-                            />
+                            <div
+                                style="border: 1; border-radius: 20px; height:16px;width: 16px; background-color:#484a4c;"
+                            ></div>
                         {/if}
 
                         <span class="company-name">
@@ -114,9 +134,10 @@
                         {/each}
                     {/if}
 
-                    {#if project.image}
+                    <!-- IMAGE RENDERING LOGIC -->
+                    {#if project.image && project.image.length > 0}
                         <div class="media-grid">
-                            {#if project.image && project.image.length > 1}
+                            {#if project.image.length > 1}
                                 {#each project.image as image}
                                     <div class="media-card {image.type}">
                                         <img
@@ -134,7 +155,18 @@
                                 </div>
                             {/if}
                         </div>
+                        <!-- GITHUB FALLBACK LOGIC -->
+                    {:else if project.githubLink && getGithubOgImage(project.githubLink)}
+                        <div class="media-grid">
+                            <div class="media-card wide">
+                                <img
+                                    src={getGithubOgImage(project.githubLink)}
+                                    alt="{project.name} GitHub Repository"
+                                />
+                            </div>
+                        </div>
                     {/if}
+
                     <div class="text-links">
                         {#if project.githubLink}
                             <a href={project.githubLink} target="_blank"
@@ -221,10 +253,9 @@
         border-radius: 50%;
         object-fit: cover;
         border: 1px solid rgba(255, 255, 255, 0.1);
-        background-color: #1f1f1f; /* Gives a nice dark bg while images load */
+        background-color: #1f1f1f;
     }
 
-    /* Optional: slightly dim the fallback image if you want it to look less prominent */
     .company-logo.fallback {
         opacity: 0.8;
     }
@@ -279,7 +310,8 @@
     .media-card {
         background-color: rgba(255, 255, 255, 0.03);
         border: 1px solid rgba(255, 255, 255, 0.06);
-        border-radius: 24px;
+        border-radius: 10px;
+
         overflow: hidden;
         position: relative;
     }
@@ -298,16 +330,16 @@
 
     .media-card.wide {
         width: 400px;
-        /* Consider changing this to 200px so it perfectly aligns
-           with the square cards in a horizontal row or bento grid */
         height: 220px;
     }
+
     .media-card.ewide {
         width: 350px;
         max-width: 500px;
         object-fit: contain;
         height: 280px;
     }
+
     .media-card.esquare {
         width: 300px;
         height: 400px;
@@ -318,6 +350,7 @@
         gap: 16px;
         margin-top: 20px;
     }
+
     .section-divider {
         border-top: 1px solid #1e1e1e;
         margin: 34px 0 22px;

@@ -13,7 +13,7 @@
       ],
       "timeline": "2025 — now",
       "description": "DetroGo is a transit utility app for the Delhi-NCR metro network, Made in Java. By implementing BFS pathfinding, it provides shortest routes across all active lines. Designed strictly under Material 3 guidelines, the app features an interactive vector map, dynamic theming, and local persistence for route history via Shared Preferences.",
-      "logo": "/detrogogreen.jpeg",
+      "logo": "/detrogopurp.jpeg",
       "mdLink": "/projects/detro.md",
       "tags": ["Java", "Pathfinding", "Android", "Material 3"]
     },
@@ -146,7 +146,19 @@
       "link": "https://github.com/simplystudios/HackerNewsTTS",
       "githubLink": "https://github.com/simplystudios/HackerNewsTTS",
       "timeline": "2024",
+
       "description": "Hacker News headlines read aloud via text-to-speech in the terminal with custom keymaps.",
+      "mdLink": "/projects/hackernewstts.md",
+      "tags": ["Python", "TTS", "CLI"]
+    },
+    {
+      "id": "termoosic",
+      "name": "Termoosic",
+      "link": "https://github.com/simplystudios/Termoosic",
+      "githubLink": "https://github.com/simplystudios/Termoosic",
+      "timeline": "2024",
+
+      "description": "A music player/downloader for terminal download music from piped and store it in a custom folder and control the songs",
       "mdLink": "/projects/hackernewstts.md",
       "tags": ["Python", "TTS", "CLI"]
     },
@@ -156,7 +168,7 @@
       "link": "https://github.com/simplystudios/InshortsNewsReader",
       "githubLink": "https://github.com/simplystudios/InshortsNewsReader",
       "timeline": "2023",
-      "image":[{"uri":"/terminal/"}],
+
       "description": "Listen to Inshorts news in the terminal using Python text-to-speech.",
       "mdLink": "/projects/inshortsnewsreader.md",
       "tags": ["Python", "TTS", "CLI"]
@@ -166,7 +178,7 @@
       "name": "Disred",
       "link": "https://github.com/simplystudios/disred",
       "githubLink": "https://github.com/simplystudios/disred",
-      "timeline": "Archived",
+      "timeline": "2023",
       "description": "Discord bot to stream live internet radio stations in voice chats.",
       "mdLink": "/projects/disred.md",
       "tags": ["Node.js", "Discord API"]

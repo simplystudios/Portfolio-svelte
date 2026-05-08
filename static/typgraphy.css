@@ -1,0 +1,60 @@
+/* ─────────────────────────────────────────
+   typography.css — single source of truth
+   Import once in your root layout:
+     import '$lib/styles/typography.css';
+   ───────────────────────────────────────── */
+
+:root {
+    /* Font stack */
+    --font-sans:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+    /* Size scale */
+    --text-xs: 11px; /* labels, tags, meta */
+    --text-sm: 13px; /* secondary copy, captions */
+    --text-base: 15px; /* body copy */
+    --text-md: 17px; /* subheadings */
+    --text-lg: 22px; /* section headers */
+    --text-xl: 28px; /* page titles (links, work, design) */
+    --text-2xl: 38px; /* hero title (home) */
+
+    /* Weight scale */
+    --weight-normal: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+
+    /* Color scale */
+    --color-primary: #ffffff;
+    --color-secondary: #dfdfdf;
+    --color-muted: #a1a1a1;
+    --color-subtle: #888888;
+    --color-faint: #555555;
+    --color-dim: #444444;
+
+    /* Tracking */
+    --tracking-tight: -0.3px;
+    --tracking-wide: 0.08em;
+}
+
+/* Base reset applied once */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #0a0a0a;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    color: var(--color-muted);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}

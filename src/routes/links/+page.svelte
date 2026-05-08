@@ -13,13 +13,30 @@
     let tracksLoading = true;
     $: ({ articles, lastFM, artists, tracks } = data);
 
-    const socials = [
+    const offical = [
         {
             name: "GitHub",
             handle: "@simplystudios",
             img: "/githubicon.png",
             size: 20,
             url: "https://github.com/simplystudios",
+        },
+        {
+            name: "LinkedIn",
+            handle: "anshwadhwa8",
+            img: "/linkedinwhite.png",
+            size: 16,
+            url: "https://www.linkedin.com/in/anshwadhwa8/",
+        },
+    ];
+
+    const socials = [
+        {
+            name: "Threads",
+            handle: "@anshwadhwa8",
+            img: "/threads.png",
+            size: 24,
+            url: "https://www.threads.com/@anshwadhwa8",
         },
         {
             name: "Twitter / X",
@@ -32,7 +49,7 @@
             name: "Peerlist",
             handle: "@anshwadhwa",
             img: "/peerlisticon.png",
-            size: 24,
+            size: 22,
             url: "https://peerlist.io/anshwadhwa",
         },
     ];
@@ -56,6 +73,36 @@
         <h1>Links</h1>
         <p>Where to find me, what I'm into.</p>
     </header>
+
+    <!--- OFFICAL -->
+    <section class="section">
+        <p class="section-label">Official</p>
+        <div class="list">
+            {#each offical as s, i}
+                <a
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="row"
+                >
+                    <div class="row-left-img">
+                        {#if s.img}
+                            <img height={s.size} src={s.img} alt={s.name} />
+                        {:else}
+                            <span class="row-avatar">{s.name[0]}</span>
+                        {/if}
+                    </div>
+
+                    <div class="row-left">
+                        <span class="row-name">{s.name}</span>
+                        <span class="row-note">{s.handle}</span>
+                    </div>
+                    <span class="row-arrow">↗</span>
+                </a>
+                {#if i < socials.length - 1}<div class="divider"></div>{/if}
+            {/each}
+        </div>
+    </section>
 
     <!-- SOCIALS -->
     <section class="section">

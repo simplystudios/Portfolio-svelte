@@ -9,10 +9,6 @@
 
 <svelte:head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet"
-    />
 </svelte:head>
 
 <main class="resume-container">
@@ -166,12 +162,7 @@
         margin: 0;
         padding: 0;
         font-family:
-            "Inter",
-            -apple-system,
-            BlinkMacSystemFont,
-            "Segoe UI",
-            Roboto,
-            sans-serif;
+            -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         color: #dfdfdf;
@@ -225,8 +216,8 @@
     }
 
     .company-logo {
-        width: 24px;
-        height: 24px;
+        width: 26px;
+        height: 26px;
         border-radius: 50%;
         object-fit: cover;
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -239,7 +230,8 @@
     }
 
     .company-name {
-        font-weight: 600;
+        font-weight: 500;
+        font-size: 17px;
         letter-spacing: -0.01em;
         color: #dfdfdf;
     }
@@ -300,15 +292,25 @@
     }
 
     .media-card.square {
-        width: 200px;
-        height: 200px;
+        width: 300px;
+        height: 300px;
     }
 
     .media-card.wide {
         width: 400px;
-        max-width: 400px;
-        object-fit: contain;
+        /* Consider changing this to 200px so it perfectly aligns
+           with the square cards in a horizontal row or bento grid */
         height: 220px;
+    }
+    .media-card.ewide {
+        width: 350px;
+        max-width: 500px;
+        object-fit: contain;
+        height: 280px;
+    }
+    .media-card.esquare {
+        width: 300px;
+        height: 400px;
     }
 
     .text-links {

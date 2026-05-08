@@ -1,205 +1,144 @@
 {
-  "vrindavan": [
-    {
-      "name": "Entrance of a Iskon Temple",
-      "image": "/photography/vrindhavan/IMG_20241115_183320252.jpg"
-    },
-    {
-      "name": "Entrance of a Iskon Temple",
-      "image": "/photography/vrindhavan/IMG_20241115_175736375.jpg"
-    },
-    {
-      "name": "Iskon Temple in vrindhavan",
-      "image": "/photography/vrindhavan/IMG_20241115_184144797.jpg"
-    }
-  ],
-  "mussoorie": [
-    {
-      "name": "Streets of Mussoorie - 2024",
-      "image": "/photography/mussorie/IMG_20240825_142903946.jpg"
-    },
-    {
-      "name": "Fog taking over the mountainous road – 2024.",
-      "image": "/photography/mussorie/IMG_20240825_121057225.jpg"
-    },
-    {
-      "name": "View from near Mall Road - 2024",
-      "image": "/photography/mussorie/IMG_20240825_141101887.jpg"
-    },
-    {
-      "name": "View from a bakery on top of mussorie  - 2024",
-      "image": "/photography/mussorie/IMG_20240825_144127827.jpg"
-    },
-    {
-      "name": "Road leading up to mussorie filled with fog  - 2024",
-      "image": "/photography/mussorie/IMG_20240825_121057225.jpg"
-    },
-    {
-      "name": "Beautiful empty street going uphill  - 2024",
-      "image": "/photography/mussorie/IMG_20240825_143035896.jpg"
-    }
-  ],
-  "rajasthan": [
-    {
-      "name": "Streets of Jaisalmer - 2024",
-      "image": "/photography/rajisthan/jaisalmer/IMG_20241218_163906219.jpg"
-    },
-    {
-      "name": "Thar Desert - 2024",
-      "image": "/photography/rajisthan/thardesert/IMG_20241217_160532759.jpg"
-    },
-    {
-      "name": "Sand Dunes - 2024",
-      "image": "/photography/rajisthan/thardesert/IMG_20241217_160722025.jpg"
-    },
-    {
-      "name": "Sand Dunes 2 - 2024",
-      "image": "/photography/rajisthan/thardesert/IMG_20241217_173404741.jpg"
-    },
-    {
-      "name": "Sand Dunes 3 - 2024",
-      "image": "/photography/rajisthan/thardesert/IMG_20241218_073142552.jpg"
-    },
-    {
-      "name": "Road in Dunes 4 - 2024",
-      "image": "/photography/rajisthan/thardesert/IMG_20241218_100208179.jpg"
-    },
-    {
-      "name": "Sand Dunes 5 - 2024",
-      "image": "/photography/rajisthan/thardesert/IMG_20241218_101302218.jpg"
-    },
-    {
-      "name": "Sand Dunes 6 - 2024",
-      "image": "/photography/rajisthan/thardesert/IMG_20241217_160532759.jpg"
-    },
-    {
-      "name": "Sand Dunes 6 - 2024",
-      "image": "/photography/rajisthan/thardesert/IMG_20241217_172045302.jpg"
-    }
-  ],
-  "Dausi": [
-    {
-      "name": "Entrance of a Iskon Temple",
-      "image": "/photography/vrindhavan/IMG_20241115_183320252.jpg"
-    },
-    {
-      "name": "Entrance of a Iskon Temple",
-      "image": "/photography/vrindhavan/IMG_20241115_175736375.jpg"
-    },
-    {
-      "name": "Iskon Temple in vrindhavan",
-      "image": "/photography/vrindhavan/IMG_20241115_184144797.jpg"
-    }
-  ],
   "design": [
     {
-      "name": "Detro",
+      "name": "DetroGO Home Page(new)",
+      "image": "/detrogonew.png",
+      "type": "ui",
+      "tag": "detro"
+    },
+    {
+      "name": "DetroGO Trip Planner Page(new)",
+      "image": "/detrogonew2.png",
+      "type": "ui",
+      "tag": "detro"
+    },
+    {
+      "name": "DetroGO Trip Planner Page(new)",
+      "image": "/detrogonew3.png",
+      "type": "ui",
+      "tag": "detro"
+    },
+    {
+      "name": "DetroGO Route Page(new)",
+      "image": "/detrogonew4.png",
+      "type": "ui",
+      "tag": "detro"
+    },
+    {
+      "name": "Detro Logo",
       "image": "/detrogogreen.jpeg",
-      "type": "logo"
+      "type": "logo",
+      "tag": "detro"
     },
 
     {
-      "name": "Detro",
+      "name": "Detro Route Screen",
       "image": "/detroframe1.png",
-      "type": "ui"
+      "type": "ui",
+      "tag": "detro"
     },
     {
-      "name": "Detro",
+      "name": "Detro Route Screen",
       "image": "/detroframe7.jpeg",
-      "type": "ui"
+      "type": "ui",
+      "tag": "detro"
     },
     {
-      "name": "Detro",
-      "image": "/detroframe12.jpeg",
-      "type": "ui"
+      "name": "Nutrifact Product Info Page",
+      "image": "/nutrifactframe12.jpeg",
+      "type": "ui",
+      "tag": "nutrifact"
     },
     {
-      "name": "Detro",
-      "image": "/detroframe10.jpeg",
-      "type": "ui"
+      "name": "Nutrifact Old Home Screen",
+      "image": "/nutrifactframe10.jpeg",
+      "type": "ui",
+      "tag": "nutrifact"
     },
     {
-      "name": "Vardaan",
+      "name": "Vardaan Mun Website",
       "image": "/vardaanlogofr.png",
-      "type": "logo"
+      "type": "logo",
+      "tag": "vardaan"
     },
     {
-      "name": "Detro",
+      "name": "Detro Home Screen",
       "image": "/detrosingleframe2.jpeg",
-      "type": "ui"
+      "type": "ui",
+      "tag": "detro"
     },
-
     {
-      "name": "Detro",
+      "name": "Detro Route Screen",
       "image": "/detrosingleframe1.jpeg",
-      "type": "ui"
+      "type": "ui",
+      "tag": "detro"
     },
     {
-      "name": "Detro",
+      "name": "Detro Route Screen",
       "image": "/detrosingleframe3.jpeg",
-      "type": "ui"
+      "type": "ui",
+      "tag": "detro"
     },
     {
-      "name": "Detro",
+      "name": "Detro Home Screen",
       "image": "/detrosingleframe4.jpeg",
-      "type": "ui"
+      "type": "ui",
+      "tag": "detro"
     },
     {
-      "name": "Nutrifact",
-      "image": "/detroframe8.jpeg",
-      "type": "ui"
+      "name": "Nutrifact Scanner Page",
+      "image": "/nutrifactframe8.jpeg",
+      "type": "ui",
+      "tag": "nutrifact"
     },
     {
-      "name": "Nutrifact",
-      "image": "/detroframe9.jpeg",
-      "type": "ui"
+      "name": "Nutrifact Scanner Page",
+      "image": "/nutrifactframe9.jpeg",
+      "type": "ui",
+      "tag": "nutrifact"
     },
     {
-      "name": "Nutrifact",
+      "name": "Nutrifact Product Info Page",
       "image": "/detrosingleframe7.jpeg",
-      "type": "ui"
+      "type": "ui",
+      "tag": "nutrifact"
     },
     {
-      "name": "Nutrifact",
-      "image": "/detrosingleframe8.jpeg",
-      "type": "ui"
+      "name": "Nutrifact Home Page New",
+      "image": "/nutrifactframe11.jpeg",
+      "type": "ui",
+      "tag": "nutrifact"
     },
     {
-      "name": "Nutrifact",
+      "name": "Nutrifact Product Info Page",
       "image": "/detrosingleframe5.jpeg",
-      "type": "ui"
+      "type": "ui",
+      "tag": "nutrifact"
     },
     {
-      "name": "Nutrifact",
+      "name": "Nutrifact Home Page",
       "image": "/detrosingleframe6.jpeg",
-      "type": "ui"
+      "type": "ui",
+      "tag": "nutrifact"
     },
     {
-      "name": "Tick",
+      "name": "Tick Home & Timer Screen",
       "image": "/tickcover.jpeg",
-      "type": "ui"
+      "type": "ui",
+      "tag": "tick"
     },
+
     {
-      "name": "Tick",
+      "name": "Tick Logo",
       "image": "/ticklogobg.png",
-      "type": "logo"
+      "type": "logo",
+      "tag": "tick"
     },
-
     {
-      "name": "Cinewatch",
+      "name": "Cinewatch Logo",
       "image": "/cinewatchlogo.png",
-      "type": "logo"
-    },
-
-    {
-      "name": "Detro",
-      "image": "/detroframe4.jpeg",
-      "type": "logo"
-    },
-    {
-      "name": "Detro",
-      "image": "/detroframe2.jpeg",
-      "type": "logo"
+      "type": "logo",
+      "tag": "cinewatch"
     }
   ]
 }

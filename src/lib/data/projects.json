@@ -6,10 +6,10 @@
       "link": "https://detrogo.vercel.app",
       "githubLink": "https://github.com/simplystudios/Detro",
       "image": [
-        { "url": "/detrogonew.png", "type": "square" },
-        { "url": "/detrogonew2.png", "type": "square" },
-        { "url": "/detrogonew3.png", "type": "square" },
-        { "url": "/detrogonew4.png", "type": "square" }
+        { "url": "/detrogofresh5.jpeg", "type": "esquare" },
+        { "url": "/detrogofresh6.jpeg", "type": "esquare" },
+        { "url": "/detrogofresh7.jpeg", "type": "esquare" },
+        { "url": "/detrogofresh2.jpeg", "type": "esquare" }
       ],
       "timeline": "2025 — now",
       "description": "DetroGo is a transit utility app for the Delhi-NCR metro network, Made in Java. By implementing BFS pathfinding, it provides shortest routes across all active lines. Designed strictly under Material 3 guidelines, the app features an interactive vector map, dynamic theming, and local persistence for route history via Shared Preferences.",

@@ -2,28 +2,42 @@
   "design": [
     {
       "name": "DetroGO Home Page(new)",
-      "image": "/detrogonew.png",
+      "image": "/detrogolight.jpeg",
       "type": "ui",
       "tag": "detro"
     },
     {
       "name": "DetroGO Trip Planner Page(new)",
-      "image": "/detrogonew2.png",
+      "image": "/detrogolight2.jpeg",
+      "type": "ui",
+      "tag": "detro"
+    },
+
+    {
+      "name": "DetroGO Home Page(new)",
+      "image": "/detrogofresh5.jpeg",
       "type": "ui",
       "tag": "detro"
     },
     {
       "name": "DetroGO Trip Planner Page(new)",
-      "image": "/detrogonew3.png",
+      "image": "/detrogofresh7.jpeg",
       "type": "ui",
       "tag": "detro"
     },
     {
-      "name": "DetroGO Route Page(new)",
-      "image": "/detrogonew4.png",
+      "name": "DetroGO Trip Planner Page(new)",
+      "image": "/detrogofresh6.jpeg",
       "type": "ui",
       "tag": "detro"
     },
+    {
+      "name": "DetroGO Trip Planner Page(new)",
+      "image": "/detrogofresh2.jpeg",
+      "type": "ui",
+      "tag": "detro"
+    },
+
     {
       "name": "Detro Logo",
       "image": "/detrogogreen.jpeg",

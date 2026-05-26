@@ -53,7 +53,7 @@ async function getLastFMUser() {
 async function getTopArtists() {
   try {
     const res = await fetch(
-      `https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=${LASTFM_USER}&api_key=${LASTFM_API_KEY}&format=json&limit=3`,
+      `https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&period=6month&user=${LASTFM_USER}&api_key=${LASTFM_API_KEY}&format=json&limit=3`,
     );
     const data = await res.json();
     return data.topartists.artist;
@@ -66,7 +66,7 @@ async function getTopArtists() {
 async function getTopTracks() {
   try {
     const res = await fetch(
-      `https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=${LASTFM_USER}&api_key=${LASTFM_API_KEY}&format=json&limit=3`,
+      `https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&period=6month&user=${LASTFM_USER}&api_key=${LASTFM_API_KEY}&format=json&limit=3`,
     );
     const data = await res.json();
     return data.toptracks.track;

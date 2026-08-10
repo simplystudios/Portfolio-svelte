@@ -6,16 +6,14 @@
       "link": "https://detrogo.vercel.app",
       "githubLink": "https://github.com/simplystudios/Detro",
       "image": [
-        { "url": "/detrogofresh5.jpeg", "type": "esquare" },
-        { "url": "/detrogofresh6.jpeg", "type": "esquare" },
-        { "url": "/detrogofresh7.jpeg", "type": "esquare" },
-        { "url": "/detrogofresh2.jpeg", "type": "esquare" }
+        { "url": "/detrogodark.png", "type": "cover" }
+
       ],
       "timeline": "2025 — now",
-      "description": "DetroGo is a transit utility app for the Delhi-NCR metro network, Made in Java. By implementing BFS pathfinding, it provides shortest routes across all active lines. Designed strictly under Material 3 guidelines, the app features an interactive vector map, dynamic theming, and local persistence for route history via Shared Preferences.",
-      "logo": "/detrogopurp.jpeg",
+      "description": "DetroGo is a minimal transit app built from scratch for Indian cities, made with React Native. It finds your nearest station and shows the whole network on an interactive map built on OpenStreetMap. Routing runs on Dijkstra's algorithm to work out the best path across all active lines. Routes are rendered on a vector map built with SvelteKit, compiled to run locally and offline inside a WebView, with callouts for key events like transfer stations and reaching your destination. Also supports Live notifications for in-progress journeys. The app follows Material 3 guidelines with support for dynamic theming, is built with community in mind with city data contributed by users, and supports multiple Indian languages. Routes and history are saved locally with Zustand and MMKV.",
+      "logo": "/detrogogreen.jpeg",
       "mdLink": "/projects/detro.md",
-      "tags": ["Java", "Pathfinding", "Android", "Material 3"]
+      "tags": ["React Native", "Svelte", "Kotlin","Typescript", "Android", "Material 3"]
     },
 
     {
@@ -25,13 +23,10 @@
       "githubLink": "https://github.com/simplystudios/nutrifact",
       "timeline": "2024 — now",
       "image": [
-        { "url": "/nutrifactcover.jpeg", "type": "square" },
-        { "url": "/nutrifactframe.jpeg", "type": "square" },
-        { "url": "/nutrifactframe8.jpeg", "type": "esquare" },
-        { "url": "/nutrifactframe11.jpeg", "type": "esquare" }
+        { "url": "/nutrifactflowdark.png", "type": "cover" }
       ],
       "logo": "/imgs/nutrifactlogo.jpeg",
-      "description": "Mobile app to get nutritional info on food products by scanning barcodes or searching.",
+      "description": "Nutrifact is an app that lets you scan any product's barcode to pull its nutritional information from the OpenFoodFacts database. It scores each product's nutritional value on an A–Z scale based on both ingredients and nutritional content. Built in React Native with Material 3 design, including a dynamic color palette generated from the product's own image.",
       "mdLink": "/projects/nutrifact.md",
       "tags": ["React Native", "API Integration"]
     },

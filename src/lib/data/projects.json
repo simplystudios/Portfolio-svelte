@@ -78,9 +78,10 @@
     {
       "id": "sky",
       "name": "Sky Browser",
-      "link": "https://github.com/simplystudios/sky",
-      "githubLink": "https://github.com/simplystudios/sky",
+      "link": "https://github.com/simplystudios/skybrowser",
+      "githubLink": "https://github.com/simplystudios/skybrowser",
       "timeline": "2023 — 2024",
+
       "description": "Chromium browser with Tor network support built with the PyQt6 framework.",
       "mdLink": "/projects/sky.md",
       "tags": ["Python", "Chromium", "Privacy"]
@@ -236,7 +237,7 @@
       "type": "Freelance",
       "role": "Developer",
       "logo": "/vardaanlogofr.png",
-
+      "images":[{"url":"/vardaanhome.jpeg","type":"cover"}],
       "link": "https://vaardan.vercel.app/",
       "githubLink": null,
       "timeline": "2025 — 2026",

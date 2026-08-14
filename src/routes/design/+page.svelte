@@ -86,7 +86,7 @@
 
 <svelte:window on:keydown={handleKey} />
 <svelte:head>
-    <title>Ansh Wadhwa — Design</title>
+    <title>Ansh Wadhwa - Design</title>
 </svelte:head>
 
 <!-- lightbox -->
